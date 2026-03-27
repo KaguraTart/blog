@@ -1,0 +1,110 @@
+---
+---
+
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>KaguraTart's Blog</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+				background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+				min-height: 100vh;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				padding: 2rem;
+			}
+			.container {
+				background: white;
+				border-radius: 20px;
+				box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+				padding: 3rem;
+				max-width: 600px;
+				text-align: center;
+			}
+			.avatar {
+				width: 120px;
+				height: 120px;
+				border-radius: 50%;
+				margin-bottom: 1.5rem;
+				border: 4px solid #667eea;
+			}
+			h1 {
+				color: #333;
+				font-size: 2rem;
+				margin-bottom: 0.5rem;
+			}
+			.name {
+				color: #667eea;
+				font-weight: bold;
+			}
+			.bio {
+				color: #666;
+				margin: 1.5rem 0;
+				line-height: 1.8;
+			}
+			.tags {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				justify-content: center;
+				margin: 1.5rem 0;
+			}
+			.tag {
+				background: #f0f0ff;
+				color: #667eea;
+				padding: 0.3rem 1rem;
+				border-radius: 20px;
+				font-size: 0.9rem;
+			}
+			.links {
+				display: flex;
+				gap: 1rem;
+				justify-content: center;
+				margin-top: 2rem;
+			}
+			.link {
+				background: #667eea;
+				color: white;
+				text-decoration: none;
+				padding: 0.8rem 1.5rem;
+				border-radius: 10px;
+				transition: transform 0.2s;
+			}
+			.link:hover {
+				transform: translateY(-2px);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<img src="https://avatars.githubusercontent.com/u/49972575?v=4" alt="Avatar" class="avatar" />
+			<h1>Hi! I'm <span class="name">Kagura Tart</span></h1>
+			<p class="bio">
+				是蛋挞！<br><br>
+				I'm a grad student focusing on Autonomous Driving & transportation,<br>
+				passionate about creating more comfortable mobility experiences<br>
+				and more intuitive coding tools.
+			</p>
+			<div class="tags">
+				<span class="tag">🚗 Autonomous Driving</span>
+				<span class="tag">🔧 C/C++</span>
+				<span class="tag">🐍 Python</span>
+				<span class="tag">🚦 Traffic Simulation</span>
+			</div>
+			<div class="links">
+				<a href="https://github.com/KaguraTart" target="_blank" class="link">GitHub</a>
+				<a href="mailto:kaguratart@gmail.com" class="link">Email</a>
+			</div>
+		</div>
+	</body>
+</html>
