@@ -10,10 +10,10 @@ export const profile = {
   handle: 'KaguraTart',
 
   // 一句话简介
-  tagline: 'Grad student · Autonomous Driving & Transportation',
+  tagline: 'Grad student · Autonomous Driving & Transportation & Low-altitude UAV Research',
 
   // 个人介绍（支持换行）
-  about: '是蛋挞！\nResearching autonomous driving and intelligent transportation — building tools that make mobility more comfortable and coding more intuitive.',
+  about: '是蛋挞！\nResearching autonomous driving, low-altitude UAV, and intelligent transportation — passionate about LLM applications in mobility and coding tools.',
 
   // 兴趣标签
   interests: [
@@ -21,7 +21,11 @@ export const profile = {
     { label: 'C / C++', icon: 'code' },
     { label: 'Python', icon: 'python' },
     { label: 'Traffic Simulation', icon: 'traffic' },
+    { label: 'Low-altitude UAV Research', icon: 'uav' },
+    { label: 'LLM', icon: 'llm' },
   ],
+
+
 
   // 邮箱
   email: 'kaguratart@gmail.com',
