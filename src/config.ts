@@ -4,7 +4,7 @@ export const profile = {
   avatar: 'https://avatars.githubusercontent.com/u/49972575?v=4',
 
   // 名字
-  name: '邓点韬 / Deng Diantao',
+  name: '邓典涛 / Deng Diantao',
 
   // GitHub 用户名
   handle: 'KaguraTart',
