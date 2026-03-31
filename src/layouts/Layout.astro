@@ -1,0 +1,116 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = 'Kagura Tart 的博客' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <title>{title} | KaguraTart</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-base: #0a0a0f;
+        --bg-card: rgba(255,255,255,0.04);
+        --bg-card-hover: rgba(255,255,255,0.07);
+        --border: rgba(255,255,255,0.08);
+        --border-accent: rgba(124,111,248,0.4);
+        --text-primary: #e8e8f0;
+        --text-secondary: #8888a0;
+        --text-muted: #555568;
+        --accent: #7c6ff8;
+        --accent-dim: rgba(124,111,248,0.15);
+        --accent-glow: rgba(124,111,248,0.3);
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--bg-base);
+        color: var(--text-primary);
+        min-height: 100vh;
+        position: relative;
+        overflow-x: hidden;
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(124,111,248,0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(124,111,248,0.03) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+        z-index: 0;
+      }
+      body::after {
+        content: '';
+        position: fixed;
+        top: -30%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(ellipse, rgba(124,111,248,0.12) 0%, transparent 70%);
+        pointer-events: none;
+        z-index: 0;
+      }
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: var(--bg-base); }
+      ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 3px; }
+      ::selection { background: var(--accent-dim); color: var(--text-primary); }
+
+      /* Nav */
+      nav {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 720px;
+        margin: 0 auto;
+        padding: 1.5rem 2rem;
+      }
+      .nav-logo {
+        font-weight: 600;
+        font-size: 0.95rem;
+        color: var(--text-primary);
+        text-decoration: none;
+        letter-spacing: -0.01em;
+      }
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 400;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover,
+      .nav-links a.active { color: var(--text-primary); }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-logo">Kagura Tart</a>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+      </ul>
+    </nav>
+    <slot />
+  </body>
+</html>

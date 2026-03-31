@@ -1,0 +1,168 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map(post => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+  <article class="article-wrapper">
+    <header class="article-header">
+      <div class="article-meta-top">
+        <a href="/blog" class="back-link">← 博客</a>
+        <time datetime={post.data.pubDate.toISOString()}>
+          {post.data.pubDate.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </time>
+      </div>
+      <h1 class="article-title">{post.data.title}</h1>
+      <p class="article-desc">{post.data.description}</p>
+      {post.data.tags.length > 0 && (
+        <div class="article-tags">
+          {post.data.tags.map(tag => <span class="tag">{tag}</span>)}
+        </div>
+      )}
+    </header>
+
+    <div class="article-content">
+      <Content />
+    </div>
+  </article>
+</Layout>
+
+<style>
+  .article-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 2rem 5rem;
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .article-header { margin-bottom: 3rem; }
+  .article-meta-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+  .back-link {
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    transition: opacity 0.2s;
+  }
+  .back-link:hover { opacity: 0.7; }
+  time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+  .article-title {
+    font-size: 2rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    line-height: 1.2;
+    margin-bottom: 0.75rem;
+  }
+  .article-desc {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+  }
+  .article-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    background: var(--accent-dim);
+    border: 1px solid var(--border-accent);
+    color: var(--text-muted);
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.78rem;
+  }
+
+  /* Article prose styles */
+  .article-content {
+    border-top: 1px solid var(--border);
+    padding-top: 2.5rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.85;
+    font-weight: 300;
+  }
+  .article-content :global(h1),
+  .article-content :global(h2),
+  .article-content :global(h3) {
+    color: var(--text-primary);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 2rem 0 1rem;
+  }
+  .article-content :global(h1) { font-size: 1.6rem; }
+  .article-content :global(h2) { font-size: 1.3rem; }
+  .article-content :global(h3) { font-size: 1.1rem; }
+  .article-content :global(p) { margin-bottom: 1.2rem; }
+  .article-content :global(a) {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-accent);
+    transition: opacity 0.2s;
+  }
+  .article-content :global(a:hover) { opacity: 0.7; }
+  .article-content :global(strong) { color: var(--text-primary); font-weight: 500; }
+  .article-content :global(code) {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85em;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    color: var(--accent);
+  }
+  .article-content :global(pre) {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.5rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+  }
+  .article-content :global(pre code) {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+  }
+  .article-content :global(ul), .article-content :global(ol) {
+    padding-left: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .article-content :global(li) { margin-bottom: 0.4rem; }
+  .article-content :global(blockquote) {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+  .article-content :global(hr) {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
