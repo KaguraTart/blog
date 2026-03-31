@@ -4,16 +4,16 @@ export const profile = {
   avatar: 'https://avatars.githubusercontent.com/u/49972575?v=4',
 
   // 名字
-  name: 'Kagura Tart',
+  name: '邓点韬 / Deng Diantao',
 
   // GitHub 用户名
   handle: 'KaguraTart',
 
   // 一句话简介
-  tagline: 'Grad student · Autonomous Driving & Transportation & Low-altitude UAV Research',
+  tagline: 'M.Sc. · Tongji University · Transportation Engineering',
 
   // 个人介绍（支持换行）
-  about: '是蛋挞！\nResearching autonomous driving, low-altitude UAV, and intelligent transportation — passionate about LLM applications in mobility and coding tools.',
+  about: '是蛋挞！\nM.Sc. at Tongji University, College of Transportation Engineering.\nResearch on traffic simulation and autonomous driving — focusing on connected autonomous vehicles at signalized intersections, highway traffic modeling with reinforcement learning.',
 
   // 兴趣标签
   interests: [
