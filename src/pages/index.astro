@@ -11,60 +11,35 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
 ---
 
 <Layout title="Home">
-  <div class="main-container">
-    <!-- Left sidebar decorations -->
-    <div class="sidebar-left">
-      <div class="line top"></div>
-      <div class="line middle"></div>
-      <div class="line bottom"></div>
-      <div class="sidebar-dot" data-tip="Autonomous Driving"></div>
-      <div class="sidebar-dot" data-tip="Traffic Simulation"></div>
-      <div class="sidebar-dot" data-tip="C / C++"></div>
-    </div>
-
-    <!-- Center content -->
-    <div class="content-area">
-      <!-- Hero -->
-      <section class="hero">
-        <div class="hero-avatar-wrap">
-          <div class="hero-avatar-glow"></div>
-          <img src={profile.avatar} alt={profile.name} class="hero-avatar" />
-          <div class="hero-avatar-ring"></div>
-          <span class="hero-status"></span>
+  <div class="page-wrapper">
+    <div class="card">
+      <div class="card-inner">
+        <div class="profile">
+          <div class="avatar-wrap">
+            <div class="avatar-glow"></div>
+            <img src={profile.avatar} alt={profile.name} class="avatar" />
+            <div class="avatar-ring"></div>
+            <span class="avatar-status"></span>
+          </div>
+          <div class="profile-info">
+            <h1 class="profile-name">{profile.name}</h1>
+            <div class="profile-handle">@{profile.handle}</div>
+            <p class="profile-tagline">{profile.tagline}</p>
+          </div>
         </div>
-        <div class="hero-text">
-          <div class="hero-greeting">Hi, I'm</div>
-          <h1 class="hero-name">{profile.name}</h1>
-          <p class="hero-handle">@{profile.handle}</p>
-          <p class="hero-tagline">{profile.tagline}</p>
+
+        <div class="divider"></div>
+
+        <div class="about">
+          <div class="about-label">About</div>
+          <p class="about-text" set:html={aboutHtml} />
         </div>
-      </section>
 
-      <div class="section-divider"></div>
-
-      <!-- About -->
-      <section class="section about-section">
-        <div class="section-header">
-          <span class="section-num">01</span>
-          <h2 class="section-title">About</h2>
-          <div class="section-line"></div>
-        </div>
-        <p class="about-text" set:html={aboutHtml} />
-      </section>
-
-      <div class="section-divider"></div>
-
-      <!-- Interests -->
-      <section class="section">
-        <div class="section-header">
-          <span class="section-num">02</span>
-          <h2 class="section-title">Interests</h2>
-          <div class="section-line"></div>
-        </div>
-        <div class="interests-grid">
-          {profile.interests.map((item, i) => (
-            <div class="interest-card" style={`--delay: ${i * 0.08}s`}>
-              <div class="interest-icon">
+        <div class="tags-section">
+          <div class="tags-label">Interests</div>
+          <div class="tags">
+            {profile.interests.map(item => (
+              <div class="tag">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                   {item.icon === 'car' && <><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/><polygon points="12 15 17 21 7 21 12 15"/></>}
                   {item.icon === 'code' && <><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></>}
@@ -73,260 +48,113 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
                   {item.icon === 'uav' && <><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></>}
                   {item.icon === 'llm' && <><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></>}
                 </svg>
+                {item.label}
               </div>
-              <span class="interest-label">{item.label}</span>
-              <div class="interest-shine"></div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <div class="section-divider"></div>
-
-      <!-- Recent Posts -->
-      {recentPosts.length > 0 && (
-        <section class="section">
-          <div class="section-header">
-            <span class="section-num">03</span>
-            <h2 class="section-title">Recent Posts</h2>
-            <div class="section-line"></div>
-            <a href="/blog" class="section-more">View all →</a>
-          </div>
-          <div class="posts-list">
-            {recentPosts.map((post, i) => (
-              <a href={`/blog/${post.slug}`} class="post-item" style={`--delay: ${i * 0.06}s`}>
-                <div class="post-date">
-                  <span class="post-day">{post.data.pubDate.getDate().toString().padStart(2, '0')}</span>
-                  <span class="post-month">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short' })}</span>
-                  <span class="post-year">{post.data.pubDate.getFullYear()}</span>
-                </div>
-                <div class="post-body">
-                  <h3 class="post-title">{post.data.title}</h3>
-                  <p class="post-desc">{post.data.description}</p>
-                </div>
-                {post.data.tags.length > 0 && (
-                  <div class="post-tags">
-                    {post.data.tags.slice(0, 2).map(tag => (
-                      <span class="post-tag">{tag}</span>
-                    ))}
-                  </div>
-                )}
-                <div class="post-arrow">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                  </svg>
-                </div>
-              </a>
             ))}
           </div>
-        </section>
-      )}
+        </div>
 
-      <div class="section-divider"></div>
+        <div class="footer-links">
+          <a href={`https://github.com/${profile.handle}`} target="_blank" class="action-link github">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+          <a href={`mailto:${profile.email}`} class="action-link email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            Email
+          </a>
+          <a href="/blog" class="action-link blog">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            Blog
+          </a>
+        </div>
 
-      <!-- Links -->
-      <section class="section links-section">
-        <a href={`https://github.com/${profile.handle}`} target="_blank" class="action-link github">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
-          <span>GitHub</span>
-        </a>
-        <a href={`mailto:${profile.email}`} class="action-link email">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          <span>Email</span>
-        </a>
-        <a href="/blog" class="action-link blog">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-          <span>Blog</span>
-        </a>
-      </section>
-
-      <!-- Footer -->
-      <footer class="footer">
-        <span>© {new Date().getFullYear()} {profile.name}</span>
-        <span class="footer-sep">·</span>
-        <span>Built with Astro</span>
-      </footer>
-    </div>
-
-    <!-- Right sidebar decorations -->
-    <div class="sidebar-right">
-      <div class="time-display">
-        <div class="time-clock" id="clock">--:--</div>
-        <div class="time-zone" id="tz"></div>
-      </div>
-      <div class="scroll-indicator">
-        <div class="scroll-line"></div>
+        {recentPosts.length > 0 && (
+          <>
+            <div class="posts-divider"></div>
+            <div class="recent-posts">
+              <div class="posts-label">Recent Posts</div>
+              <div class="posts-list">
+                {recentPosts.map(post => (
+                  <a href={`/blog/${post.slug}`} class="post-item">
+                    <div class="post-left">
+                      <span class="post-day">{post.data.pubDate.getDate().toString().padStart(2, '0')}</span>
+                      <span class="post-month">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short' })}</span>
+                    </div>
+                    <div class="post-title">{post.data.title}</div>
+                    {post.data.tags.length > 0 && (
+                      <div class="post-tags">
+                        {post.data.tags.slice(0, 1).map(tag => <span class="post-tag">{tag}</span>)}
+                      </div>
+                    )}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   </div>
 </Layout>
 
 <script>
-  // Live clock
-  function updateClock() {
-    const now = new Date();
-    const el = document.getElementById('clock');
-    const tz = document.getElementById('tz');
-    if (el) {
-      el.textContent = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
-    }
-    if (tz) {
-      tz.textContent = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    }
-  }
-  updateClock();
-  setInterval(updateClock, 1000);
-
-  // Entrance animations with IntersectionObserver
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
+      if (entry.isIntersecting) entry.target.classList.add('visible');
     });
   }, { threshold: 0.1 });
 
-  document.querySelectorAll('.section, .post-item, .interest-card').forEach(el => {
+  document.querySelectorAll('.tag, .action-link, .post-item').forEach(el => {
     el.classList.add('reveal');
     observer.observe(el);
   });
 </script>
 
 <style>
-  .main-container {
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 0 1.5rem;
+  .page-wrapper {
     position: relative;
     z-index: 1;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem 3rem;
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  /* Sidebar decorations */
-  .sidebar-left {
-    position: fixed;
-    left: 2.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    z-index: 10;
-  }
-  .sidebar-left .line {
-    width: 1px;
-    background: linear-gradient(to bottom, transparent, var(--border), transparent);
-    height: 60px;
-    opacity: 0.5;
-  }
-  .sidebar-left .line.top { margin-bottom: 0.5rem; }
-  .sidebar-left .line.bottom { margin-top: 0.5rem; }
-  .sidebar-dot {
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--accent);
-    opacity: 0.3;
-    cursor: default;
-    transition: all 0.3s ease;
-    position: relative;
-  }
-  .sidebar-dot:hover { opacity: 0.8; transform: scale(1.4); }
-  .sidebar-dot::after {
-    content: attr(data-tip);
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
+  .card {
+    width: 100%;
+    max-width: 640px;
     background: var(--bg-card);
     border: 1px solid var(--border);
-    padding: 0.25rem 0.6rem;
-    border-radius: 6px;
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s;
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: fadeUp 0.8s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
-  .sidebar-dot:hover::after { opacity: 1; }
+  .card-inner { padding: 2.5rem; }
 
-  .sidebar-right {
-    position: fixed;
-    right: 2.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-    z-index: 10;
-  }
-  .time-display { text-align: center; }
-  .time-clock {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-secondary);
-    letter-spacing: 0.05em;
-  }
-  .time-zone {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
-    margin-top: 0.2rem;
-  }
-  .scroll-indicator {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .scroll-line {
-    width: 1px;
-    height: 50px;
-    background: linear-gradient(to bottom, var(--accent), transparent);
-    animation: scrollPulse 2s ease-in-out infinite;
-  }
-  @keyframes scrollPulse {
-    0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-    50% { opacity: 0.8; transform: scaleY(1); }
-  }
-
-  /* Content area */
-  .content-area {
-    width: 100%;
-    max-width: 680px;
-    padding: 5rem 0 4rem;
-  }
-
-  /* Hero */
-  .hero {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
-    padding: 2rem 0;
-  }
-  .hero-avatar-wrap {
+  .profile { display: flex; align-items: center; gap: 2rem; margin-bottom: 1.75rem; }
+  .avatar-wrap {
     flex-shrink: 0;
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 96px;
+    height: 96px;
   }
-  .hero-avatar-glow {
+  .avatar-glow {
     position: absolute;
-    inset: -20px;
+    inset: -16px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(124,111,248,0.25) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(124,111,248,0.2) 0%, transparent 70%);
     animation: glowPulse 3s ease-in-out infinite;
   }
   @keyframes glowPulse {
     0%, 100% { opacity: 0.6; transform: scale(1); }
     50% { opacity: 1; transform: scale(1.1); }
   }
-  .hero-avatar-ring {
+  .avatar-ring {
     position: absolute;
     inset: -4px;
     border-radius: 50%;
@@ -336,22 +164,19 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
     animation: spin 8s linear infinite;
   }
   @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-  .hero-avatar {
-    width: 100px; height: 100px;
+  .avatar {
+    width: 96px; height: 96px;
     border-radius: 50%;
     position: relative; z-index: 1;
     border: 3px solid var(--bg-base);
-    display: block;
-    object-fit: cover;
+    display: block; object-fit: cover;
     transition: transform 0.3s ease;
   }
-  .hero-avatar-wrap:hover .hero-avatar { transform: scale(1.05); }
-  .hero-status {
-    position: absolute;
-    bottom: 4px; right: 4px; z-index: 2;
-    width: 16px; height: 16px;
-    background: #22c55e;
-    border-radius: 50%;
+  .avatar-wrap:hover .avatar { transform: scale(1.06); }
+  .avatar-status {
+    position: absolute; bottom: 3px; right: 3px; z-index: 2;
+    width: 15px; height: 15px;
+    background: #22c55e; border-radius: 50%;
     border: 3px solid var(--bg-base);
     box-shadow: 0 0 10px rgba(34,197,94,0.5);
     animation: statusPulse 2s ease-in-out infinite;
@@ -360,269 +185,76 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
     0%, 100% { box-shadow: 0 0 6px rgba(34,197,94,0.4); }
     50% { box-shadow: 0 0 14px rgba(34,197,94,0.7); }
   }
-  .hero-text { flex: 1; }
-  .hero-greeting {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-    font-weight: 300;
-    margin-bottom: 0.25rem;
-    letter-spacing: 0.02em;
-  }
-  .hero-name {
-    font-size: 2.2rem;
-    font-weight: 700;
-    letter-spacing: -0.04em;
-    color: var(--text-primary);
-    line-height: 1.1;
-    margin-bottom: 0.2rem;
+
+  .profile-info { flex: 1; min-width: 0; }
+  .profile-name {
+    font-size: 1.7rem; font-weight: 700;
+    letter-spacing: -0.04em; color: var(--text-primary);
+    line-height: 1.1; margin-bottom: 0.2rem;
     background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     background-clip: text;
   }
-  .hero-handle {
+  .profile-handle {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--accent);
+    font-size: 0.8rem; color: var(--accent); opacity: 0.8;
     margin-bottom: 0.5rem;
-    opacity: 0.8;
   }
-  .hero-tagline {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    font-weight: 300;
-    line-height: 1.5;
+  .profile-tagline {
+    font-size: 0.88rem; color: var(--text-secondary);
+    font-weight: 300; line-height: 1.5;
   }
 
-  /* Section styles */
-  .section-divider {
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--border), transparent);
-    margin: 2.5rem 0;
-  }
-  .section { padding: 0.5rem 0; }
-  .section-header {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 1.5rem;
-  }
-  .section-num {
+  .divider { height: 1px; background: var(--border); margin: 0.25rem 0 1.5rem; }
+
+  .about-label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem;
-    color: var(--accent);
-    opacity: 0.6;
-    flex-shrink: 0;
+    font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    margin-bottom: 0.6rem;
   }
-  .section-title {
-    font-size: 0.78rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    color: var(--text-secondary);
-    flex-shrink: 0;
-  }
-  .section-line {
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-  .section-more {
-    font-size: 0.75rem;
-    color: var(--accent);
-    text-decoration: none;
-    opacity: 0.7;
-    transition: opacity 0.2s;
-    flex-shrink: 0;
-    margin-left: 0.5rem;
-  }
-  .section-more:hover { opacity: 1; }
-
-  /* About */
   .about-text {
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    line-height: 1.9;
-    font-weight: 300;
-    padding-left: 1rem;
-    border-left: 2px solid var(--accent);
-    margin-left: 0.5rem;
+    font-size: 0.92rem; color: var(--text-secondary);
+    line-height: 1.85; font-weight: 300;
   }
 
-  /* Interests grid */
-  .interests-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
+  .tags-section { margin-top: 1.75rem; }
+  .tags-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    margin-bottom: 0.75rem;
   }
-  .interest-card {
-    position: relative;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.1rem 1.25rem;
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-    cursor: default;
-    overflow: hidden;
+  .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    background: var(--accent-dim); border: 1px solid var(--border-accent);
+    color: var(--text-secondary); padding: 0.35rem 0.9rem;
+    border-radius: 8px; font-size: 0.8rem; font-weight: 400;
+    cursor: default; overflow: hidden; position: relative;
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
-  .interest-card:hover {
-    border-color: var(--border-accent);
-    background: var(--bg-card-hover);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(124,111,248,0.15);
-  }
-  .interest-card .interest-shine {
-    position: absolute;
-    top: 0; left: -100%;
-    width: 60%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(124,111,248,0.08), transparent);
+  .tag .shine {
+    position: absolute; top: 0; left: -100%;
+    width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(124,111,248,0.1), transparent);
     transition: left 0.5s ease;
   }
-  .interest-card:hover .interest-shine { left: 150%; }
-  .interest-icon {
-    width: 36px; height: 36px;
-    background: var(--accent-dim);
-    border: 1px solid var(--border-accent);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: all 0.3s ease;
+  .tag:hover {
+    background: rgba(124,111,248,0.2); color: var(--text-primary);
+    border-color: rgba(124,111,248,0.5); transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(124,111,248,0.2);
   }
-  .interest-icon svg { width: 18px; height: 18px; color: var(--accent); }
-  .interest-card:hover .interest-icon {
-    background: var(--accent);
-    border-color: var(--accent);
-  }
-  .interest-card:hover .interest-icon svg { color: #fff; }
-  .interest-label {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    font-weight: 400;
-    transition: color 0.2s;
-  }
-  .interest-card:hover .interest-label { color: var(--text-primary); }
+  .tag:hover .shine { left: 150%; }
+  .tag svg { width: 14px; height: 14px; flex-shrink: 0; color: var(--accent); transition: color 0.2s; }
+  .tag:hover svg { color: var(--text-primary); }
 
-  /* Posts */
-  .posts-list { display: flex; flex-direction: column; gap: 0.6rem; }
-  .post-item {
-    display: flex;
-    align-items: center;
-    gap: 1.25rem;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.1rem 1.4rem;
-    text-decoration: none;
-    transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-    position: relative;
-    overflow: hidden;
-  }
-  .post-item::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: linear-gradient(to bottom, var(--accent), #a855f7);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .post-item:hover {
-    border-color: var(--border-accent);
-    background: var(--bg-card-hover);
-    transform: translateX(6px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  }
-  .post-item:hover::before { opacity: 1; }
-  .post-date {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 40px;
-    flex-shrink: 0;
-  }
-  .post-day {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    line-height: 1;
-  }
-  .post-month {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.6rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-  .post-year {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.58rem;
-    color: var(--text-muted);
-  }
-  .post-body { flex: 1; min-width: 0; }
-  .post-title {
-    font-size: 0.92rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin-bottom: 0.2rem;
-    transition: color 0.2s;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .post-item:hover .post-title { color: var(--accent); }
-  .post-desc {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    line-height: 1.4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .post-tags { display: flex; gap: 0.35rem; flex-shrink: 0; }
-  .post-tag {
-    background: var(--accent-dim);
-    border: 1px solid var(--border-accent);
-    color: var(--text-muted);
-    padding: 0.15rem 0.5rem;
-    border-radius: 5px;
-    font-size: 0.7rem;
-  }
-  .post-arrow {
-    width: 20px; height: 20px;
-    color: var(--text-muted);
-    flex-shrink: 0;
-    opacity: 0;
-    transform: translateX(-8px);
-    transition: all 0.3s ease;
-  }
-  .post-arrow svg { width: 100%; height: 100%; }
-  .post-item:hover .post-arrow { opacity: 1; transform: translateX(0); color: var(--accent); }
-
-  /* Action links */
-  .links-section {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-  }
+  .footer-links { margin-top: 2rem; display: flex; gap: 0.75rem; flex-wrap: wrap; }
   .action-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.65rem 1.3rem;
-    border-radius: 10px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    text-decoration: none;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    color: var(--text-secondary);
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent-dim); border: 1px solid var(--border-accent);
+    color: var(--text-secondary); text-decoration: none;
+    padding: 0.65rem 1.2rem; border-radius: 10px; font-size: 0.85rem; font-weight: 500;
     transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .action-link svg { width: 16px; height: 16px; }
@@ -630,40 +262,71 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
   .action-link.email:hover { background: var(--accent); color: #fff; border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-glow); }
   .action-link.blog:hover { background: rgba(34,197,94,0.15); color: #22c55e; border-color: rgba(34,197,94,0.3); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(34,197,94,0.15); }
 
-  /* Footer */
-  .footer {
-    text-align: center;
-    padding: 3rem 0 1rem;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.5rem;
+  .posts-divider { height: 1px; background: var(--border); margin: 1.75rem 0 1.5rem; }
+  .recent-posts {}
+  .posts-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem; text-transform: uppercase;
+    letter-spacing: 0.12em; color: var(--text-muted);
+    margin-bottom: 0.85rem;
   }
-  .footer-sep { opacity: 0.3; }
+  .posts-list { display: flex; flex-direction: column; gap: 0.5rem; }
+  .post-item {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--bg-card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.85rem 1.2rem;
+    text-decoration: none; transition: all 0.3s ease;
+    position: relative; overflow: hidden;
+  }
+  .post-item::before {
+    content: ''; position: absolute;
+    left: 0; top: 0; bottom: 0; width: 3px;
+    background: linear-gradient(to bottom, var(--accent), #a855f7);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .post-item:hover {
+    border-color: var(--border-accent); background: var(--bg-card-hover);
+    transform: translateX(5px); box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .post-item:hover::before { opacity: 1; }
+  .post-left {
+    display: flex; flex-direction: column; align-items: center;
+    min-width: 38px; flex-shrink: 0;
+  }
+  .post-day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem; font-weight: 600; color: var(--text-primary); line-height: 1;
+  }
+  .post-month {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.58rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;
+  }
+  .post-title {
+    flex: 1; font-size: 0.88rem; color: var(--text-secondary);
+    transition: color 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .post-item:hover .post-title { color: var(--text-primary); }
+  .post-tags { flex-shrink: 0; }
+  .post-tag {
+    background: var(--accent-dim); border: 1px solid var(--border-accent);
+    color: var(--text-muted); padding: 0.15rem 0.5rem;
+    border-radius: 5px; font-size: 0.7rem;
+  }
 
   /* Reveal animations */
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-  }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s, transform 0.5s; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* Staggered delays for grid items */
-  .interest-card { transition-delay: var(--delay, 0s); }
-  .post-item { transition-delay: var(--delay, 0s); }
-
-  /* Responsive */
-  @media (max-width: 900px) {
-    .sidebar-left, .sidebar-right { display: none; }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  @media (max-width: 580px) {
-    .hero { flex-direction: column; text-align: center; gap: 1.5rem; }
-    .interests-grid { grid-template-columns: repeat(2, 1fr); }
-    .post-item { flex-wrap: wrap; }
-    .post-tags { display: none; }
-    .links-section { justify-content: center; }
+
+  @media (max-width: 520px) {
+    .profile { flex-direction: column; text-align: center; gap: 1.25rem; }
+    .profile-handle { margin-bottom: 0.25rem; }
+    .footer-links { justify-content: center; }
+    .card-inner { padding: 2rem 1.5rem; }
+    .tags { justify-content: center; }
   }
 </style>

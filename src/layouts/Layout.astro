@@ -38,7 +38,6 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         background: var(--bg-base);
         color: var(--text-primary);
         min-height: 100vh;
-        position: relative;
         overflow-x: hidden;
       }
       body::before {
@@ -51,6 +50,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         background-size: 60px 60px;
         pointer-events: none;
         z-index: 0;
+        background-attachment: fixed;
       }
       body::after {
         content: '';
@@ -63,6 +63,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         background: radial-gradient(ellipse, rgba(124,111,248,0.12) 0%, transparent 70%);
         pointer-events: none;
         z-index: 0;
+        background-attachment: fixed;
       }
       ::-webkit-scrollbar { width: 6px; }
       ::-webkit-scrollbar-track { background: var(--bg-base); }
