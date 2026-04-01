@@ -19,7 +19,6 @@ import Layout from '../layouts/Layout.astro';
         class="search-input"
         placeholder="Search posts..."
         autocomplete="off"
-        spellcheck="false"
       />
       <button id="search-clear" class="search-clear" aria-label="Clear" style="display:none">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
@@ -36,44 +35,33 @@ import Layout from '../layouts/Layout.astro';
         <div class="loading-dots"><span></span><span></span><span></span></div>
       </div>
       <div id="search-no-results" class="search-empty" style="display:none">
-        <p>No results found — <span id="query-text"></span></p>
+        <p>No results for "<span id="query-text"></span>"</p>
       </div>
       <div id="search-list" class="search-list"></div>
     </div>
   </div>
 </Layout>
 
-<script>
-  let pagefind: any = null;
+<script is:inline>
+  var pagefind = null;
 
-  async function loadPagefind() {
-    try {
-      // @ts-ignore
-      const pf = await import('/pagefind/pagefind.js');
-      await pf.init();
-      pagefind = pf;
-    } catch (e) {
-      console.warn('Pagefind not available:', e);
-    }
+  function escapeHtml(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
 
-  function escapeHtml(str: string) {
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  function highlight(text, query) {
+    if (!query || !query.trim()) return text;
+    var escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    return text.replace(new RegExp('(' + escaped + ')', 'gi'), '<mark>$1</mark>');
   }
 
-  function highlight(text: string, query: string) {
-    if (!query.trim()) return text;
-    const escaped = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-    return text.replace(new RegExp(`(${escaped})`, 'gi'), '<mark>$1</mark>');
-  }
-
-  async function doSearch(query: string) {
-    const clearBtn = document.getElementById('search-clear') as HTMLButtonElement;
-    const emptyState = document.getElementById('search-empty') as HTMLDivElement;
-    const loading = document.getElementById('search-loading') as HTMLDivElement;
-    const noResults = document.getElementById('search-no-results') as HTMLDivElement;
-    const queryText = document.getElementById('query-text') as HTMLSpanElement;
-    const list = document.getElementById('search-list') as HTMLDivElement;
+  function doSearch(query) {
+    var clearBtn = document.getElementById('search-clear');
+    var emptyState = document.getElementById('search-empty');
+    var loading = document.getElementById('search-loading');
+    var noResults = document.getElementById('search-no-results');
+    var queryText = document.getElementById('query-text');
+    var list = document.getElementById('search-list');
 
     clearBtn.style.display = query ? '' : 'none';
     emptyState.style.display = query ? 'none' : '';
@@ -81,7 +69,7 @@ import Layout from '../layouts/Layout.astro';
     list.innerHTML = '';
 
     if (!query.trim()) {
-      emptyState.querySelector('p')!.textContent = 'Type to search across all posts';
+      emptyState.querySelector('p').textContent = 'Type to search across all posts';
       return;
     }
 
@@ -90,60 +78,79 @@ import Layout from '../layouts/Layout.astro';
 
     if (!pagefind) {
       loading.style.display = 'none';
-      emptyState.querySelector('p')!.textContent = 'Search index loading, please try again...';
+      emptyState.querySelector('p').textContent = 'Search index loading, please try again...';
       emptyState.style.display = '';
       return;
     }
 
-    try {
-      const results = await pagefind.search(query);
+    pagefind.search(query).then(function(results) {
       loading.style.display = 'none';
-
       if (results.results.length === 0) {
-        queryText.textContent = `"${query}"`;
+        queryText.textContent = query;
         noResults.style.display = '';
         return;
       }
 
-      const topResults = results.results.slice(0, 8);
-      const dataList = await Promise.all(topResults.map((r: any) => r.data()));
+      var topResults = results.results.slice(0, 8);
+      var promises = topResults.map(function(r) { return r.data(); });
 
-      list.innerHTML = dataList.map((item: any) => {
-        const rawExcerpt = (item.excerpt || '').replace(/<[^>]+>/g, '').slice(0, 200);
-        const excerpt = rawExcerpt ? highlight(escapeHtml(rawExcerpt) + '...', query) : '';
-        const title = highlight(escapeHtml(item.meta && item.meta.title ? item.meta.title : item.url), query);
-        return `
-          <a href="${item.url}" class="result-card">
-            <h2 class="result-title">${title}</h2>
-            ${excerpt ? `<p class="result-excerpt">${excerpt}</p>` : ''}
-            <span class="result-link">Read more →</span>
-          </a>`;
-      }).join('');
-
-    } catch (err) {
+      Promise.all(promises).then(function(items) {
+        list.innerHTML = items.map(function(item) {
+          var excerpt = item.excerpt || '';
+          var cleanExcerpt = excerpt.replace(/<\/?mark>/g, '').slice(0, 200);
+          var highlightedExcerpt = highlight(escapeHtml(cleanExcerpt) + '...', query);
+          var highlightedTitle = highlight(escapeHtml(item.meta && item.meta.title || item.url || ''), query);
+          return '<a href="' + item.url + '" class="result-card">' +
+            '<h2 class="result-title">' + highlightedTitle + '</h2>' +
+            '<p class="result-excerpt">' + highlightedExcerpt + '</p>' +
+            '<span class="result-link">Read more →</span>' +
+            '</a>';
+        }).join('');
+      }).catch(function() {
+        loading.style.display = 'none';
+        emptyState.querySelector('p').textContent = 'Search failed, please try again.';
+        emptyState.style.display = '';
+      });
+    }).catch(function() {
       loading.style.display = 'none';
-      emptyState.querySelector('p')!.textContent = 'Search failed, please try again.';
+      emptyState.querySelector('p').textContent = 'Search failed, please try again.';
       emptyState.style.display = '';
-    }
+    });
   }
 
-  let debounceTimer: ReturnType<typeof setTimeout>;
-  const input = document.getElementById('search-input') as HTMLInputElement;
-  const clearBtn = document.getElementById('search-clear') as HTMLButtonElement;
+  var debounceTimer = null;
+  var input = document.getElementById('search-input');
+  var clearBtn = document.getElementById('search-clear');
 
-  input.addEventListener('input', () => {
+  input.addEventListener('input', function() {
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => doSearch(input.value), 200);
+    debounceTimer = setTimeout(function() { doSearch(input.value); }, 200);
   });
 
-  clearBtn.addEventListener('click', () => {
+  clearBtn.addEventListener('click', function() {
     input.value = '';
     clearBtn.style.display = 'none';
     doSearch('');
     input.focus();
   });
 
-  loadPagefind();
+  // Load pagefind dynamically at runtime
+  var script = document.createElement('script');
+  script.src = '/pagefind/pagefind.js';
+  script.onload = function() {
+    pagefind = window.pagefind;
+    if (pagefind) {
+      pagefind.options = pagefind.options || {};
+    }
+  };
+  script.onerror = function() {
+    var emptyState = document.getElementById('search-empty');
+    if (emptyState) {
+      emptyState.querySelector('p').textContent = 'Search index not available yet. Please deploy again.';
+      emptyState.style.display = '';
+    }
+  };
+  document.head.appendChild(script);
 </script>
 
 <style>
@@ -177,7 +184,7 @@ import Layout from '../layouts/Layout.astro';
   }
   .search-icon {
     position: absolute;
-    left: 1.1rem;
+    left: 1rem;
     top: 50%;
     transform: translateY(-50%);
     width: 18px;
@@ -185,31 +192,28 @@ import Layout from '../layouts/Layout.astro';
     color: var(--text-muted);
     pointer-events: none;
     transition: color 0.2s;
-    z-index: 1;
   }
   .search-box:focus-within .search-icon {
     color: var(--accent);
   }
   .search-input {
     width: 100%;
-    padding: 1rem 3.5rem 1rem 3rem;
+    padding: 0.9rem 3rem 0.9rem 3rem;
     font-size: 1rem;
     font-family: inherit;
     background: var(--bg-card);
     border: 1.5px solid var(--border);
-    border-radius: 14px;
+    border-radius: 12px;
     color: var(--text-primary);
     outline: none;
     transition: border-color 0.2s, box-shadow 0.2s;
     box-sizing: border-box;
     -webkit-appearance: none;
   }
-  .search-input::placeholder {
-    color: var(--text-muted);
-  }
+  .search-input::placeholder { color: var(--text-muted); }
   .search-input:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(124, 111, 248, 0.12);
+    box-shadow: 0 0 0 3px rgba(124, 111, 248, 0.15);
   }
   .search-input::-webkit-search-cancel-button { display: none; }
 
@@ -218,8 +222,8 @@ import Layout from '../layouts/Layout.astro';
     right: 0.75rem;
     top: 50%;
     transform: translateY(-50%);
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -229,9 +233,8 @@ import Layout from '../layouts/Layout.astro';
     cursor: pointer;
     color: var(--text-muted);
     transition: all 0.2s;
-    z-index: 1;
   }
-  .search-clear svg { width: 12px; height: 12px; }
+  .search-clear svg { width: 14px; height: 14px; }
   .search-clear:hover { background: var(--border); color: var(--text-primary); }
 
   .search-results { min-height: 200px; }
@@ -246,11 +249,7 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
     padding: 3rem;
   }
-  .loading-dots {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-  }
+  .loading-dots { display: flex; gap: 6px; align-items: center; }
   .loading-dots span {
     width: 8px; height: 8px;
     background: var(--accent);
@@ -264,7 +263,7 @@ import Layout from '../layouts/Layout.astro';
     40% { opacity: 1; transform: scale(1); }
   }
 
-  .search-list { display: flex; flex-direction: column; gap: 0.75rem; }
+  .search-list { display: flex; flex-direction: column; gap: 1rem; }
   .result-card {
     display: block;
     background: var(--bg-card);
