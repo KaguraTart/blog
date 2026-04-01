@@ -7,13 +7,13 @@ tags: ["深度学习", "PDE", "PINN", "PyTorch", "科学计算"]
 
 # 物理信息网络 PINN：利用神经网络求解偏微分方程
 
-> 偏微分方程（PDE）是描述物理世界的基本语言——热传导、流体动力学、量子力学，无一不是 PDE 的天下。但求解 PDE 常常需要复杂的数值方法（有限元、有限差分……），对几何形状不规则的区域更是头疼。**Physics-Informed Neural Networks（PINN）** 给出了一个全新的思路：**用神经网络作为 PDE 的解函数，用自动微分作为物理约束的执行器**。
+> 偏微分方程（PDE）是描述物理世界的基本语言——热传导、流体动力学、量子力学，无一不是 PDE 的天下。但求解 PDE 常常需要复杂的数值方法（有限元、有限差分……），对几何形状不规则的区域更是头疼。<strong>Physics-Informed Neural Networks（PINN）</strong> 给出了一个全新的思路：<strong>用神经网络作为 PDE 的解函数，用自动微分作为物理约束的执行器</strong>。
 
 ---
 
 ## 1. 什么是 PINN？
 
-**PINN 的核心思想**：不把神经网络当作"万能拟合器"，而是当作 **PDE 解函数的表示**。
+<strong>PINN 的核心思想</strong>：不把神经网络当作"万能拟合器"，而是当作 <strong>PDE 解函数的表示</strong>。
 
 传统方法：给定边界条件和初始条件，用数值差分近似 PDE 的导数。
 
@@ -27,11 +27,11 @@ PINN：用一个神经网络 `u_θ(x,t)` 来近似 PDE 的解 `u(x,t)`，其中 
 
 如上图所示，PINN 的结构为：
 
-- **输入层**：时空坐标 `(x, t)`
-- **隐藏层**：全连接层 + 激活函数（Tanh / Sigmoid）
-- **输出层**：PDE 的解 `u(x,t)`
+- <strong>输入层</strong>：时空坐标 `(x, t)`
+- <strong>隐藏层</strong>：全连接层 + 激活函数（Tanh / Sigmoid）
+- <strong>输出层</strong>：PDE 的解 `u(x,t)`
 
-关键区别在于**损失函数**的设计——除了数据拟合损失外，还加入了物理约束损失。
+关键区别在于<strong>损失函数</strong>的设计——除了数据拟合损失外，还加入了物理约束损失。
 
 ---
 
@@ -39,7 +39,7 @@ PINN：用一个神经网络 `u_θ(x,t)` 来近似 PDE 的解 `u(x,t)`，其中 
 
 ### 3.1 问题设定
 
-以**一维热传导方程**为例：
+以<strong>一维热传导方程</strong>为例：
 
 $$
 \frac{\partial u}{\partial t} = \alpha \frac{\partial^2 u}{\partial x^2}, \quad x \in [-1, 1], \quad t \in [0, 1]
@@ -68,7 +68,7 @@ $$
 f(x,t) = \frac{\partial u}{\partial t} - \alpha \frac{\partial^2 u}{\partial x^2} \quad \Rightarrow \quad \mathcal{L}_{PDE} = \frac{1}{N}\sum_{i=1}^{N} |f(x_i, t_i)|^2
 $$
 
-> 这里的 `f(x,t)` 被称为**残差网络（physics network）**，它完全由自动微分构造，不需要任何有限差分近似。
+> 这里的 `f(x,t)` 被称为<strong>残差网络（physics network）</strong>，它完全由自动微分构造，不需要任何有限差分近似。
 
 ---
 
@@ -259,17 +259,17 @@ ani.save("pinn_loss_components.gif", writer="pillow", fps=6, dpi=100)
 ![PINN 收敛动画](/pinn_gifs/pinn_convergence.gif)
 
 上图展示了 PINN 在训练过程中逐步逼近精确解的过程：
-- **左图**：t=0.5 时刻的解曲线，红色虚线为 PINN 预测，蓝色实线为精确解
-- **中图**：训练损失（对数坐标），可以看到三种损失协同下降
-- **右图**：PINN 预测的完整 (x,t) 解场
+- <strong>左图</strong>：t=0.5 时刻的解曲线，红色虚线为 PINN 预测，蓝色实线为精确解
+- <strong>中图</strong>：训练损失（对数坐标），可以看到三种损失协同下降
+- <strong>右图</strong>：PINN 预测的完整 (x,t) 解场
 
 ### 5.2 损失函数分解
 
 ![PINN 损失分解动画](/pinn_gifs/pinn_loss_components.gif)
 
 从损失分解动画可以看出：
-- **PDE 损失（红色）**下降最快，说明网络快速学到了物理规律
-- **边界条件损失（蓝色）** 通常最小，因为边界条件约束最简单
+- <strong>PDE 损失（红色）</strong>下降最快，说明网络快速学到了物理规律
+- <strong>边界条件损失（蓝色）</strong> 通常最小，因为边界条件约束最简单
 - 三种损失最终趋于稳定，表明网络已收敛
 
 ---
@@ -278,11 +278,11 @@ ani.save("pinn_loss_components.gif", writer="pillow", fps=6, dpi=100)
 
 | 特性 | 传统数值方法（FEM/FDM） | PINN |
 |------|------------------------|------|
-| 网格生成 | 需要精细网格，高维困难 | **无需网格**，随机采样 |
-| 导数精度 | 依赖差分近似，有截断误差 | **自动微分**，任意精度 |
-| 不规则区域 | 网格划分复杂 | **天然支持**任意几何 |
-| 反问题 | 需要重求解器 | **端到端**梯度优化 |
-| 高维问题 | 维度灾难 | **Scalable** |
+| 网格生成 | 需要精细网格，高维困难 | <strong>无需网格</strong>，随机采样 |
+| 导数精度 | 依赖差分近似，有截断误差 | <strong>自动微分</strong>，任意精度 |
+| 不规则区域 | 网格划分复杂 | <strong>天然支持</strong>任意几何 |
+| 反问题 | 需要重求解器 | <strong>端到端</strong>梯度优化 |
+| 高维问题 | 维度灾难 | <strong>Scalable</strong> |
 
 ---
 
@@ -292,26 +292,26 @@ ani.save("pinn_loss_components.gif", writer="pillow", fps=6, dpi=100)
 
 ### 7.1 训练困难
 
-- **模式坍缩（Mode Collapse）**：当 PDE 有多个解时，PINN 可能只学到其中一个
-- **梯度消失**：高阶导数（如 u_xxxx）的梯度在深层网络中可能极小
-- **超参数敏感**：网络深度、学习率、采样策略对结果影响显著
+- <strong>模式坍缩（Mode Collapse）</strong>：当 PDE 有多个解时，PINN 可能只学到其中一个
+- <strong>梯度消失</strong>：高阶导数（如 u_xxxx）的梯度在深层网络中可能极小
+- <strong>超参数敏感</strong>：网络深度、学习率、采样策略对结果影响显著
 
 ### 7.2 解的精度
 
-- 神经网络在**高频解**（如震荡解）上精度较差
+- 神经网络在<strong>高频解</strong>（如震荡解）上精度较差
 - 边界层、奇异性附近需要特殊处理（自适应采样、周期扩展等）
 
 ### 7.3 计算效率
 
-- 相比成熟数值库（如 FEniCS、COMSOL），PINN 在简单 PDE 上往往**更慢**
+- 相比成熟数值库（如 FEniCS、COMSOL），PINN 在简单 PDE 上往往<strong>更慢</strong>
 - GPU 利用率不如专用数值代码高
 
 ### 7.4 改进方向
 
-- **Adaptive Sampling**：在误差大的区域多采样（如 Residual-based Adaptive Refinement）
-- **DeepONet**： Operator Network，直接学习 PDE 解算子
-- **Fourier Neural Operator (FNO)**：频域神经算子，高维问题效果更好
-- **HP-VPINN**：基于变分形式的 PINN，精度更高
+- <strong>Adaptive Sampling</strong>：在误差大的区域多采样（如 Residual-based Adaptive Refinement）
+- <strong>DeepONet</strong>： Operator Network，直接学习 PDE 解算子
+- <strong>Fourier Neural Operator (FNO)</strong>：频域神经算子，高维问题效果更好
+- <strong>HP-VPINN</strong>：基于变分形式的 PINN，精度更高
 
 ---
 
@@ -382,18 +382,18 @@ print("结果已保存!")
 
 ## 9. 总结
 
-PINN 将**物理先验**嵌入神经网络的训练过程，开辟了"物理驱动的深度学习"这一新范式。它的核心创新不是网络结构，而是**损失函数的设计**——用自动微分精确施加物理约束。
+PINN 将<strong>物理先验</strong>嵌入神经网络的训练过程，开辟了"物理驱动的深度学习"这一新范式。它的核心创新不是网络结构，而是<strong>损失函数的设计</strong>——用自动微分精确施加物理约束。
 
 尽管存在训练困难、精度有限等挑战，PINN 在以下场景中展现了独特价值：
-- **高维 PDE**（传统方法维度灾难）
-- **反问题**（参数识别、数据同化）
-- **不确定性量化**（结合贝叶斯方法）
+- <strong>高维 PDE</strong>（传统方法维度灾难）
+- <strong>反问题</strong>（参数识别、数据同化）
+- <strong>不确定性量化</strong>（结合贝叶斯方法）
 
 > 如果你想进一步探索，推荐从 [DeepXDE](https://deepxde.readthedocs.io/) 库开始，它封装了大量 PINN 变体和自适应采样策略。
 
 ---
 
-**参考论文：**
+<strong>参考论文：</strong>
 1. Raissi, M., Perdikaris, P., & Karniadakis, G. E. (2019). *Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations.* Journal of Computational Physics, 378, 686-707.
 2. Lu, L., et al. (2021). *DeepONet: Learning nonlinear operators for identifying differential equations based on the universal approximation theorem of operators.* Nature Machine Intelligence, 3(3), 218-229.
 3. Li, Z., et al. (2021). *Fourier neural operator for parametric PDEs.* ICLR 2021.
