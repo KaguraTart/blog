@@ -28,6 +28,9 @@ jobs:
       - name: Build
         run: npm run build && npx pagefind --site dist
 
+      - name: Verify pagefind output
+        run: ls dist/pagefind/ && echo "pagefind OK"
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
         with:
