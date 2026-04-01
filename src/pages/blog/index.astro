@@ -27,7 +27,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {allPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card">
             <div class="post-meta">
-              <time datetime={post.data.pubDate.toISOString()}>
+              <span class="cat-badge">{post.data.category}</span>
                 {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
               <span class="cat-badge">{post.data.category}</span>
@@ -49,7 +49,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {techPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card">
             <div class="post-meta">
-              <time datetime={post.data.pubDate.toISOString()}>
+              <span class="cat-badge">{post.data.category}</span>
                 {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
               <span class="cat-badge">{post.data.category}</span>
@@ -71,7 +71,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {essayPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card">
             <div class="post-meta">
-              <time datetime={post.data.pubDate.toISOString()}>
+              <span class="cat-badge">{post.data.category}</span>
                 {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
               <span class="cat-badge">{post.data.category}</span>
@@ -93,7 +93,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {paperPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card">
             <div class="post-meta">
-              <time datetime={post.data.pubDate.toISOString()}>
+              <span class="cat-badge">{post.data.category}</span>
                 {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
               <span class="cat-badge">{post.data.category}</span>
