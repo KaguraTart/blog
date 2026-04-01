@@ -5,140 +5,192 @@ import Layout from '../layouts/Layout.astro';
   <div class="about-wrapper">
     <header class="about-header">
       <div class="lang-toggle-wrap">
-        <a href="#" class="lang-toggle active" data-lang="en">EN</a>
+        <a href="#" class="lang-toggle active" id="lang-en-btn">EN</a>
         <span class="lang-sep">/</span>
-        <a href="#" class="lang-toggle" data-lang="zh">中文</a>
+        <a href="#" class="lang-toggle" id="lang-zh-btn">中文</a>
       </div>
-      <a href="/blog" class="back-link">← Blog</a>
-      <h1 class="about-title" data-i18n="title">About Me</h1>
-      <p class="about-subtitle" data-i18n="subtitle">邓典涛 / Deng Diantao</p>
+      <a href="/blog" class="back-link" id="back-link">← Blog</a>
+      <h1 class="about-title" id="about-title">About Me</h1>
+      <p class="about-subtitle">邓典涛 / Deng Diantao</p>
     </header>
 
     <div class="about-content">
 
-      <!-- 个人简介 / Introduction -->
+      <!-- About -->
       <section class="section">
-        <h2 data-i18n-label="bio">👤 About</h2>
-        <div class="lang-content" data-lang="en">
+        <h2 class="section-title" data-i18n="bio">👤 About</h2>
+        <div class="lang-block" data-lang="en">
           <p>Ph.D. candidate at Beihang University (BUAA), School of Transportation Science and Engineering. M.Sc. at Tongji University, College of Transportation Engineering. Previously interned at Huawei Vehicle BU and Bosch China.</p>
         </div>
-        <div class="lang-content" data-lang="zh" style="display:none">
-          <p>北京航空航天大学交通科学与工程学院在读博士，研究方向为自动驾驶与交通仿真。同济大学交通运输工程硕士。同济大学土木工程学士。曾于华为车BU、博世中国实习。</p>
+        <div class="lang-block" data-lang="zh" style="display:none">
+          <p>北京航空航天大学交通科学与工程学院在读博士，研究方向为自动驾驶与交通仿真。同济大学交通运输工程硕士，同济大学土木工程学士。曾于华为车BU、博世中国实习。</p>
         </div>
       </section>
 
-      <!-- 教育背景 / Education -->
+      <!-- Education -->
       <section class="section">
-        <h2 data-i18n-label="edu">🎓 Education</h2>
-        <div class="edu-item">
-          <div class="edu-header">
-            <strong data-i18n="edu1_school">Beihang University (BUAA)</strong>
-            <span class="edu-date">2024 – Present</span>
+        <h2 class="section-title" data-i18n="edu">🎓 Education</h2>
+        <div class="lang-block" data-lang="en">
+          <div class="edu-item">
+            <div class="edu-header"><strong>Beihang University (BUAA)</strong><span class="edu-date">2024 – Present</span></div>
+            <div class="edu-sub">Ph.D. · Transportation Science & Engineering</div>
           </div>
-          <div class="edu-sub">Ph.D. · Transportation Science & Engineering</div>
+          <div class="edu-item">
+            <div class="edu-header"><strong>Tongji University</strong><span class="edu-date">2021 – 2024</span></div>
+            <div class="edu-sub">M.Sc. · Transportation Engineering</div>
+            <div class="edu-courses">Courses: Computer Aided Design, Transportation Data Analysis, Numerical Computation, Data Mining</div>
+          </div>
+          <div class="edu-item">
+            <div class="edu-header"><strong>Tongji University</strong><span class="edu-date">2017 – 2021</span></div>
+            <div class="edu-sub">B.Eng. · Civil Engineering</div>
+            <div class="edu-courses">Courses: Finite Element Method, Calculus, Linear Algebra, Probability & Statistics, C++</div>
+            <div class="edu-award">Awards: 2020 Campus Scholarship, 2018 Kaisa Scholarship</div>
+          </div>
         </div>
-        <div class="edu-item">
-          <div class="edu-header">
-            <strong data-i18n="edu2_school">Tongji University</strong>
-            <span class="edu-date">2021 – 2024</span>
+        <div class="lang-block" data-lang="zh" style="display:none">
+          <div class="edu-item">
+            <div class="edu-header"><strong>北京航空航天大学</strong><span class="edu-date">2024 – 至今</span></div>
+            <div class="edu-sub">博士 · 交通运输工程</div>
           </div>
-          <div class="edu-sub">M.Sc. · Transportation Engineering</div>
-          <div class="edu-courses">Courses: Computer Aided Design, Transportation Data Analysis, Numerical Computation, Data Mining</div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-header">
-            <strong data-i18n="edu3_school">Tongji University</strong>
-            <span class="edu-date">2017 – 2021</span>
+          <div class="edu-item">
+            <div class="edu-header"><strong>同济大学</strong><span class="edu-date">2021 – 2024</span></div>
+            <div class="edu-sub">硕士 · 交通运输工程</div>
+            <div class="edu-courses">主要课程：计算机辅助设计、交通数据分析、数值计算、数据挖掘</div>
           </div>
-          <div class="edu-sub">B.Eng. · Civil Engineering</div>
-          <div class="edu-courses">Courses: Finite Element Method, Calculus, Linear Algebra, Probability & Statistics, C++</div>
-          <div class="edu-award">Awards: 2020 Campus Scholarship, 2018 Kaisa Scholarship</div>
+          <div class="edu-item">
+            <div class="edu-header"><strong>同济大学</strong><span class="edu-date">2017 – 2021</span></div>
+            <div class="edu-sub">学士 · 土木工程</div>
+            <div class="edu-courses">主要课程：有限元方法、微积分、线性代数、概率统计、C++程序设计</div>
+            <div class="edu-award">荣誉：2020年校园奖学金、2018年凯嘉奖学金</div>
+          </div>
         </div>
       </section>
 
-      <!-- 工作经历 / Experience -->
+      <!-- Experience -->
       <section class="section">
-        <h2 data-i18n-label="exp">💼 Experience</h2>
-        <div class="exp-item">
-          <div class="exp-header">
-            <strong>Shanghai Yinwang Intelligence (Huawei Vehicle BU)</strong>
-            <span class="exp-date">2024.07 – 2025.08</span>
+        <h2 class="section-title" data-i18n="exp">💼 Experience</h2>
+        <div class="lang-block" data-lang="en">
+          <div class="exp-item">
+            <div class="exp-header"><strong>Shanghai Yinwang Intelligence (Huawei Vehicle BU)</strong><span class="exp-date">2024.07 – 2025.08</span></div>
+            <div class="exp-role">DevOps Engineer</div>
+            <ul>
+              <li>Extract CAN bus signals from onboard .MF4 data, parse and generate core dashboard JSON files</li>
+              <li>Visualize vehicle perception data, convert to OpenX format and import into CarMaker for ADAS SIL testing</li>
+              <li>Design automated test cases for autonomous driving and parking edge cases using CarMaker and CARLA</li>
+            </ul>
           </div>
-          <div class="exp-role">DevOps Engineer</div>
-          <ul>
-            <li>Extract CAN bus signals from onboard .MF4 data, parse and generate core dashboard JSON files</li>
-            <li>Visualize vehicle perception data, convert to OpenX format and import into CarMaker for ADAS SIL testing</li>
-            <li>Design automated test cases for autonomous driving and parking edge cases using CarMaker and CARLA</li>
-          </ul>
+          <div class="exp-item">
+            <div class="exp-header"><strong>Bosch (China) Investment Ltd.</strong><span class="exp-date">2023.07 – 2023.12</span></div>
+            <div class="exp-role">Strategy Intern (Deep Learning)</div>
+            <ul>
+              <li>Researched point cloud characteristics of mmWave Radar and LiDAR using KITTI, Waymo and private datasets</li>
+              <li>Used GNN graph generation to synthesize diverse trajectories, output .xodr and .xosc HD map formats for simulation</li>
+            </ul>
+          </div>
         </div>
-        <div class="exp-item">
-          <div class="exp-header">
-            <strong>Bosch (China) Investment Ltd.</strong>
-            <span class="exp-date">2023.07 – 2023.12</span>
+        <div class="lang-block" data-lang="zh" style="display:none">
+          <div class="exp-item">
+            <div class="exp-header"><strong>上海引望智能科技有限公司（华为车BU）</strong><span class="exp-date">2024.07 – 2025.08</span></div>
+            <div class="exp-role">DevOps 工程师</div>
+            <ul>
+              <li>从车载 MF4 数据中提取 CAN 总线信号，解析并生成核心仪表盘 JSON 文件</li>
+              <li>可视化车载感知数据，转换为 OpenX 格式并导入 CarMaker，用于 ADAS 功能 SIL 测试</li>
+              <li>设计自动驾驶和泊车边缘场景的自动化测试用例，利用 CarMaker 和 CARLA 构建仿真测试环境</li>
+            </ul>
           </div>
-          <div class="exp-role">Strategy Intern (Deep Learning)</div>
-          <ul>
-            <li>Researched point cloud characteristics of mmWave Radar and LiDAR using KITTI, Waymo and private datasets</li>
-            <li>Used GNN graph generation to synthesize diverse trajectories, output .xodr and .xosc HD map formats for simulation</li>
-          </ul>
+          <div class="exp-item">
+            <div class="exp-header"><strong>博世中国投资有限公司</strong><span class="exp-date">2023.07 – 2023.12</span></div>
+            <div class="exp-role">战略实习生（深度学习）</div>
+            <ul>
+              <li>结合开源自动驾驶数据集（KITTI、Waymo）和私有数据集，研究毫米波雷达与激光雷达点云特征</li>
+              <li>利用 GNN 图生成方法合成多样化场景轨迹，输出 .xodr 和 .xosc 高精地图格式用于仿真</li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      <!-- 项目经历 / Projects -->
+      <!-- Projects -->
       <section class="section">
-        <h2 data-i18n-label="proj">🚀 Projects</h2>
-        <div class="project-item">
-          <div class="project-header">
-            <strong>Driving Simulation & Traffic Simulation Fusion Platform</strong>
-            <span class="project-role">Software Engineer · 2021.09 – 2024.06</span>
+        <h2 class="section-title" data-i18n="proj">🚀 Projects</h2>
+        <div class="lang-block" data-lang="en">
+          <div class="project-item">
+            <div class="project-header"><strong>Driving Simulation & Traffic Simulation Fusion Platform</strong><span class="project-role">Software Engineer · 2021.09 – 2024.06</span></div>
+            <ul>
+              <li>Integrated CARLA (Unreal Engine) and SUMO traffic simulation via TCP/IP; Python scripts for vehicle control, traffic generation and data analysis</li>
+              <li>Compiled SUMO with gcc on Ubuntu; improved lane-changing model to match real-world data distributions</li>
+              <li>Used YOLOv3 for vehicle detection, trajectory extraction, and Kalman filtering for data smoothing</li>
+              <li>Real-time MySQL database for platform data with external API access</li>
+            </ul>
           </div>
-          <ul>
-            <li>Integrated CARLA (Unreal Engine) and SUMO traffic simulation via TCP/IP; Python scripts for vehicle control, traffic generation and data analysis</li>
-            <li>Compiled SUMO with gcc on Ubuntu; improved lane-changing model to match real-world data distributions</li>
-            <li>Used YOLOv3 for vehicle detection, trajectory extraction, and Kalman filtering for data smoothing</li>
-            <li>Real-time MySQL database for platform data with external API access</li>
-          </ul>
+          <div class="project-item">
+            <div class="project-header"><strong>RL-Based Urban Expressway Traffic State Optimization</strong><span class="project-role">First Author · 2022.07 – 2023.04</span></div>
+            <ul>
+              <li>Published SCI Q3 paper (Journal of Advanced Transportation); Q-learning for expressway ramp signal control</li>
+              <li>SUMO-Python co-simulation for coordinated ramp metering and channelization control</li>
+            </ul>
+          </div>
+          <div class="project-item">
+            <div class="project-header"><strong>YOLOX-Based Road Pavement Disease Detection</strong><span class="project-role">Team Lead · 2022.05 – 2022.06</span></div>
+            <ul>
+              <li>Road pavement disease classification and prediction using YOLOX with data augmentation (flip, crop, rotate)</li>
+              <li>Simplified model input; improved inference speed; Excellence Award winner</li>
+            </ul>
+          </div>
         </div>
-        <div class="project-item">
-          <div class="project-header">
-            <strong>RL-Based Urban Expressway Traffic State Optimization</strong>
-            <span class="project-role">First Author · 2022.07 – 2023.04</span>
+        <div class="lang-block" data-lang="zh" style="display:none">
+          <div class="project-item">
+            <div class="project-header"><strong>驾驶仿真与交通仿真融合平台</strong><span class="project-role">软件工程师 · 2021.09 – 2024.06</span></div>
+            <ul>
+              <li>基于 TCP/IP 协议集成 CARLA（虚幻引擎）和 SUMO 交通仿真，用 Python 实现车辆控制、车流生成及数据分析</li>
+              <li>在 Ubuntu 环境下用 gcc 编译 SUMO，改进车辆换道模型使其与真实数据分布一致</li>
+              <li>使用 YOLOv3 进行车辆检测、轨迹提取，利用卡尔曼滤波平滑数据</li>
+              <li>实时 MySQL 数据库存储平台数据，提供外部 API 访问接口</li>
+            </ul>
           </div>
-          <ul>
-            <li>Published SCI Q3 paper (Journal of Advanced Transportation); Q-learning for expressway ramp signal control</li>
-            <li>SUMO-Python co-simulation for coordinated ramp metering and channelization control</li>
-          </ul>
-        </div>
-        <div class="project-item">
-          <div class="project-header">
-            <strong>YOLOX-Based Road Pavement Disease Detection</strong>
-            <span class="project-role">Team Lead · 2022.05 – 2022.06</span>
+          <div class="project-item">
+            <div class="project-header"><strong>基于强化学习的城市快速路交通状态优化</strong><span class="project-role">第一作者 · 2022.07 – 2023.04</span></div>
+            <ul>
+              <li>发表 SCI Q3 论文（Journal of Advanced Transportation），基于 Q-learning 实现快速路匝道信号控制</li>
+              <li>采用 SUMO-Python 联合仿真，实现匝道标线与信号灯协同优化控制</li>
+            </ul>
           </div>
-          <ul>
-            <li>Road pavement disease classification and prediction using YOLOX with data augmentation (flip, crop, rotate)</li>
-            <li>Simplified model input; improved inference speed; Excellence Award winner</li>
-          </ul>
+          <div class="project-item">
+            <div class="project-header"><strong>基于 YOLOX 的路面病害智能检测</strong><span class="project-role">团队负责人 · 2022.05 – 2022.06</span></div>
+            <ul>
+              <li>基于 YOLOX 实现路面病害分类与预测，利用翻转、裁剪、旋转增强数据集</li>
+              <li>简化模型输入，提升推理速度，获优秀奖</li>
+            </ul>
+          </div>
         </div>
       </section>
 
-      <!-- 论文 / Publications -->
+      <!-- Publications -->
       <section class="section">
-        <h2 data-i18n-label="pub">📝 Publications</h2>
-        <div class="pub-item">
-          <p>
-            <strong>Deng D, Yu B, Xu D, et al.</strong> Automated Traffic State Optimization in the Weaving Area of Urban Expressways by a Reinforcement Learning-Based Cooperative Method of Channelization and Ramp Metering[J]. 
-            <em>Journal of Advanced Transportation</em>, 2023. (SCI Q3, IF = 2.3)
-          </p>
+        <h2 class="section-title" data-i18n="pub">📝 Publications</h2>
+        <div class="lang-block" data-lang="en">
+          <div class="pub-item">
+            <p><strong>Deng D, Yu B, Xu D, et al.</strong> Automated Traffic State Optimization in the Weaving Area of Urban Expressways by a Reinforcement Learning-Based Cooperative Method of Channelization and Ramp Metering[J]. <em>Journal of Advanced Transportation</em>, 2023. (SCI Q3, IF = 2.3)</p>
+          </div>
+        </div>
+        <div class="lang-block" data-lang="zh" style="display:none">
+          <div class="pub-item">
+            <p><strong>邓典涛, 俞波, 徐典, 等.</strong> 一种基于强化学习的城市快速路交织区标线与匝道信号协同优化交通状态方法[J]. <em>Journal of Advanced Transportation</em>, 2023. (SCI Q3, IF = 2.3)</p>
+          </div>
         </div>
       </section>
 
-      <!-- 专利 / Patents -->
+      <!-- Patents -->
       <section class="section">
-        <h2 data-i18n-label="patent">💡 Patents</h2>
-        <div class="pub-item">
-          <p>
-            <strong>Yu B, Chen Y, Deng D, Gao J, Yao S.</strong> A Traffic State Optimization Method and System in Road Interleaved Area[P]. Shanghai: CN202310359301.2, 2023-04-06.
-          </p>
+        <h2 class="section-title" data-i18n="patent">💡 Patents</h2>
+        <div class="lang-block" data-lang="en">
+          <div class="pub-item">
+            <p><strong>Yu B, Chen Y, Deng D, Gao J, Yao S.</strong> A Traffic State Optimization Method and System in Road Interleaved Area[P]. Shanghai: CN202310359301.2, 2023-04-06.</p>
+          </div>
+        </div>
+        <div class="lang-block" data-lang="zh" style="display:none">
+          <div class="pub-item">
+            <p><strong>俞波, 陈宇仁, 邓典涛, 高建强, 姚思哲.</strong> 一种道路交织区域的交通状态优化方法及系统[P]. 上海: CN202310359301.2, 2023-04-06.（发明专利）</p>
+          </div>
         </div>
       </section>
 
@@ -147,145 +199,53 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script>
-  // Language toggle
-  const toggles = document.querySelectorAll('.lang-toggle');
-  const contents = document.querySelectorAll('.lang-content');
-  const labels = document.querySelectorAll('[data-i18n-label]');
-  const i18nMap = {
+  const i18n = {
     en: {
-      title: 'About Me', subtitle: '邓典涛 / Deng Diantao', bio: '👤 About',
-      edu: '🎓 Education', exp: '💼 Experience', proj: '🚀 Projects',
-      pub: '📝 Publications', patent: '💡 Patents',
-      back: '← Blog',
-      edu1_school: 'Beihang University (BUAA)',
-      edu2_school: 'Tongji University', edu3_school: 'Tongji University',
+      title: 'About Me', back: '← Blog',
+      bio: '👤 About', edu: '🎓 Education', exp: '💼 Experience',
+      proj: '🚀 Projects', pub: '📝 Publications', patent: '💡 Patents'
     },
     zh: {
-      title: '关于我', subtitle: '邓典涛 / Deng Diantao', bio: '👤 个人简介',
-      edu: '🎓 教育背景', exp: '💼 工作经历', proj: '🚀 项目经历',
-      pub: '📝 论文发表', patent: '💡 发明专利',
-      back: '← 博客',
-      edu1_school: '北京航空航天大学',
-      edu2_school: '同济大学', edu3_school: '同济大学',
+      title: '关于我', back: '← 博客',
+      bio: '👤 个人简介', edu: '🎓 教育背景', exp: '💼 工作经历',
+      proj: '🚀 项目经历', pub: '📝 论文发表', patent: '💡 发明专利'
     }
   };
 
   function setLang(lang) {
-    // Save preference
     localStorage.setItem('about-lang', lang);
-    // Toggle buttons
-    toggles.forEach(t => t.classList.toggle('active', t.dataset.lang === lang));
-    // Toggle content
-    contents.forEach(c => c.style.display = c.dataset.lang === lang ? '' : 'none');
-    // Update labels
-    labels.forEach(el => {
-      const key = el.dataset.i18nLabel;
-      if (key && i18nMap[lang][key]) el.textContent = i18nMap[lang][key];
-    });
-    // Update title & subtitle
-    document.querySelectorAll('[data-i18n]').forEach(el => {
+    document.getElementById('lang-en-btn').classList.toggle('active', lang === 'en');
+    document.getElementById('lang-zh-btn').classList.toggle('active', lang === 'zh');
+    document.getElementById('about-title').textContent = i18n[lang].title;
+    document.getElementById('back-link').textContent = i18n[lang].back;
+    document.querySelectorAll('.section-title').forEach(el => {
       const key = el.dataset.i18n;
-      if (i18nMap[lang][key]) el.textContent = i18nMap[lang][key];
+      if (key && i18n[lang][key]) el.textContent = i18n[lang][key];
     });
-    // Update back link
-    document.querySelector('.back-link').textContent = i18nMap[lang].back;
-    // Update section headers (dynamic based on current lang content)
-    const edu1 = document.querySelector('[data-i18n="edu1_school"]');
-    const edu2 = document.querySelector('[data-i18n="edu2_school"]');
-    const edu3 = document.querySelector('[data-i18n="edu3_school"]');
-    if (edu1) edu1.textContent = i18nMap[lang].edu1_school;
-    if (edu2) edu2.textContent = i18nMap[lang].edu2_school;
-    if (edu3) edu3.textContent = i18nMap[lang].edu3_school;
+    document.querySelectorAll('.lang-block').forEach(el => {
+      el.style.display = el.dataset.lang === lang ? '' : 'none';
+    });
   }
 
-  toggles.forEach(t => t.addEventListener('click', (e) => {
-    e.preventDefault();
-    setLang(t.dataset.lang);
-  }));
-
-  // Restore preference
-  const saved = localStorage.getItem('about-lang') || 'en';
-  setLang(saved);
+  document.getElementById('lang-en-btn').addEventListener('click', e => { e.preventDefault(); setLang('en'); });
+  document.getElementById('lang-zh-btn').addEventListener('click', e => { e.preventDefault(); setLang('zh'); });
+  setLang(localStorage.getItem('about-lang') || 'en');
 </script>
 
 <style>
-  .about-wrapper {
-    max-width: 720px;
-    margin: 0 auto;
-    padding: 2rem 2rem 5rem;
-    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
-  }
-
-  .about-header {
-    margin-bottom: 3rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
-
-  .lang-toggle-wrap {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.3rem;
-    font-size: 0.82rem;
-  }
-  .lang-toggle {
-    color: var(--text-muted);
-    text-decoration: none;
-    transition: color 0.2s;
-    font-family: 'JetBrains Mono', monospace;
-    padding: 0.1rem 0.3rem;
-    border-radius: 4px;
-  }
-  .lang-toggle:hover, .lang-toggle.active {
-    color: var(--accent);
-  }
+  .about-wrapper { max-width: 720px; margin: 0 auto; padding: 2rem 2rem 5rem; animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .about-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); position: relative; }
+  .lang-toggle-wrap { position: absolute; top: 0; right: 0; display: flex; align-items: center; gap: 0.3rem; font-size: 0.82rem; }
+  .lang-toggle { color: var(--text-muted); text-decoration: none; transition: color 0.2s; font-family: 'JetBrains Mono', monospace; padding: 0.1rem 0.3rem; border-radius: 4px; }
+  .lang-toggle:hover, .lang-toggle.active { color: var(--accent); }
   .lang-sep { color: var(--text-muted); }
-
-  .about-title {
-    font-size: 2.5rem;
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-  }
-
-  .about-subtitle {
-    font-size: 1rem;
-    color: var(--text-secondary);
-    font-weight: 300;
-  }
-
-  .back-link {
-    display: inline-block;
-    font-size: 0.82rem;
-    color: var(--accent);
-    text-decoration: none;
-    font-family: 'JetBrains Mono', monospace;
-    margin-bottom: 1.5rem;
-    transition: opacity 0.2s;
-  }
+  .about-title { font-size: 2.5rem; font-weight: 600; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 0.5rem; }
+  .about-subtitle { font-size: 1rem; color: var(--text-secondary); font-weight: 300; }
+  .back-link { display: inline-block; font-size: 0.82rem; color: var(--accent); text-decoration: none; font-family: 'JetBrains Mono', monospace; margin-bottom: 1.5rem; transition: opacity 0.2s; }
   .back-link:hover { opacity: 0.7; }
-
   .section { margin-bottom: 2.5rem; }
-  .section h2 {
-    font-size: 1.2rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-  .section p {
-    color: var(--text-secondary);
-    line-height: 1.85;
-    font-size: 0.95rem;
-    font-weight: 300;
-  }
-
+  .section-title { font-size: 1.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .section p { color: var(--text-secondary); line-height: 1.85; font-size: 0.95rem; font-weight: 300; }
   .edu-item { margin-bottom: 1.25rem; padding: 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; }
   .edu-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.25rem; }
   .edu-header strong { color: var(--text-primary); font-size: 0.95rem; }
@@ -295,7 +255,6 @@ import Layout from '../layouts/Layout.astro';
   .edu-courses::before { content: '• '; }
   .edu-award { color: var(--text-muted); font-size: 0.82rem; margin-top: 0.3rem; font-style: italic; }
   .edu-award::before { content: '• '; }
-
   .exp-item { margin-bottom: 1.5rem; padding: 1.25rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; }
   .exp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.25rem; gap: 1rem; }
   .exp-header strong { color: var(--text-primary); font-size: 0.95rem; }
@@ -303,30 +262,24 @@ import Layout from '../layouts/Layout.astro';
   .exp-role { color: var(--accent); font-size: 0.85rem; margin-bottom: 0.75rem; }
   .exp-item ul, .project-item ul { padding-left: 1.2rem; margin: 0; }
   .exp-item li, .project-item li { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; margin-bottom: 0.4rem; font-weight: 300; }
-
   .project-item { margin-bottom: 1.5rem; padding: 1.25rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; }
   .project-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem; gap: 1rem; }
   .project-header strong { color: var(--text-primary); font-size: 0.95rem; }
   .project-role { color: var(--text-muted); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
-
   .pub-item { padding: 1rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 0.75rem; }
   .pub-item p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; }
-
-  /* Mobile */
   @media (max-width: 768px) {
     .about-wrapper { padding: 1rem 1rem 3rem !important; }
     .about-title { font-size: 1.8rem !important; }
     .edu-header, .exp-header, .project-header { flex-direction: column !important; gap: 0.25rem !important; }
     .edu-date, .exp-date, .project-role { font-size: 0.75rem !important; }
-    .section h2 { font-size: 1.1rem !important; }
+    .section-title { font-size: 1.1rem !important; }
     .section p, .exp-item li, .project-item li { font-size: 0.85rem !important; }
     .lang-toggle-wrap { top: 0; }
   }
-
-  /* Light mode */
   :global(html.light) .about-wrapper { background: transparent !important; }
   :global(html.light) .edu-item, :global(html.light) .exp-item, :global(html.light) .project-item, :global(html.light) .pub-item { background: rgba(255,255,255,0.6) !important; }
   :global(html.light) .about-title, :global(html.light) .edu-header strong, :global(html.light) .exp-header strong, :global(html.light) .project-header strong { color: #1a1a2e !important; }
-  :global(html.light) .section h2 { color: #1a1a2e !important; border-color: rgba(0,0,0,0.1) !important; }
+  :global(html.light) .section-title { color: #1a1a2e !important; border-color: rgba(0,0,0,0.1) !important; }
   :global(html.light) .back-link { color: #7c6ff8 !important; }
 </style>
