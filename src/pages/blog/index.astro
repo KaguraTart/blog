@@ -27,16 +27,14 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {allPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card">
             <div class="post-meta">
-              <span class="cat-badge">{post.data.category}</span>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
-              <span class="cat-badge">{post.data.category}</span>
-            </div>
+              </div>
             <h2 class="post-title">{post.data.title}</h2>
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
               <div class="post-tags">
-                {post.data.tags.slice(0, 3).map(tag => <span class="post-tag">{tag}</span>)}
+                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag">{tag}</span>)}
               </div>
             )}
           </a>
@@ -49,16 +47,14 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {techPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card">
             <div class="post-meta">
-              <span class="cat-badge">{post.data.category}</span>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
-              <span class="cat-badge">{post.data.category}</span>
-            </div>
+              </div>
             <h2 class="post-title">{post.data.title}</h2>
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
               <div class="post-tags">
-                {post.data.tags.slice(0, 3).map(tag => <span class="post-tag">{tag}</span>)}
+                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag">{tag}</span>)}
               </div>
             )}
           </a>
@@ -71,16 +67,14 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {essayPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card">
             <div class="post-meta">
-              <span class="cat-badge">{post.data.category}</span>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
-              <span class="cat-badge">{post.data.category}</span>
-            </div>
+              </div>
             <h2 class="post-title">{post.data.title}</h2>
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
               <div class="post-tags">
-                {post.data.tags.slice(0, 3).map(tag => <span class="post-tag">{tag}</span>)}
+                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag">{tag}</span>)}
               </div>
             )}
           </a>
@@ -93,16 +87,14 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {paperPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card">
             <div class="post-meta">
-              <span class="cat-badge">{post.data.category}</span>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
-              <span class="cat-badge">{post.data.category}</span>
-            </div>
+              </div>
             <h2 class="post-title">{post.data.title}</h2>
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
               <div class="post-tags">
-                {post.data.tags.slice(0, 3).map(tag => <span class="post-tag">{tag}</span>)}
+                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag">{tag}</span>)}
               </div>
             )}
           </a>
