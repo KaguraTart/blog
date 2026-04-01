@@ -165,4 +165,19 @@ const { Content } = await post.render();
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .article { max-width: 100% !important; }
+    .article-title { font-size: 1.5rem !important; }
+    .article-content { font-size: 0.9rem !important; line-height: 1.75 !important; }
+    .article-content pre { padding: 1rem !important; font-size: 0.8rem !important; }
+    .article-content img { max-width: 100% !important; height: auto !important; }
+    .article-content table { font-size: 0.85rem !important; overflow-x: auto; display: block; }
+  }
+  @media (max-width: 480px) {
+    .article-content { font-size: 0.88rem !important; }
+    .article-title { font-size: 1.3rem !important; }
+    .article-content pre { font-size: 0.75rem !important; padding: 0.75rem !important; }
+  }
 </style>

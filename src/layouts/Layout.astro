@@ -102,6 +102,29 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       }
       .nav-links a:hover,
       .nav-links a.active { color: var(--text-primary); }
+
+      /* ===== Mobile Responsive ===== */
+      @media (max-width: 768px) {
+        nav { padding: 1rem; }
+        .page-wrapper { padding: 0; }
+        .header { padding: 1.5rem 1rem; }
+        .header .title { font-size: 2rem !important; }
+        .posts { padding: 0 1rem; }
+        .post-card { padding: 1.25rem !important; }
+        .article-title { font-size: 1.5rem !important; }
+        .article-content { padding: 1.5rem 1rem !important; font-size: 0.9rem !important; }
+        .article-content pre { font-size: 0.8rem !important; padding: 1rem !important; }
+        .article-content img { max-width: 100% !important; height: auto !important; display: block; margin: 0 auto; }
+      }
+      @media (max-width: 480px) {
+        nav { padding: 0.75rem; }
+        .header { padding: 1rem 0.75rem; }
+        .header .title { font-size: 1.6rem !important; }
+        .article-content { font-size: 0.88rem !important; line-height: 1.7 !important; }
+        .article-content h1 { font-size: 1.3rem !important; }
+        .article-content h2 { font-size: 1.1rem !important; }
+        .article-content pre { font-size: 0.75rem !important; }
+      }
     </style>
   </head>
   <body>
