@@ -6,12 +6,12 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<Layout title="博客">
+<Layout title="Blog">
   <div class="page-wrapper">
     <div class="header">
       <div class="header-label">Writing</div>
-      <h1 class="title">博客</h1>
-      <p class="subtitle">学习笔记 & 技术探索</p>
+      <h1 class="title">Blog</h1>
+      <p class="subtitle">Notes & Technical Exploration</p>
     </div>
 
     <div class="posts">
