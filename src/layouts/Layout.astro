@@ -30,6 +30,23 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         --accent: #7c6ff8;
         --accent-dim: rgba(124,111,248,0.15);
         --accent-glow: rgba(124,111,248,0.3);
+        --shadow: rgba(0,0,0,0.4);
+      }
+
+      /* Light Mode */
+      html.light {
+        --bg-base: #f8f9fa;
+        --bg-card: rgba(0,0,0,0.04);
+        --bg-card-hover: rgba(0,0,0,0.07);
+        --border: rgba(0,0,0,0.1);
+        --border-accent: rgba(124,111,248,0.3);
+        --text-primary: #1a1a2e;
+        --text-secondary: #555568;
+        --text-muted: #999;
+        --accent: #7c6ff8;
+        --accent-dim: rgba(124,111,248,0.1);
+        --accent-glow: rgba(124,111,248,0.2);
+        --shadow: rgba(0,0,0,0.1);
       }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       html { scroll-behavior: smooth; }
@@ -51,6 +68,11 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         pointer-events: none;
         z-index: 0;
         background-attachment: fixed;
+      }
+      html.light body::before {
+        background-image:
+          linear-gradient(rgba(124,111,248,0.06) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(124,111,248,0.06) 1px, transparent 1px);
       }
       body::after {
         content: '';
@@ -103,6 +125,42 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       .nav-links a:hover,
       .nav-links a.active { color: var(--text-primary); }
 
+      /* ===== Theme Toggle Button ===== */
+      .theme-toggle {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        padding: 0.4rem 0.6rem;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        margin-left: 1rem;
+        flex-shrink: 0;
+      }
+      .theme-toggle:hover {
+        background: var(--bg-card-hover);
+        border-color: var(--accent);
+        transform: scale(1.05);
+      }
+      .theme-toggle .sun { display: none; }
+      .theme-toggle .moon { display: inline; }
+      html.light .theme-toggle .sun { display: inline; }
+      html.light .theme-toggle .moon { display: none; }
+
+      /* Light mode article adjustments */
+      html.light body { background: var(--bg-base); color: var(--text-primary); }
+      html.light .bg-gradient { background: linear-gradient(135deg, #f8f9fa 0%, #e8e8ff 100%) !important; }
+      html.light .page-wrapper { background: transparent; }
+      html.light .article { background: rgba(255,255,255,0.8); border-color: var(--border); }
+      html.light .post-card { background: rgba(255,255,255,0.6); border-color: var(--border); }
+      html.light .article-content code { background: rgba(124,111,248,0.08); }
+      html.light .article-content pre { background: #1a1a2e; }
+      html.light .tag { background: var(--accent-dim); color: var(--accent); }
+
       /* ===== Mobile Responsive ===== */
       @media (max-width: 768px) {
         nav { padding: 1rem; }
@@ -136,5 +194,31 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       </ul>
     </nav>
     <slot />
+  <script is:inline>
+    // Theme management
+    function getTheme() {
+      return localStorage.getItem('theme') || 'dark';
+    }
+    function setTheme(theme) {
+      if (theme === 'light') {
+        document.documentElement.classList.add('light');
+      } else {
+        document.documentElement.classList.remove('light');
+      }
+      localStorage.setItem('theme', theme);
+    }
+    function toggleTheme() {
+      const current = getTheme();
+      setTheme(current === 'dark' ? 'light' : 'dark');
+    }
+    // Init on load
+    setTheme(getTheme());
+    // Listen for system preference changes
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'light' : 'dark');
+      }
+    });
+  </script>
   </body>
 </html>

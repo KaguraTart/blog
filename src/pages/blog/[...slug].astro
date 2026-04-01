@@ -166,6 +166,22 @@ const { Content } = await post.render();
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* Light mode */
+  html.light .article { background: rgba(255,255,255,0.85) !important; color: var(--text-primary) !important; }
+  html.light .article-title { color: #1a1a2e !important; }
+  html.light .article-content { color: #333 !important; }
+  html.light .article-content h1,
+  html.light .article-content h2,
+  html.light .article-content h3 { color: #1a1a2e !important; }
+  html.light .article-content code { background: rgba(124,111,248,0.08) !important; color: #6c4ff8 !important; }
+  html.light .article-content pre { background: #1a1a2e !important; }
+  html.light .article-content pre code { color: #e8e8f0 !important; }
+  html.light .article-content table { border-color: rgba(0,0,0,0.1) !important; }
+  html.light .article-content th { background: rgba(124,111,248,0.1) !important; color: #1a1a2e !important; }
+  html.light .article-content td, html.light .article-content tr { border-color: rgba(0,0,0,0.1) !important; }
+  html.light .tag { background: rgba(124,111,248,0.1) !important; color: #7c6ff8 !important; }
+  html.light .back-link { color: #7c6ff8 !important; }
+
   /* Mobile responsive */
   @media (max-width: 768px) {
     .article { max-width: 100% !important; }
