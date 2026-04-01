@@ -1,0 +1,125 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Search" description="Search the blog">
+  <div class="search-wrapper">
+    <header class="search-header">
+      <h1 class="search-title">Search</h1>
+      <p class="search-desc">Search across all blog posts</p>
+    </header>
+    <link href="/pagefind/pagefind-ui.css" rel="stylesheet" />
+    <div id="search" class="pagefind-wrapper"></div>
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        // @ts-ignore
+        if (window.PagefindUI) {
+          // @ts-ignore
+          new PagefindUI({ element: '#search', showSubResults: true, showImages: true, resetStyles: false });
+        }
+      });
+    </script>
+    <script src="/pagefind/pagefind-ui.js" onerror="document.getElementById('search').innerHTML='<p class=search-hint>Search index is being built. Please try again in a moment.</p>'"></script>
+  </div>
+</Layout>
+
+<style is:global>
+  .pagefind-wrapper {
+    width: 100%;
+  }
+  .pagefind-ui {
+    --pagefind-ui-font: inherit;
+    --pagefind-ui-primary: #7c6ff8;
+    --pagefind-ui-text: var(--text-primary, #e0e0e0);
+    --pagefind-ui-background: var(--bg-card, #1e1e2e);
+    --pagefind-ui-border: var(--border, #333);
+    --pagefind-ui-tag: var(--bg-card, #1e1e2e);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 10px;
+    --pagefind-ui-image-border-radius: 8px;
+    --pagefind-ui-image-box-ratio: 3/2;
+    width: 100%;
+  }
+  .pagefind-ui__search-input {
+    font-size: 1rem !important;
+    padding: 0.85rem 1.2rem !important;
+    border-radius: 12px !important;
+    border: 1px solid var(--border, #333) !important;
+    background: var(--bg-card, #1e1e2e) !important;
+    color: var(--text-primary, #e0e0e0) !important;
+    width: 100% !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+  .pagefind-ui__search-input:focus {
+    border-color: var(--accent, #7c6ff8) !important;
+  }
+  .pagefind-ui__result {
+    border-bottom: 1px solid var(--border, #333) !important;
+    padding: 1.5rem 0 !important;
+  }
+  .pagefind-ui__result-title {
+    color: var(--text-primary, #e0e0e0) !important;
+    font-weight: 600 !important;
+    font-size: 1.05rem !important;
+  }
+  .pagefind-ui__result-link {
+    color: var(--accent, #7c6ff8) !important;
+  }
+  .pagefind-ui__result-excerpt {
+    color: var(--text-secondary, #aaa) !important;
+    font-size: 0.9rem !important;
+    line-height: 1.6 !important;
+    margin-top: 0.5rem !important;
+  }
+  .pagefind-ui__result-tag {
+    background: var(--accent-dim, #7c6ff822) !important;
+    border: 1px solid var(--accent, #7c6ff8) !important;
+    color: var(--accent, #7c6ff8) !important;
+    border-radius: 5px !important;
+    font-size: 0.75rem !important;
+  }
+  .pagefind-ui__message {
+    color: var(--text-muted, #888) !important;
+  }
+  .pagefind-ui__button {
+    background: var(--accent, #7c6ff8) !important;
+    border-radius: 8px !important;
+    color: #fff !important;
+  }
+  .search-hint {
+    color: var(--text-muted, #888);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+  }
+</style>
+
+<style>
+  .search-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+  .search-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .search-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+  .search-desc {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+  @media (max-width: 768px) {
+    .search-wrapper { padding: 1.5rem 1rem 3rem !important; }
+    .search-title { font-size: 1.8rem !important; }
+  }
+</style>
