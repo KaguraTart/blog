@@ -1,7 +1,7 @@
 // 主页配置 - 修改这里就能更新主页内容
 export const profile = {
   // 头像图片 URL
-  avatar: '/avatar.png',
+  avatar: 'https://avatars.githubusercontent.com/u/49972575?v=4',
 
   // 名字
   name: 'Kagura Tart',
