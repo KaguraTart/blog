@@ -310,7 +310,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
     flex: 1; font-size: 0.88rem; color: var(--text-secondary);
     transition: color 0.2s;
     display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
-    overflow: hidden; word-break: break-all;
+    overflow: hidden;
   }
   .post-item:hover .post-title { color: var(--text-primary); }
   .post-tags { flex-shrink: 0; }
@@ -319,6 +319,8 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
     color: var(--text-muted); padding: 0.15rem 0.5rem;
     border-radius: 5px; font-size: 0.7rem;
   }
+  .post-item { flex-wrap: wrap; }
+  .post-tags { margin-top: 0.25rem; }
 
   /* Reveal animations */
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s, transform 0.5s; }
