@@ -23,7 +23,7 @@ PINN：用一个神经网络 `u_θ(x,t)` 来近似 PDE 的解 `u(x,t)`，其中 
 
 ## 2. PINN 架构一览
 
-<Image src={pinnArch} alt="PINN 神经网络架构图" width={800} />
+![PINN Architecture](/pinn_gifs/pinn_architecture.png)
 
 如上图所示，PINN 的结构为：
 
