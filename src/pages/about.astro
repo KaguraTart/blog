@@ -1,0 +1,337 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="About Me" description="About Deng Diantao (邓典涛)">
+  <div class="about-wrapper">
+    <header class="about-header">
+      <a href="/blog" class="back-link">← 博客</a>
+      <h1 class="about-title">About Me</h1>
+      <p class="about-subtitle">邓典涛 / Deng Diantao</p>
+    </header>
+
+    <div class="about-content">
+
+      <section class="section">
+        <h2>👤 个人简介</h2>
+        <p>
+          北京航空航天大学交通科学与工程学院在读博士，研究方向为自动驾驶与交通仿真。
+          同济大学交通运输工程硕士，同济大学土木工程学士。
+          曾于华为车BU、上海银昀智能、博世中国实习。
+        </p>
+      </section>
+
+      <section class="section">
+        <h2>🎓 教育背景</h2>
+        <div class="edu-item">
+          <div class="edu-header">
+            <strong>北京航空航天大学</strong>
+            <span class="edu-date">2024 – 至今</span>
+          </div>
+          <div class="edu-sub">博士 · Transportation Science & Engineering</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-header">
+            <strong>同济大学</strong>
+            <span class="edu-date">2021 – 2024</span>
+          </div>
+          <div class="edu-sub">硕士 · 交通运输工程</div>
+          <div class="edu-courses">主要课程：计算机辅助设计、交通数据分析、数值计算、数据挖掘</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-header">
+            <strong>同济大学</strong>
+            <span class="edu-date">2017 – 2021</span>
+          </div>
+          <div class="edu-sub">学士 · 土木工程</div>
+          <div class="edu-courses">主要课程：有限元方法、微积分、线性代数、概率统计、C++ 程序设计</div>
+          <div class="edu-award">荣誉：2020 年校园奖学金、2018 年凯嘉奖学金</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>💼 工作经历</h2>
+        <div class="exp-item">
+          <div class="exp-header">
+            <strong>上海银昀智能科技有限公司（华为车BU）</strong>
+            <span class="exp-date">2024.07 – 至今</span>
+          </div>
+          <div class="exp-role">DevOps 工程师</div>
+          <ul>
+            <li>从车载 MF4 数据中提取 CAN 总线信号，解析并生成核心仪表盘 JSON 文件</li>
+            <li>可视化车载感知数据，转换为 OpenX 格式并导入 CarMaker，实现车辆数据在仿真场景中的回放，用于 ADAS 功能的 SIL 测试</li>
+            <li>设计自动驾驶和泊车边缘场景的自动化测试用例，利用 CarMaker 和 CARLA 构建仿真测试环境，执行自动化回归测试</li>
+          </ul>
+        </div>
+        <div class="exp-item">
+          <div class="exp-header">
+            <strong>博世中国投资有限公司</strong>
+            <span class="exp-date">2023.07 – 2023.12</span>
+          </div>
+          <div class="exp-role">战略实习生（深度学习）</div>
+          <ul>
+            <li>结合开源自动驾驶数据集（KITTI、Waymo）和私有数据集，研究毫米波雷达与激光雷达点云特征</li>
+            <li>提取数据集轨迹信息，利用 GNN 图生成方法生成多样化场景轨迹（直线→曲线/匝道等），输出 .xodr 和 .xosc 高精地图格式用于仿真测试</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>🚀 项目经历</h2>
+        <div class="project-item">
+          <div class="project-header">
+            <strong>驾驶仿真与交通仿真融合平台</strong>
+            <span class="project-role">软件工程师 · 2021.09 – 2024.06</span>
+          </div>
+          <ul>
+            <li>基于 TCP/IP 协议集成 CARLA（虚幻引擎）和 SUMO 交通仿真软件，用 Python 实现车辆控制、SUMO 车流生成及轨迹/交通数据分析</li>
+            <li>在 Ubuntu 环境下用 gcc 编译 SUMO，改进车辆换道模型算法，使其与真实数据分布一致</li>
+            <li>使用 YOLOv3 识别道路车辆、提取车速轨迹，识别并剔除异常数据，利用插值和卡尔曼滤波平滑轨迹</li>
+            <li>调用 MySQL 数据库实时写入平台数据，提供外部实时访问接口，支撑可视化展示</li>
+          </ul>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <strong>基于强化学习的城市快速路交织区交通状态优化</strong>
+            <span class="project-role">第一作者 · 2022.07 – 2023.04</span>
+          </div>
+          <ul>
+            <li>发表 SCI Q3 论文（Journal of Advanced Transportation），基于 Q-learning 实现城市快速路匝道信号控制</li>
+            <li>采用 SUMO-Python 联合仿真，实现匝道标线与信号灯的协同优化控制</li>
+            <li>使用 matplotlib 绘制道路热力图、车辆速度箱线图、相关性检验热力图</li>
+          </ul>
+        </div>
+        <div class="project-item">
+          <div class="project-header">
+            <strong>基于 YOLOX 的路面病害智能检测</strong>
+            <span class="project-role">团队负责人 · 2022.05 – 2022.06</span>
+          </div>
+          <ul>
+            <li>基于 YOLOX 实现路面病害分类与预测，利用翻转、裁剪、旋转增强数据集</li>
+            <li>简化模型输入，提升推理速度，获优秀奖</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>📝 论文发表</h2>
+        <div class="pub-item">
+          <p>
+            <strong>Deng D, Yu B, Xu D, et al.</strong> Automated Traffic State Optimization in the Weaving Area of Urban Expressways by a Reinforcement Learning-Based Cooperative Method of Channelization and Ramp Metering[J]. 
+            <em>Journal of Advanced Transportation</em>, 2023. (SCI Q3, IF = 2.3)
+          </p>
+        </div>
+        <div class="pub-item">
+          <p>
+            <strong>俞波, 陈宇仁, 邓典涛, 高建强, 姚思哲.</strong> 一种道路交织区域的交通状态优化方法及系统[P]. 上海: CN202310359301.2, 2023-04-06.（发明专利）
+          </p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2>🛠️ 技能清单</h2>
+        <div class="skills-grid">
+          <div class="skill-group">
+            <strong>编程语言</strong>
+            <span>C/C++, Python, Shell, SQL</span>
+          </div>
+          <div class="skill-group">
+            <strong>开发工具</strong>
+            <span>Git, PyTorch, MySQL, SUMO, Unreal Engine, OpenDrive, CARLA, CAN 总线</span>
+          </div>
+          <div class="skill-group">
+            <strong>仿真平台</strong>
+            <span>CarMaker, CARLA, SUMO, OpenX, OpenDrive</span>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .about-wrapper {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 2rem 5rem;
+    animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .about-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .about-subtitle {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'JetBrains Mono', monospace;
+    margin-bottom: 1.5rem;
+    transition: opacity 0.2s;
+  }
+  .back-link:hover { opacity: 0.7; }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
+  .section h2 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section p {
+    color: var(--text-secondary);
+    line-height: 1.85;
+    font-size: 0.95rem;
+    font-weight: 300;
+  }
+
+  /* Education */
+  .edu-item {
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.25rem;
+  }
+  .edu-header strong { color: var(--text-primary); font-size: 0.95rem; }
+  .edu-date { color: var(--text-muted); font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; }
+  .edu-sub { color: var(--accent); font-size: 0.85rem; margin-bottom: 0.5rem; }
+  .edu-courses { color: var(--text-secondary); font-size: 0.82rem; margin-top: 0.3rem; }
+  .edu-courses::before { content: '• '; }
+  .edu-award { color: var(--text-muted); font-size: 0.82rem; margin-top: 0.3rem; font-style: italic; }
+  .edu-award::before { content: '• '; }
+
+  /* Experience */
+  .exp-item {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .exp-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.25rem;
+    gap: 1rem;
+  }
+  .exp-header strong { color: var(--text-primary); font-size: 0.95rem; }
+  .exp-date { color: var(--text-muted); font-size: 0.8rem; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+  .exp-role { color: var(--accent); font-size: 0.85rem; margin-bottom: 0.75rem; }
+  .exp-item ul, .project-item ul {
+    padding-left: 1.2rem;
+    margin: 0;
+  }
+  .exp-item li, .project-item li {
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+    line-height: 1.7;
+    margin-bottom: 0.4rem;
+    font-weight: 300;
+  }
+
+  /* Projects */
+  .project-item {
+    margin-bottom: 1.5rem;
+    padding: 1.25rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.75rem;
+    gap: 1rem;
+  }
+  .project-header strong { color: var(--text-primary); font-size: 0.95rem; }
+  .project-role { color: var(--text-muted); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; white-space: nowrap; }
+
+  /* Publications */
+  .pub-item {
+    padding: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 0.75rem;
+  }
+  .pub-item p { color: var(--text-secondary); font-size: 0.88rem; line-height: 1.7; }
+
+  /* Skills */
+  .skills-grid {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .skill-group {
+    display: flex;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.88rem;
+  }
+  .skill-group strong {
+    color: var(--text-primary);
+    min-width: 100px;
+    flex-shrink: 0;
+  }
+  .skill-group span { color: var(--text-secondary); font-weight: 300; }
+
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .about-wrapper { padding: 1rem 1rem 3rem !important; }
+    .about-title { font-size: 1.8rem !important; }
+    .edu-header, .exp-header, .project-header { flex-direction: column !important; gap: 0.25rem !important; }
+    .edu-date, .exp-date, .project-role { font-size: 0.75rem !important; }
+    .section h2 { font-size: 1.1rem !important; }
+    .section p, .exp-item li, .project-item li { font-size: 0.85rem !important; }
+    .skill-group { flex-direction: column !important; gap: 0.25rem !important; }
+    .skill-group strong { min-width: auto !important; }
+  }
+
+  /* Light mode */
+  :global(html.light) .about-wrapper { background: transparent !important; }
+  :global(html.light) .edu-item,
+  :global(html.light) .exp-item,
+  :global(html.light) .project-item,
+  :global(html.light) .pub-item,
+  :global(html.light) .skill-group { background: rgba(255,255,255,0.6) !important; }
+  :global(html.light) .about-title,
+  :global(html.light) .edu-header strong,
+  :global(html.light) .exp-header strong,
+  :global(html.light) .project-header strong { color: #1a1a2e !important; }
+  :global(html.light) .section h2 { color: #1a1a2e !important; border-color: rgba(0,0,0,0.1) !important; }
+  :global(html.light) .back-link { color: #7c6ff8 !important; }
+</style>
