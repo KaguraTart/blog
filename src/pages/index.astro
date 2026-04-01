@@ -85,7 +85,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
                     <div class="post-title">{post.data.title}</div>
                     {post.data.tags.length > 0 && (
                       <div class="post-tags">
-                        {post.data.tags.slice(0, 1).map(tag => <span class="post-tag">{tag}</span>)}
+                        {[post.data.category, ...post.data.tags.slice(0, 1)].map(tag => <span class="post-tag">{tag}</span>)}
                       </div>
                     )}
                   </a>
