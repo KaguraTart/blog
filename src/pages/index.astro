@@ -308,7 +308,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
   }
   .post-title {
     flex: 1; font-size: 0.88rem; color: var(--text-secondary);
-    transition: color 0.2s; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    transition: color 0.2s; word-break: break-word;
   }
   .post-item:hover .post-title { color: var(--text-primary); }
   .post-tags { flex-shrink: 0; }
