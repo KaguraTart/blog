@@ -192,6 +192,10 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         <li><a href="/">Home</a></li>
         <li><a href="/blog">Blog</a></li>
       </ul>
+      <button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题" title="切换白天/夜间模式">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+      </button>
     </nav>
     <slot />
   <script is:inline>
