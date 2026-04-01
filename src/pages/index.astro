@@ -182,7 +182,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
     50% { box-shadow: 0 0 14px rgba(34,197,94,0.7); }
   }
 
-  .profile-info { flex: 1; min-width: 0; }
+  .profile-info { flex: 1; }
   .profile-name {
     font-size: 1.7rem; font-weight: 700;
     letter-spacing: -0.04em; color: var(--text-primary);
@@ -337,6 +337,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
   /* Profile links (GitHub/Email below name) */
   .profile-links {
     display: flex; gap: 0.5rem; margin-top: 0.6rem;
+    justify-content: center;
   }
   .profile-link {
     display: inline-flex; align-items: center; justify-content: center;
