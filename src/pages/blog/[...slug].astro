@@ -184,16 +184,28 @@ const { Content } = await post.render();
 
   /* Mobile responsive */
   @media (max-width: 768px) {
+    .article-wrapper { padding: 1rem 1rem 3rem !important; }
     .article { max-width: 100% !important; }
-    .article-title { font-size: 1.5rem !important; }
-    .article-content { font-size: 0.9rem !important; line-height: 1.75 !important; }
-    .article-content pre { padding: 1rem !important; font-size: 0.8rem !important; }
-    .article-content img { max-width: 100% !important; height: auto !important; }
-    .article-content table { font-size: 0.85rem !important; overflow-x: auto; display: block; }
+    .article-title { font-size: 1.4rem !important; }
+    .article-desc { font-size: 0.9rem !important; }
+    .article-content { font-size: 0.88rem !important; line-height: 1.8 !important; padding-top: 1.5rem !important; }
+    .article-content :global(h1) { font-size: 1.3rem !important; }
+    .article-content :global(h2) { font-size: 1.1rem !important; }
+    .article-content :global(h3) { font-size: 1rem !important; }
+    .article-content :global(p) { margin-bottom: 1rem !important; font-size: 0.88rem !important; }
+    .article-content :global(pre) { padding: 0.75rem !important; font-size: 0.78rem !important; margin: 1rem 0 !important; border-radius: 6px !important; }
+    .article-content :global(code) { font-size: 0.8em !important; }
+    .article-content :global(table) { font-size: 0.8rem !important; overflow-x: auto !important; display: block !important; }
+    .article-content :global(img) { max-width: 100% !important; width: 100% !important; height: auto !important; border-radius: 8px !important; margin: 0.5rem 0 !important; }
+    .article-content :global(ul), .article-content :global(ol) { padding-left: 1.2rem !important; margin-bottom: 1rem !important; }
+    .article-content :global(li) { font-size: 0.88rem !important; margin-bottom: 0.3rem !important; }
   }
   @media (max-width: 480px) {
-    .article-content { font-size: 0.88rem !important; }
-    .article-title { font-size: 1.3rem !important; }
-    .article-content pre { font-size: 0.75rem !important; padding: 0.75rem !important; }
+    .article-wrapper { padding: 0.75rem 0.75rem 2.5rem !important; }
+    .article-content { font-size: 0.85rem !important; }
+    .article-title { font-size: 1.2rem !important; }
+    .article-content :global(pre) { font-size: 0.72rem !important; padding: 0.5rem !important; }
+    .article-content :global(h1) { font-size: 1.2rem !important; }
+    .article-content :global(h2) { font-size: 1rem !important; }
   }
 </style>
