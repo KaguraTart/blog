@@ -9,7 +9,7 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
   <div class="page-wrapper">
     <div class="page-header">
       <h1 class="page-title">Paper</h1>
-      <p class="page-desc">Papernical articles, code tutorials, and research notes.</p>
+      <p class="page-desc">Research papers, code tutorials, and research notes.</p>
     </div>
     <div class="posts">
       {allPosts.length === 0 ? (
