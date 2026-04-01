@@ -85,7 +85,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
                     <div class="post-title">{post.data.title}</div>
                     {post.data.tags.length > 0 && (
                       <div class="post-tags">
-                        {[post.data.category, ...post.data.tags.slice(0, 1)].map(tag => <span class="post-tag">{tag}</span>)}
+                        <span class="post-tag">{post.data.category}</span>
                       </div>
                     )}
                   </a>
@@ -308,7 +308,9 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
   }
   .post-title {
     flex: 1; font-size: 0.88rem; color: var(--text-secondary);
-    transition: color 0.2s; word-break: break-word;
+    transition: color 0.2s;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden; word-break: break-all;
   }
   .post-item:hover .post-title { color: var(--text-primary); }
   .post-tags { flex-shrink: 0; }
