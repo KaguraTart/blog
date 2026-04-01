@@ -43,7 +43,7 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script is:inline>
-  var pagefind = null;
+  
 
   function escapeHtml(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -76,14 +76,14 @@ import Layout from '../layouts/Layout.astro';
     emptyState.style.display = 'none';
     loading.style.display = '';
 
-    if (!pagefind) {
+    if (!window.pagefind) {
       loading.style.display = 'none';
       emptyState.querySelector('p').textContent = 'Search index loading, please try again...';
       emptyState.style.display = '';
       return;
     }
 
-    pagefind.search(query).then(function(results) {
+    window.pagefind.search(query).then(function(results) {
       loading.style.display = 'none';
       if (results.results.length === 0) {
         queryText.textContent = query;
@@ -137,12 +137,7 @@ import Layout from '../layouts/Layout.astro';
   // Load pagefind dynamically at runtime
   var script = document.createElement('script');
   script.src = '/pagefind/pagefind.js';
-  script.onload = function() {
-    pagefind = window.pagefind;
-    if (pagefind) {
-      pagefind.options = pagefind.options || {};
-    }
-  };
+  script.onload = function() { console.log("pagefind loaded"); };
   script.onerror = function() {
     var emptyState = document.getElementById('search-empty');
     if (emptyState) {
