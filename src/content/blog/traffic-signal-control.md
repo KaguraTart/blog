@@ -3,6 +3,7 @@ title: "Rethinking Traffic Signal Control: From Fixed Timing to Adaptive Intelli
 description: "A reflection on the evolution of traffic signal control — from loop detectors and fixed plans to reinforcement learning and connected autonomous vehicles."
 pubDate: 2026-04-02
 tags: ["Traffic Engineering", "Reinforcement Learning", "Adaptive Control", "Smart City"]
+category: Tech
 ---
 
 # Rethinking Traffic Signal Control: From Fixed Timing to Adaptive Intelligence

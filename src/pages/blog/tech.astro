@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.category === 'Tech'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Layout title="Tech">
+  <div class="page-wrapper">
+    <div class="page-header">
+      <h1 class="page-title">Tech</h1>
+      <p class="page-desc">Technical articles, code tutorials, and research notes.</p>
+    </div>
+    <div class="posts">
+      {allPosts.length === 0 ? (
+        <p class="empty">No posts yet.</p>
+      ) : (
+        allPosts.map(post => (
+          <a href={`/blog/${post.slug}`} class="post-card">
+            <div class="post-meta">
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </time>
+            </div>
+            <h2 class="post-title">{post.data.title}</h2>
+            <p class="post-desc">{post.data.description}</p>
+            {post.data.tags.length > 0 && (
+              <div class="post-tags">
+                {post.data.tags.map(tag => <span class="post-tag">{tag}</span>)}
+              </div>
+            )}
+          </a>
+        ))
+      )}
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .page-wrapper { max-width: 720px; margin: 0 auto; padding: 3rem 2rem 5rem; animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .page-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+  .page-title { font-size: 2.2rem; font-weight: 600; letter-spacing: -0.03em; color: var(--text-primary); margin-bottom: 0.5rem; }
+  .page-desc { color: var(--text-secondary); font-size: 0.95rem; font-weight: 300; }
+  .posts { display: flex; flex-direction: column; gap: 1rem; }
+  .post-card { display: block; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; text-decoration: none; transition: all 0.25s ease; }
+  .post-card:hover { border-color: var(--border-accent); background: var(--bg-card-hover); transform: translateX(4px); }
+  .post-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .post-title { font-size: 1.15rem; font-weight: 600; color: var(--text-primary); margin-bottom: 0.4rem; letter-spacing: -0.01em; word-break: break-word; }
+  .post-desc { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.6; font-weight: 300; margin-bottom: 0.75rem; }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .post-tag { background: var(--accent-dim); border: 1px solid var(--border-accent); color: var(--text-muted); padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; }
+  .empty { color: var(--text-muted); text-align: center; padding: 3rem; }
+  @media (max-width: 768px) {
+    .page-wrapper { padding: 1.5rem 1rem 3rem !important; }
+    .page-title { font-size: 1.8rem !important; }
+  }
+</style>

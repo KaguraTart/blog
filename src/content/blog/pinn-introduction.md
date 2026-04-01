@@ -3,6 +3,7 @@ title: "物理信息网络 PINN：利用神经网络求解偏微分方程"
 description: "深入解析 Physics-Informed Neural Networks，从原理到代码，手把手教你用 PyTorch 实现 PINN，并可视化训练过程"
 pubDate: 2026-04-01
 tags: ["深度学习", "PDE", "PINN", "PyTorch", "科学计算"]
+category: Tech
 ---
 
 # 物理信息网络 PINN：利用神经网络求解偏微分方程

@@ -9,6 +9,7 @@ const blog = defineCollection({
     updatedDate: z.date().optional(),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
+    category: z.enum(["Tech", "Essay", "Paper"]).default("Essay"),
   }),
 });
 
