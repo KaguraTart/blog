@@ -212,18 +212,14 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       html:not(.dark) .theme-toggle .sun { display: inline; }
       html:not(.dark) .theme-toggle .moon { display: none; }
 
-      /* ===== Astro 5 Shiki Dual-Theme: light-dark() CSS 函数 ===== */
-      /* 支持浏览器 color-scheme 切换 light-dark() 函数 */
-      .article-content pre.shiki {
-        color-scheme: light dark;
-      }
-      /* 深色模式: color-scheme: dark 使 light-dark() 使用深色值 */
-      html.dark .article-content pre.shiki {
-        color-scheme: dark;
-      }
-      /* 浅色模式: color-scheme: light 使 light-dark() 使用浅色值 */
+      /* ===== Astro 5 Shiki Dual-Theme: 显式覆盖 light-dark() 背景色 ===== */
+      /* 浅色模式 */
       html:not(.dark) .article-content pre.shiki {
-        color-scheme: light;
+        background-color: var(--shiki-light-bg, #fff) !important;
+      }
+      /* 深色模式 */
+      html.dark .article-content pre.shiki {
+        background-color: var(--shiki-dark-bg, #24292e) !important;
       }
 
       /* ===== 代码块样式 ===== */
@@ -231,9 +227,6 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         margin: 1.5rem 0;
         border-radius: 10px;
         padding: 1.25rem 1.5rem;
-        /* 背景色由 light-dark() CSS 函数提供，transparent 让函数生效 */
-        background: transparent !important;
-        border: 1px solid transparent;
       }
       html:not(.dark) .article-content pre {
         border-color: rgba(0,0,0,0.1) !important;
