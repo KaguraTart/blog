@@ -247,6 +247,63 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       html.light .article-content pre { background: transparent; border: 1px solid rgba(0,0,0,0.1); }
       html.light .tag { background: var(--accent-dim); color: var(--accent); }
 
+      /* ===== Collapsible Code Blocks ===== */
+      .code-wrapper {
+        position: relative;
+        margin: 1.5rem 0;
+      }
+      .code-wrapper .astro-code {
+        margin: 0 !important;
+        border-radius: 10px 10px 0 0 !important;
+        max-height: 300px;
+        overflow: hidden;
+        position: relative;
+        transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      .code-wrapper .astro-code.expanded {
+        max-height: none;
+        overflow: auto;
+      }
+      .code-wrapper .astro-code:not(.expanded)::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 80px;
+        background: linear-gradient(transparent, var(--bg-card));
+        pointer-events: none;
+      }
+      html.light .code-wrapper .astro-code:not(.expanded)::after {
+        background: linear-gradient(transparent, #f8f9fa);
+      }
+      .code-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        width: 100%;
+        padding: 0.55rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-top: none;
+        border-radius: 0 0 10px 10px;
+        color: var(--accent);
+        font-size: 0.8rem;
+        font-family: 'JetBrains Mono', monospace;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .code-toggle:hover {
+        background: var(--bg-card-hover);
+        color: var(--text-primary);
+      }
+      .code-toggle svg { width: 14px; height: 14px; }
+      .code-toggle .lines-count {
+        font-size: 0.72rem;
+        opacity: 0.7;
+      }
+
       /* ===== Mobile Responsive ===== */
       @media (max-width: 768px) {
         nav { padding: 1rem 1.25rem; }
@@ -310,6 +367,42 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         el.style.setProperty('--mouse-x', x + '%');
         el.style.setProperty('--mouse-y', y + '%');
       }
+    });
+  </script>
+  <script is:inline>
+    // Collapsible code blocks
+    document.addEventListener('DOMContentLoaded', function() {
+      var MAX_LINES = 12;
+      var preBlocks = document.querySelectorAll('.article-content pre');
+      preBlocks.forEach(function(pre) {
+        var code = pre.querySelector('code');
+        if (!code) return;
+        var lines = code.textContent.split('\n').length;
+        if (lines <= MAX_LINES) return;
+
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-wrapper';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var btn = document.createElement('button');
+        btn.className = 'code-toggle';
+        btn.innerHTML =
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
+          '<span class="toggle-text">Show ' + (lines - MAX_LINES + 1) + ' more lines</span>' +
+          '<span class="lines-count">(' + lines + ' lines)</span>';
+        wrapper.appendChild(btn);
+
+        btn.addEventListener('click', function() {
+          var expanded = pre.classList.toggle('expanded');
+          btn.querySelector('.toggle-text').textContent = expanded
+            ? 'Collapse'
+            : 'Show ' + (lines - MAX_LINES + 1) + ' more lines';
+          btn.querySelector('svg').innerHTML = expanded
+            ? '<polyline points="18 15 12 9 6 15"></polyline>'
+            : '<polyline points="6 9 12 15 18 9"></polyline>';
+        });
+      });
     });
   </script>
   <script is:inline>
