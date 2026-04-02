@@ -298,7 +298,7 @@ import Layout from '../layouts/Layout.astro';
     border-radius: 2px;
     padding: 0 2px;
   }
-  :global(html.light) mark {
+  :global(html:not(.dark)) mark {
     background: rgba(124, 111, 248, 0.15);
     color: #5a4fcf;
   }

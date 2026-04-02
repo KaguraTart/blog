@@ -277,9 +277,9 @@ import Layout from '../layouts/Layout.astro';
     .section p, .exp-item li, .project-item li { font-size: 0.85rem !important; }
     .lang-toggle-wrap { top: 0; }
   }
-  :global(html.light) .about-wrapper { background: transparent !important; }
-  :global(html.light) .edu-item, :global(html.light) .exp-item, :global(html.light) .project-item, :global(html.light) .pub-item { background: rgba(255,255,255,0.6) !important; }
-  :global(html.light) .about-title, :global(html.light) .edu-header strong, :global(html.light) .exp-header strong, :global(html.light) .project-header strong { color: #1a1a2e !important; }
-  :global(html.light) .section-title { color: #1a1a2e !important; border-color: rgba(0,0,0,0.1) !important; }
-  :global(html.light) .back-link { color: #7c6ff8 !important; }
+  :global(html:not(.dark)) .about-wrapper { background: transparent !important; }
+  :global(html:not(.dark)) .edu-item, :global(html:not(.dark)) .exp-item, :global(html:not(.dark)) .project-item, :global(html:not(.dark)) .pub-item { background: rgba(255,255,255,0.6) !important; }
+  :global(html:not(.dark)) .about-title, :global(html:not(.dark)) .edu-header strong, :global(html:not(.dark)) .exp-header strong, :global(html:not(.dark)) .project-header strong { color: #1a1a2e !important; }
+  :global(html:not(.dark)) .section-title { color: #1a1a2e !important; border-color: rgba(0,0,0,0.1) !important; }
+  :global(html:not(.dark)) .back-link { color: #7c6ff8 !important; }
 </style>
