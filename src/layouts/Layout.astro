@@ -33,7 +33,6 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         --shadow: rgba(0,0,0,0.4);
       }
 
-      /* Light Mode: 用 html:not(.dark) 匹配 Shiki dual-theme 的 html.dark 约定 */
       html:not(.dark) {
         --bg-base: #f8f9fa;
         --bg-card: rgba(0,0,0,0.04);
@@ -92,7 +91,6 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       ::-webkit-scrollbar-thumb { background: var(--border-accent); border-radius: 3px; }
       ::selection { background: var(--accent-dim); color: var(--text-primary); }
 
-      /* Nav */
       nav {
         position: relative;
         z-index: 10;
@@ -130,7 +128,6 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       .nav-links a:hover,
       .nav-links a.active { color: var(--text-primary); }
 
-      /* Theme Toggle Button */
       .theme-toggle {
         background: var(--bg-card);
         border: 1px solid var(--border);
@@ -182,7 +179,6 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         transform: scale(1.05);
       }
 
-      /* Global Glow-on-Hover Effect */
       .glow-on-hover {
         position: relative;
         overflow: hidden;
@@ -212,33 +208,56 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       html:not(.dark) .theme-toggle .sun { display: inline; }
       html:not(.dark) .theme-toggle .moon { display: none; }
 
-      /* 深色模式：代码块背景色由 JS 直接控制，不依赖 CSS 覆盖 */
+      /* ===== Shiki dual-theme: CSS light-dark() ===== */
+      /* Shiki outputs background-color:light-dark() — we override with CSS variables */
+      :root {
+        --shiki-bg-light: #ffffff;
+        --shiki-bg-dark: #24292e;
+        --shiki-text-light: #24292e;
+        --shiki-text-dark: #e1e4e8;
+      }
+      .article-content :global(pre.shiki) {
+        background-color: var(--shiki-bg-light) !important;
+        color: var(--shiki-text-light) !important;
+      }
+      html:not(.dark) .article-content :global(pre.shiki) {
+        background-color: var(--shiki-bg-light) !important;
+        color: var(--shiki-text-light) !important;
+      }
+      html.dark .article-content :global(pre.shiki) {
+        background-color: var(--shiki-bg-dark) !important;
+        color: var(--shiki-text-dark) !important;
+      }
+      /* Override all span colors in shiki blocks */
+      .article-content :global(pre.shiki span) {
+        background-color: transparent !important;
+      }
 
-      /* ===== 代码块样式 ===== */
-      .article-content pre {
+      /* ===== Code block styles ===== */
+      .article-content :global(pre) {
         margin: 1.5rem 0;
         border-radius: 10px;
         padding: 1.25rem 1.5rem;
       }
-      html:not(.dark) .article-content pre {
-        border-color: rgba(0,0,0,0.1) !important;
-      }
-      html.dark .article-content pre {
-        border-color: rgba(255,255,255,0.08) !important;
+      html:not(.dark) .article-content :global(pre:not(.shiki)) {
+        border: 1px solid rgba(0,0,0,0.1);
       }
 
-      /* ===== 代码块折叠功能 ===== */
-      .code-wrapper {
+      /* ===== Code block collapse ===== */
+      .article-content :global(.code-wrapper) {
         position: relative;
         margin: 1.5rem 0;
         border-radius: 10px;
         overflow: hidden;
         border: 1px solid var(--border);
       }
-      html:not(.dark) .code-wrapper {
+      html:not(.dark) .article-content :global(.code-wrapper) {
         border-color: rgba(0,0,0,0.12);
       }
-      .code-wrapper pre {
+      html.dark .article-content :global(.code-wrapper) {
+        border-color: rgba(255,255,255,0.08);
+      }
+      .article-content :global(.code-wrapper pre) {
         margin: 0 !important;
         border: none !important;
         border-radius: 0 !important;
@@ -246,12 +265,11 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         overflow: hidden;
         transition: max-height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
       }
-      .code-wrapper pre.expanded {
+      .article-content :global(.code-wrapper pre.expanded) {
         max-height: none !important;
         overflow: auto;
       }
-      /* 折叠时底部渐变遮罩 */
-      .code-wrapper .code-fade {
+      .article-content :global(.code-fade) {
         position: absolute;
         bottom: 0;
         left: 0;
@@ -261,16 +279,16 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         border-radius: 0 0 9px 9px;
         transition: opacity 0.3s;
       }
-      html.dark .code-wrapper .code-fade {
+      html.dark .article-content :global(.code-fade) {
         background: linear-gradient(transparent, rgba(10,10,15,0.92));
       }
-      html:not(.dark) .code-wrapper .code-fade {
+      html:not(.dark) .article-content :global(.code-fade) {
         background: linear-gradient(transparent, rgba(248,249,250,0.96));
       }
-      .code-wrapper pre.expanded + .code-fade {
+      .article-content :global(.code-wrapper pre.expanded + .code-fade) {
         opacity: 0;
       }
-      .code-toggle {
+      .article-content :global(.code-toggle) {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -286,32 +304,28 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         cursor: pointer;
         transition: all 0.2s;
       }
-      html:not(.dark) .code-toggle {
+      html:not(.dark) .article-content :global(.code-toggle) {
         border-top-color: rgba(0,0,0,0.1);
       }
-      .code-toggle:hover {
+      .article-content :global(.code-toggle:hover) {
         background: var(--bg-card-hover);
         color: var(--text-primary);
       }
-      .code-toggle svg { width: 14px; height: 14px; flex-shrink: 0; }
-      .code-toggle .lines-count {
-        font-size: 0.72rem;
-        opacity: 0.7;
-      }
+      .article-content :global(.code-toggle svg) { width: 14px; height: 14px; flex-shrink: 0; }
+      .article-content :global(.code-toggle .lines-count) { font-size: 0.72rem; opacity: 0.7; }
 
-      /* Mobile Responsive */
       @media (max-width: 768px) {
         nav { padding: 1rem 1.25rem; }
         .nav-left { gap: 1rem; }
         .page-wrapper { padding: 0; }
         .article-content { padding: 1.5rem 1rem !important; font-size: 0.9rem !important; }
-        .article-content pre { font-size: 0.8rem !important; padding: 1rem !important; }
-        .article-content img { max-width: 100% !important; height: auto !important; display: block; margin: 0 auto; }
+        .article-content :global(pre) { font-size: 0.8rem !important; padding: 1rem !important; }
+        .article-content :global(img) { max-width: 100% !important; height: auto !important; display: block; margin: 0 auto; }
       }
       @media (max-width: 480px) {
         nav { padding: 0.75rem; }
         .article-content { font-size: 0.88rem !important; line-height: 1.7 !important; }
-        .article-content pre { font-size: 0.75rem !important; }
+        .article-content :global(pre) { font-size: 0.75rem !important; }
       }
     </style>
   </head>
@@ -331,7 +345,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
           <a href="https://github.com/kaguratart" target="_blank" class="nav-social-link glow-on-hover" title="GitHub" aria-label="GitHub">
             <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
           </a>
-          <a href="mailto:kaguratart@gmail.com" class="nav-social-link glow-on-hover" title="Email" aria-label="Email">
+          <a href="mailto:kagurattat@gmail.com" class="nav-social-link glow-on-hover" title="Email" aria-label="Email">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16" height="16"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           </a>
         </div>
@@ -344,53 +358,9 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
     <slot />
 
   <script is:inline>
-    // Theme management + Shiki code block style sync via CSS light-dark()
     (function() {
-      var SK = 'theme', html = document.documentElement;
-      // Shiki light-dark() color mappings
-      var SHIKI_COLORS = [
-        // background, text
-        ['#ffffff', '#24292e'],
-        ['#24292e', '#e1e4e8'],
-        // token colors: github-light → github-dark
-        ['#005CC5','#79B8FF'],
-        ['#032F62','#9ECBFF'],
-        ['#D73A49','#F97583'],
-        ['#E36209','#FFAB70'],
-        ['#6F42C1','#B392F0'],
-        ['#24292E','#E1E4E8'],
-        ['#22863A','#85E89D'],
-        ['#D73A49','#F97583'],
-        ['#005CC5','#79B8FF'],
-        ['#D1242F','#FF7B72'],
-        ['#6F42C1','#B392F0'],
-        ['#D73A49','#F97583'],
-        ['#E36209','#FFAB70'],
-        ['#22863A','#85E89D'],
-        ['#005CC5','#79B8FF'],
-        ['#032F62','#9ECBFF'],
-        ['#6F42C1','#B392F0'],
-        ['#D73A49','#F97583'],
-        ['#24292E','#E1E4E8'],
-        ['#E36209','#FFAB70'],
-      ];
-
-      function setShikiTheme(isDark) {
-        var pres = document.querySelectorAll('.article-content pre.shiki');
-        for (var i = 0; i < pres.length; i++) {
-          var pre = pres[i];
-          pre.style.backgroundColor = isDark ? '#24292e' : '#ffffff';
-          pre.style.color = isDark ? '#e1e4e8' : '#24292e';
-          var spans = pre.querySelectorAll('span');
-          for (var j = 0; j < spans.length; j++) {
-            var span = spans[j];
-            var colorIdx = (j + 2) % SHIKI_COLORS.length;
-            span.style.backgroundColor = 'transparent';
-            span.style.color = SHIKI_COLORS[colorIdx][isDark ? 1 : 0];
-          }
-        }
-      }
-
+      var SK = 'theme';
+      var html = document.documentElement;
       function getTheme() {
         var s = localStorage.getItem(SK);
         if (s) return s;
@@ -398,11 +368,8 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         catch(e) { return 'dark'; }
       }
       function applyTheme(t) {
-        var isDark = t === 'dark';
-        isDark ? html.classList.add('dark') : html.classList.remove('dark');
-        setShikiTheme(isDark);
+        if (t === 'dark') { html.classList.add('dark'); } else { html.classList.remove('dark'); }
       }
-      window.__setShikiTheme = setShikiTheme;
       applyTheme(getTheme());
       var tb = document.getElementById('themeToggle');
       if (tb) tb.addEventListener('click', function() {
@@ -420,7 +387,6 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
   </script>
 
   <script is:inline>
-    // Code block collapse — runs after DOM ready
     (function() {
       var MAX_LINES = 10;
       function init() {
@@ -440,15 +406,12 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
           wrap.appendChild(fade);
           var btn = document.createElement('button');
           btn.className = 'code-toggle';
-          btn.innerHTML = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
-            '<span class="tt">Show ' + (lines - MAX_LINES) + ' more lines</span>' +
-            '<span class="lc">(' + lines + ' lines)</span>';
-          var expanded = false;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Show ' + (lines - MAX_LINES) + ' more lines</span><span style="font-size:0.72rem;opacity:0.7">(' + lines + ' lines)</span>';
           btn.addEventListener('click', function() {
-            expanded = !expanded;
-            pre.classList.toggle('expanded', expanded);
-            btn.querySelector('.tt').textContent = expanded ? 'Collapse' : 'Show ' + (lines - MAX_LINES) + ' more lines';
-            btn.querySelector('.ic').innerHTML = expanded ? '<polyline points="18 15 12 9 6 15"></polyline>' : '<polyline points="6 9 12 15 18 9"></polyline>';
+            var exp = pre.classList.toggle('expanded');
+            pre.style.maxHeight = exp ? '' : '';
+            btn.querySelector('span:nth-child(2)').textContent = exp ? 'Collapse' : 'Show ' + (lines - MAX_LINES) + ' more lines';
+            btn.querySelector('svg polyline').setAttribute('points', exp ? '18 15 12 9 6 15' : '6 9 12 15 18 9');
           });
           wrap.appendChild(btn);
         }
@@ -456,12 +419,10 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
       } else { init(); }
-      // Re-apply Shiki theme after collapse wraps elements (in case theme was set from localStorage)
-      if (window.__setShikiTheme) window.__setShikiTheme(document.documentElement.classList.contains('dark'));
+    })();
   </script>
 
   <script is:inline>
-    // Glow mouse tracking
     document.addEventListener('mousemove', function(e) {
       var el = e.target.closest('.glow-on-hover');
       if (!el) return;
