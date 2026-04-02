@@ -103,6 +103,11 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         margin: 0 auto;
         padding: 1.5rem 2rem;
       }
+      .nav-left {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
       .nav-logo {
         font-weight: 600;
         font-size: 0.95rem;
@@ -163,7 +168,8 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
 
       /* ===== Mobile Responsive ===== */
       @media (max-width: 768px) {
-        nav { padding: 1rem; }
+        nav { padding: 1rem 1.25rem; }
+        .nav-left { gap: 1rem; }
         .page-wrapper { padding: 0; }
         .header { padding: 1.5rem 1rem; }
         .header .title { font-size: 2rem !important; }
@@ -187,13 +193,15 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
   </head>
   <body>
     <nav>
-      <a href="/" class="nav-logo">Kagura Tart</a>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/search">🔍</a></li>
-      </ul>
+      <div class="nav-left">
+        <a href="/" class="nav-logo">Kagura Tart</a>
+        <ul class="nav-links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/blog">Blog</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/search">🔍</a></li>
+        </ul>
+      </div>
       <button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题" title="切换白天/夜间模式">
         <span class="sun">☀️</span>
         <span class="moon">🌙</span>
