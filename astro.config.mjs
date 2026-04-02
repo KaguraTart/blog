@@ -9,13 +9,8 @@ export default defineConfig({
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeMathjax],
     shikiConfig: {
-      themes: {
-        light: 'github-light',
-        dark: 'github-dark',
-      },
-      // 不生成 light-dark() 内联样式，用 CSS 变量方式
-      defaultColor: false,
-      darkMode: 'class',
+      // 只用一个主题，light。深色用 CSS 覆盖。
+      theme: 'github-light',
       wrap: true,
     },
   },

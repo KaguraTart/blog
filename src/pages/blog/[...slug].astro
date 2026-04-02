@@ -128,12 +128,14 @@ const { Content } = await post.render();
     border-radius: 4px;
     color: var(--accent);
   }
-  .article-content :global(pre) {
+  /* Non-Shiki code blocks only (inline code wrapped in <pre>) */
+  .article-content :global(pre:not(.astro-code)) {
     border: 1px solid var(--border);
     border-radius: 10px;
     padding: 1.25rem 1.5rem;
     overflow-x: auto;
     margin: 1.5rem 0;
+    background: var(--bg-card);
   }
   .article-content :global(pre code) {
     background: none;
