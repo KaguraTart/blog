@@ -181,12 +181,7 @@ const { Content } = await post.render();
   html:not(.dark) .article-content h3 { color: #1a1a2e !important; }
   html:not(.dark) .article-content code { background: rgba(124,111,248,0.08) !important; color: #6c4ff8 !important; }
   html:not(.dark) .article-content pre code { color: #333 !important; }
-  /* 排除 .shiki 代码块（由 Layout.astro 的 Shiki 双主题规则接管） */
-  /* 非 Shiki 的 pre（自定义代码块）在 light 模式下用浅色背景 */
-  html:not(.dark) .article-content :global(pre:not(.shiki)) {
-    background: rgba(0,0,0,0.06) !important;
-    border-color: rgba(0,0,0,0.1) !important;
-  }
+  /* Let Layout.astro handle pre block background/border colors */
   html:not(.dark) .article-content table { border-color: rgba(0,0,0,0.1) !important; }
   html:not(.dark) .article-content th { background: rgba(124,111,248,0.1) !important; color: #1a1a2e !important; }
   html:not(.dark) .article-content td, html:not(.dark) .article-content tr { border-color: rgba(0,0,0,0.1) !important; }
