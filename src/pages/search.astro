@@ -43,8 +43,6 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <script is:inline>
-  
-
   function escapeHtml(str) {
     return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   }
@@ -134,18 +132,19 @@ import Layout from '../layouts/Layout.astro';
     input.focus();
   });
 
-  // Load pagefind dynamically at runtime
-  var script = document.createElement('script');
-  script.src = '/pagefind/pagefind.js';
-  script.onload = function() { console.log("pagefind loaded"); };
-  script.onerror = function() {
+  // Load pagefind as ES Module via dynamic import
+  // pagefind.js uses export {} so it must be imported as a module, not loaded via script.src
+  import('/pagefind/pagefind.js').then(function(pagefind) {
+    window.pagefind = pagefind;
+    console.log('pagefind loaded');
+  }).catch(function(err) {
+    console.error('pagefind load error:', err);
     var emptyState = document.getElementById('search-empty');
     if (emptyState) {
-      emptyState.querySelector('p').textContent = 'Search index not available yet. Please deploy again.';
+      emptyState.querySelector('p').textContent = 'Search index not available. Please deploy again.';
       emptyState.style.display = '';
     }
-  };
-  document.head.appendChild(script);
+  });
 </script>
 
 <style>
