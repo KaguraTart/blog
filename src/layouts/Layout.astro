@@ -212,15 +212,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       html:not(.dark) .theme-toggle .sun { display: inline; }
       html:not(.dark) .theme-toggle .moon { display: none; }
 
-      /* ===== Astro 5 Shiki Dual-Theme: 直接覆盖背景色 ===== */
-      /* 浅色模式 */
-      html:not(.dark) .article-content pre.shiki {
-        background-color: #fff !important;
-      }
-      /* 深色模式 */
-      html.dark .article-content pre.shiki {
-        background-color: #24292e !important;
-      }
+      /* 深色模式：代码块背景色由 JS 直接控制，不依赖 CSS 覆盖 */
 
       /* ===== 代码块样式 ===== */
       .article-content pre {
@@ -352,16 +344,65 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
     <slot />
 
   <script is:inline>
-    // Theme management — robust, no dependencies
+    // Theme management + Shiki code block style sync via CSS light-dark()
     (function() {
       var SK = 'theme', html = document.documentElement;
+      // Shiki light-dark() color mappings
+      var SHIKI_COLORS = [
+        // background, text
+        ['#ffffff', '#24292e'],
+        ['#24292e', '#e1e4e8'],
+        // token colors: github-light → github-dark
+        ['#005CC5','#79B8FF'],
+        ['#032F62','#9ECBFF'],
+        ['#D73A49','#F97583'],
+        ['#E36209','#FFAB70'],
+        ['#6F42C1','#B392F0'],
+        ['#24292E','#E1E4E8'],
+        ['#22863A','#85E89D'],
+        ['#D73A49','#F97583'],
+        ['#005CC5','#79B8FF'],
+        ['#D1242F','#FF7B72'],
+        ['#6F42C1','#B392F0'],
+        ['#D73A49','#F97583'],
+        ['#E36209','#FFAB70'],
+        ['#22863A','#85E89D'],
+        ['#005CC5','#79B8FF'],
+        ['#032F62','#9ECBFF'],
+        ['#6F42C1','#B392F0'],
+        ['#D73A49','#F97583'],
+        ['#24292E','#E1E4E8'],
+        ['#E36209','#FFAB70'],
+      ];
+
+      function setShikiTheme(isDark) {
+        var pres = document.querySelectorAll('.article-content pre.shiki');
+        for (var i = 0; i < pres.length; i++) {
+          var pre = pres[i];
+          pre.style.backgroundColor = isDark ? '#24292e' : '#ffffff';
+          pre.style.color = isDark ? '#e1e4e8' : '#24292e';
+          var spans = pre.querySelectorAll('span');
+          for (var j = 0; j < spans.length; j++) {
+            var span = spans[j];
+            var colorIdx = (j + 2) % SHIKI_COLORS.length;
+            span.style.backgroundColor = 'transparent';
+            span.style.color = SHIKI_COLORS[colorIdx][isDark ? 1 : 0];
+          }
+        }
+      }
+
       function getTheme() {
         var s = localStorage.getItem(SK);
         if (s) return s;
         try { return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
         catch(e) { return 'dark'; }
       }
-      function applyTheme(t) { t === 'dark' ? html.classList.add('dark') : html.classList.remove('dark'); }
+      function applyTheme(t) {
+        var isDark = t === 'dark';
+        isDark ? html.classList.add('dark') : html.classList.remove('dark');
+        setShikiTheme(isDark);
+      }
+      window.__setShikiTheme = setShikiTheme;
       applyTheme(getTheme());
       var tb = document.getElementById('themeToggle');
       if (tb) tb.addEventListener('click', function() {
@@ -415,7 +456,8 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
       } else { init(); }
-    })();
+      // Re-apply Shiki theme after collapse wraps elements (in case theme was set from localStorage)
+      if (window.__setShikiTheme) window.__setShikiTheme(document.documentElement.classList.contains('dark'));
   </script>
 
   <script is:inline>
