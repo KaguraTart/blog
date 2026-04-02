@@ -98,7 +98,7 @@ import Layout from '../layouts/Layout.astro';
           var cleanExcerpt = excerpt.replace(/<\/?mark>/g, '').slice(0, 200);
           var highlightedExcerpt = highlight(escapeHtml(cleanExcerpt) + '...', query);
           var highlightedTitle = highlight(escapeHtml(item.meta && item.meta.title || item.url || ''), query);
-          return '<a href="' + item.url + '" class="result-card">' +
+          return '<a href="' + item.url + '" class="result-card glow-on-hover">' +
             '<h2 class="result-title">' + highlightedTitle + '</h2>' +
             '<p class="result-excerpt">' + highlightedExcerpt + '</p>' +
             '<span class="result-link">Read more →</span>' +

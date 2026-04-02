@@ -16,16 +16,16 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
     </div>
 
     <div class="tab-nav">
-      <button class="tab-btn active" data-cat="all">All</button>
-      <button class="tab-btn" data-cat="Tech">Tech</button>
-      <button class="tab-btn" data-cat="Essay">Essay</button>
-      <button class="tab-btn" data-cat="Paper">Paper</button>
+      <button class="tab-btn active glow-on-hover" data-cat="all">All</button>
+      <button class="tab-btn glow-on-hover" data-cat="Tech">Tech</button>
+      <button class="tab-btn glow-on-hover" data-cat="Essay">Essay</button>
+      <button class="tab-btn glow-on-hover" data-cat="Paper">Paper</button>
     </div>
 
     <div class="tab-content" id="tab-all">
       <div class="posts">
         {allPosts.map(post => (
-          <a href={`/blog/${post.slug}`} class="post-card">
+          <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
               {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
@@ -34,7 +34,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
               <div class="post-tags">
-                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag">{tag}</span>)}
+                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag glow-on-hover">{tag}</span>)}
               </div>
             )}
           </a>
@@ -45,7 +45,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
     <div class="tab-content" id="tab-Tech" style="display:none">
       <div class="posts">
         {techPosts.map(post => (
-          <a href={`/blog/${post.slug}`} class="post-card">
+          <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
               {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
@@ -54,7 +54,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
               <div class="post-tags">
-                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag">{tag}</span>)}
+                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag glow-on-hover">{tag}</span>)}
               </div>
             )}
           </a>
@@ -65,7 +65,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
     <div class="tab-content" id="tab-Essay" style="display:none">
       <div class="posts">
         {essayPosts.map(post => (
-          <a href={`/blog/${post.slug}`} class="post-card">
+          <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
               {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
@@ -74,7 +74,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
               <div class="post-tags">
-                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag">{tag}</span>)}
+                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag glow-on-hover">{tag}</span>)}
               </div>
             )}
           </a>
@@ -85,7 +85,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
     <div class="tab-content" id="tab-Paper" style="display:none">
       <div class="posts">
         {paperPosts.map(post => (
-          <a href={`/blog/${post.slug}`} class="post-card">
+          <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
               {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
@@ -94,7 +94,7 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
               <div class="post-tags">
-                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag">{tag}</span>)}
+                {[post.data.category, ...post.data.tags.slice(0, 3)].map(tag => <span class="post-tag glow-on-hover">{tag}</span>)}
               </div>
             )}
           </a>

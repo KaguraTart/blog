@@ -39,7 +39,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
           <div class="tags-label">Interests</div>
           <div class="tags">
             {profile.interests.map(item => (
-              <div class="tag">
+              <div class="tag glow-on-hover">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
                   {item.icon === 'car' && <><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/><polygon points="12 15 17 21 7 21 12 15"/></>}
                   {item.icon === 'code' && <><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></>}
@@ -60,11 +60,11 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
             <div class="recent-posts">
               <div class="recent-header">
                 <span class="posts-label">Recent Posts</span>
-                <a href="/blog" class="view-all">View All →</a>
+                <a href="/blog" class="view-all glow-on-hover">View All →</a>
               </div>
               <div class="posts-list">
                 {recentPosts.map(post => (
-                  <a href={`/blog/${post.slug}`} class="post-item">
+                  <a href={`/blog/${post.slug}`} class="post-item glow-on-hover">
                     <div class="post-left">
                       <span class="post-day">{post.data.pubDate.getDate().toString().padStart(2, '0')}</span>
                       <span class="post-month">{post.data.pubDate.toLocaleDateString('en-US', { month: 'short' })}</span>
@@ -72,7 +72,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
                     <div class="post-title">{post.data.title}</div>
                     {post.data.tags.length > 0 && (
                       <div class="post-tags">
-                        <span class="post-tag">{post.data.category}</span>
+                        <span class="post-tag glow-on-hover">{post.data.category}</span>
                       </div>
                     )}
                   </a>
