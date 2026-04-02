@@ -221,47 +221,47 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       html.light .article { background: rgba(255,255,255,0.8); border-color: var(--border); }
       html.light .post-card { background: rgba(255,255,255,0.6); border-color: var(--border); }
       html.light .article-content code { background: rgba(124,111,248,0.08); }
-      /* Shiki dual-theme: switch based on html.light */
-      .astro-code,
-      .astro-code span {
-        color: var(--shiki-light);
-        background-color: var(--shiki-light-bg);
+      /* Shiki dual-theme: hardcoded colors with !important to override inline style */
+      html:not(.light) .astro-code {
+        background-color: #24292e !important;
+        color: #e1e4e8 !important;
       }
-      @media (prefers-color-scheme: dark) {
-        .astro-code,
-        .astro-code span {
-          color: var(--shiki-dark);
-          background-color: var(--shiki-dark-bg);
-        }
-      }
-      html:not(.light) .astro-code,
       html:not(.light) .astro-code span {
-        color: var(--shiki-dark);
-        background-color: var(--shiki-dark-bg);
+        background-color: transparent !important;
+        color: #e1e4e8 !important;
       }
-      html.light .astro-code,
+      html.light .astro-code {
+        background-color: #fff !important;
+        color: #24292e !important;
+      }
       html.light .astro-code span {
-        color: var(--shiki-light);
-        background-color: var(--shiki-light-bg);
+        background-color: transparent !important;
+        color: #24292e !important;
       }
-      html.light .article-content pre { background: transparent; border: 1px solid rgba(0,0,0,0.1); }
-      html.light .tag { background: var(--accent-dim); color: var(--accent); }
+      html.light .article-content pre {
+        background: rgba(0,0,0,0.06) !important;
+        border: 1px solid rgba(0,0,0,0.12) !important;
+      }
 
       /* ===== Collapsible Code Blocks ===== */
       .code-wrapper {
         position: relative;
         margin: 1.5rem 0;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 1px solid var(--border);
       }
       .code-wrapper .astro-code {
         margin: 0 !important;
-        border-radius: 10px 10px 0 0 !important;
+        border: none !important;
+        border-radius: 0 !important;
         max-height: 300px;
         overflow: hidden;
         position: relative;
         transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       }
       .code-wrapper .astro-code.expanded {
-        max-height: none;
+        max-height: none !important;
         overflow: auto;
       }
       .code-wrapper .astro-code:not(.expanded)::after {
@@ -271,11 +271,12 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         left: 0;
         right: 0;
         height: 80px;
-        background: linear-gradient(transparent, var(--bg-card));
+        background: linear-gradient(transparent, rgba(10,10,15,0.9));
         pointer-events: none;
+        border-radius: 0 0 10px 10px;
       }
       html.light .code-wrapper .astro-code:not(.expanded)::after {
-        background: linear-gradient(transparent, #f8f9fa);
+        background: linear-gradient(transparent, rgba(248,249,250,0.95));
       }
       .code-toggle {
         display: flex;
@@ -285,9 +286,8 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         width: 100%;
         padding: 0.55rem;
         background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-top: none;
-        border-radius: 0 0 10px 10px;
+        border: none;
+        border-top: 1px solid var(--border);
         color: var(--accent);
         font-size: 0.8rem;
         font-family: 'JetBrains Mono', monospace;
@@ -298,7 +298,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         background: var(--bg-card-hover);
         color: var(--text-primary);
       }
-      .code-toggle svg { width: 14px; height: 14px; }
+      .code-toggle svg { width: 14px; height: 14px; flex-shrink: 0; }
       .code-toggle .lines-count {
         font-size: 0.72rem;
         opacity: 0.7;
@@ -368,42 +368,49 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         el.style.setProperty('--mouse-y', y + '%');
       }
     });
-  </script>
-  <script is:inline>
+
     // Collapsible code blocks
-    document.addEventListener('DOMContentLoaded', function() {
-      var MAX_LINES = 12;
-      var preBlocks = document.querySelectorAll('.article-content pre');
-      preBlocks.forEach(function(pre) {
-        var code = pre.querySelector('code');
-        if (!code) return;
-        var lines = code.textContent.split('\n').length;
-        if (lines <= MAX_LINES) return;
+    (function() {
+      function initCollapse() {
+        var MAX_LINES = 12;
+        var preBlocks = document.querySelectorAll('.article-content pre');
+        preBlocks.forEach(function(pre) {
+          var code = pre.querySelector('code');
+          if (!code) return;
+          var lines = code.textContent.split('\n').length;
+          if (lines <= MAX_LINES) return;
+          if (pre.parentNode.classList.contains('code-wrapper')) return;
 
-        var wrapper = document.createElement('div');
-        wrapper.className = 'code-wrapper';
-        pre.parentNode.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
+          var wrapper = document.createElement('div');
+          wrapper.className = 'code-wrapper';
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(pre);
 
-        var btn = document.createElement('button');
-        btn.className = 'code-toggle';
-        btn.innerHTML =
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
-          '<span class="toggle-text">Show ' + (lines - MAX_LINES + 1) + ' more lines</span>' +
-          '<span class="lines-count">(' + lines + ' lines)</span>';
-        wrapper.appendChild(btn);
+          var btn = document.createElement('button');
+          btn.className = 'code-toggle';
+          btn.innerHTML =
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
+            '<span class="toggle-text">Show ' + (lines - MAX_LINES) + ' more lines</span>' +
+            '<span class="lines-count">(' + lines + ' lines)</span>';
+          wrapper.appendChild(btn);
 
-        btn.addEventListener('click', function() {
-          var expanded = pre.classList.toggle('expanded');
-          btn.querySelector('.toggle-text').textContent = expanded
-            ? 'Collapse'
-            : 'Show ' + (lines - MAX_LINES + 1) + ' more lines';
-          btn.querySelector('svg').innerHTML = expanded
-            ? '<polyline points="18 15 12 9 6 15"></polyline>'
-            : '<polyline points="6 9 12 15 18 9"></polyline>';
+          btn.addEventListener('click', function() {
+            var expanded = pre.classList.toggle('expanded');
+            btn.querySelector('.toggle-text').textContent = expanded
+              ? 'Collapse'
+              : 'Show ' + (lines - MAX_LINES) + ' more lines';
+            btn.querySelector('svg').innerHTML = expanded
+              ? '<polyline points="18 15 12 9 6 15"></polyline>'
+              : '<polyline points="6 9 12 15 18 9"></polyline>';
+          });
         });
-      });
-    });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCollapse);
+      } else {
+        initCollapse();
+      }
+    })();
   </script>
   <script is:inline>
     // Theme management

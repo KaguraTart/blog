@@ -182,6 +182,10 @@ const { Content } = await post.render();
   html.light .article-content h3 { color: #1a1a2e !important; }
   html.light .article-content code { background: rgba(124,111,248,0.08) !important; color: #6c4ff8 !important; }
   html.light .article-content pre code { color: #333 !important; }
+  html:not(.light) .article-content pre { background: rgba(255,255,255,0.04) !important; border-color: rgba(255,255,255,0.08) !important; }
+  html.light .article-content pre { background: rgba(0,0,0,0.06) !important; border-color: rgba(0,0,0,0.1) !important; }
+  html:not(.light) .astro-code, html:not(.light) .astro-code span { background-color: #24292e !important; color: #e1e4e8 !important; }
+  html.light .astro-code, html.light .astro-code span { background-color: #fff !important; color: #24292e !important; }
   html.light .article-content table { border-color: rgba(0,0,0,0.1) !important; }
   html.light .article-content th { background: rgba(124,111,248,0.1) !important; color: #1a1a2e !important; }
   html.light .article-content td, html.light .article-content tr { border-color: rgba(0,0,0,0.1) !important; }
