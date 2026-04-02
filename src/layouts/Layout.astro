@@ -352,128 +352,80 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
     <slot />
 
   <script is:inline>
-    // =====================================================
-    // 1. 主题检测 + 切换（优先系统偏好，localStorage 覆盖）
-    // =====================================================
+    // Theme management — robust, no dependencies
     (function() {
-      var STORAGE_KEY = 'theme';
-      var html = document.documentElement;
-
-      function getPreferredTheme() {
-        var saved = localStorage.getItem(STORAGE_KEY);
-        if (saved) return saved;
-        return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      var SK = 'theme', html = document.documentElement;
+      function getTheme() {
+        var s = localStorage.getItem(SK);
+        if (s) return s;
+        try { return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'; }
+        catch(e) { return 'dark'; }
       }
-
-      function applyTheme(theme) {
-        if (theme === 'dark') {
-          html.classList.add('dark');
-        } else {
-          html.classList.remove('dark');
-        }
-      }
-
-      // 初始化：立即应用，防止闪烁
-      applyTheme(getPreferredTheme());
-
-      // 监听系统主题变化（仅当用户未手动设置时）
-      window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
-        if (!localStorage.getItem(STORAGE_KEY)) {
-          applyTheme(e.matches ? 'light' : 'dark');
-        }
+      function applyTheme(t) { t === 'dark' ? html.classList.add('dark') : html.classList.remove('dark'); }
+      applyTheme(getTheme());
+      var tb = document.getElementById('themeToggle');
+      if (tb) tb.addEventListener('click', function() {
+        var c = html.classList.contains('dark') ? 'dark' : 'light';
+        var n = c === 'dark' ? 'light' : 'dark';
+        localStorage.setItem(SK, n);
+        applyTheme(n);
       });
-
-      // 切换按钮
-      var btn = document.getElementById('themeToggle');
-      if (btn) {
-        btn.addEventListener('click', function() {
-          var current = html.classList.contains('dark') ? 'dark' : 'light';
-          var next = current === 'dark' ? 'light' : 'dark';
-          localStorage.setItem(STORAGE_KEY, next);
-          applyTheme(next);
+      try {
+        window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
+          if (!localStorage.getItem(SK)) applyTheme(e.matches ? 'light' : 'dark');
         });
-      }
+      } catch(e) {}
     })();
   </script>
 
   <script is:inline>
-    // =====================================================
-    // 2. 代码块折叠功能
-    // =====================================================
+    // Code block collapse — runs after DOM ready
     (function() {
-      var MAX_VISIBLE_LINES = 10;
-
-      function initCodeCollapse() {
-        var preBlocks = document.querySelectorAll('.article-content pre');
-        preBlocks.forEach(function(pre) {
-          // 统计行数（用 data-line 属性更准确）
-          var lines = pre.querySelectorAll('[data-line]');
-          var totalLines = lines.length > 0
-            ? lines.length
-            : (pre.textContent || '').split('\n').length;
-
-          // 超过阈值才包装
-          if (totalLines <= MAX_VISIBLE_LINES) return;
-          // 已有 wrapper 则跳过
-          if (pre.parentNode && pre.parentNode.classList.contains('code-wrapper')) return;
-
-          // 创建 wrapper
-          var wrapper = document.createElement('div');
-          wrapper.className = 'code-wrapper';
-          pre.parentNode.insertBefore(wrapper, pre);
-          wrapper.appendChild(pre);
-
-          // 创建渐变遮罩
+      var MAX_LINES = 10;
+      function init() {
+        var pres = document.querySelectorAll('.article-content pre');
+        for (var i = 0; i < pres.length; i++) {
+          var pre = pres[i];
+          if (pre.parentNode && pre.parentNode.classList.contains('code-wrapper')) continue;
+          var text = pre.textContent || '';
+          var lines = text.split('\n').length;
+          if (lines <= MAX_LINES) continue;
+          var wrap = document.createElement('div');
+          wrap.className = 'code-wrapper';
+          pre.parentNode.insertBefore(wrap, pre);
+          wrap.appendChild(pre);
           var fade = document.createElement('div');
           fade.className = 'code-fade';
-          wrapper.appendChild(fade);
-
-          // 创建折叠按钮
+          wrap.appendChild(fade);
           var btn = document.createElement('button');
           btn.className = 'code-toggle';
-          var hidden = totalLines - MAX_VISIBLE_LINES;
-          btn.innerHTML =
-            '<svg class="icon-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
-            '<span class="toggle-text">Show ' + hidden + ' more lines</span>' +
-            '<span class="lines-count">(' + totalLines + ' lines)</span>';
-          wrapper.appendChild(btn);
-
-          // 折叠状态
+          btn.innerHTML = '<svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
+            '<span class="tt">Show ' + (lines - MAX_LINES) + ' more lines</span>' +
+            '<span class="lc">(' + lines + ' lines)</span>';
           var expanded = false;
-
           btn.addEventListener('click', function() {
             expanded = !expanded;
             pre.classList.toggle('expanded', expanded);
-            btn.querySelector('.toggle-text').textContent = expanded
-              ? 'Collapse'
-              : 'Show ' + hidden + ' more lines';
-            btn.querySelector('.icon-chevron').innerHTML = expanded
-              ? '<polyline points="18 15 12 9 6 15"></polyline>'
-              : '<polyline points="6 9 12 15 18 9"></polyline>';
+            btn.querySelector('.tt').textContent = expanded ? 'Collapse' : 'Show ' + (lines - MAX_LINES) + ' more lines';
+            btn.querySelector('.ic').innerHTML = expanded ? '<polyline points="18 15 12 9 6 15"></polyline>' : '<polyline points="6 9 12 15 18 9"></polyline>';
           });
-        });
+          wrap.appendChild(btn);
+        }
       }
-
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initCodeCollapse);
-      } else {
-        initCodeCollapse();
-      }
+        document.addEventListener('DOMContentLoaded', init);
+      } else { init(); }
     })();
   </script>
 
   <script is:inline>
-    // =====================================================
-    // 3. Glow 效果鼠标跟踪
-    // =====================================================
+    // Glow mouse tracking
     document.addEventListener('mousemove', function(e) {
       var el = e.target.closest('.glow-on-hover');
       if (!el) return;
-      var rect = el.getBoundingClientRect();
-      var x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
-      var y = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
-      el.style.setProperty('--mouse-x', x + '%');
-      el.style.setProperty('--mouse-y', y + '%');
+      var r = el.getBoundingClientRect();
+      el.style.setProperty('--mouse-x', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+      el.style.setProperty('--mouse-y', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
     });
   </script>
   </body>
