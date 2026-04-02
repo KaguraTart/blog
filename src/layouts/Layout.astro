@@ -383,6 +383,9 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
 
           var wrapper = document.createElement('div');
           wrapper.className = 'code-wrapper';
+          // Copy data-astro-cid so scoped CSS matches
+          var cid = pre.getAttribute('data-astro-cid');
+          if (cid) wrapper.setAttribute('data-astro-cid', cid);
           pre.parentNode.insertBefore(wrapper, pre);
           wrapper.appendChild(pre);
 
@@ -390,7 +393,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
           btn.className = 'code-toggle';
           btn.innerHTML =
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>' +
-            '<span class="toggle-text">Show ' + (lines - MAX_LINES) + ' more lines</span>' +
+            '<span class="toggle-text">Show ' + (lines - MAX_LINES + 1) + ' more lines</span>' +
             '<span class="lines-count">(' + lines + ' lines)</span>';
           wrapper.appendChild(btn);
 
@@ -398,7 +401,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
             var expanded = pre.classList.toggle('expanded');
             btn.querySelector('.toggle-text').textContent = expanded
               ? 'Collapse'
-              : 'Show ' + (lines - MAX_LINES) + ' more lines';
+              : 'Show ' + (lines - MAX_LINES + 1) + ' more lines';
             btn.querySelector('svg').innerHTML = expanded
               ? '<polyline points="18 15 12 9 6 15"></polyline>'
               : '<polyline points="6 9 12 15 18 9"></polyline>';
@@ -413,9 +416,20 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
     })();
   </script>
   <script is:inline>
-    // Theme management
+    // Theme management + code block color sync
     function getTheme() {
       return localStorage.getItem('theme') || 'dark';
+    }
+    function applyCodeTheme() {
+      var isLight = document.documentElement.classList.contains('light');
+      document.querySelectorAll('.astro-code').forEach(function(pre) {
+        pre.style.backgroundColor = isLight ? '#fff' : '#24292e';
+        pre.style.color = isLight ? '#24292e' : '#e1e4e8';
+        pre.querySelectorAll('span').forEach(function(span) {
+          span.style.backgroundColor = 'transparent';
+          span.style.color = isLight ? '#24292e' : '#e1e4e8';
+        });
+      });
     }
     function setTheme(theme) {
       if (theme === 'light') {
@@ -424,15 +438,13 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         document.documentElement.classList.remove('light');
       }
       localStorage.setItem('theme', theme);
+      applyCodeTheme();
     }
     function toggleTheme() {
-      const current = getTheme();
-      setTheme(current === 'dark' ? 'light' : 'dark');
+      setTheme(getTheme() === 'dark' ? 'light' : 'dark');
     }
-    // Init on load
     setTheme(getTheme());
-    // Listen for system preference changes
-    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', (e) => {
+    window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', function(e) {
       if (!localStorage.getItem('theme')) {
         setTheme(e.matches ? 'light' : 'dark');
       }
