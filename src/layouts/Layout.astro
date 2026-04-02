@@ -321,9 +321,11 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
             wrap.appendChild(btn);
           }
         }
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', init);
-        } else { init(); }
+        try {
+          if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+          } else { init(); }
+        } catch(e) { console.error('Collapse init error:', e.message); }
       })();
     </script>
     <script is:inline>
