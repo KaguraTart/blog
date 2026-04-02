@@ -212,14 +212,14 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       html:not(.dark) .theme-toggle .sun { display: inline; }
       html:not(.dark) .theme-toggle .moon { display: none; }
 
-      /* ===== Astro 5 Shiki Dual-Theme: 显式覆盖 light-dark() 背景色 ===== */
+      /* ===== Astro 5 Shiki Dual-Theme: 直接覆盖背景色 ===== */
       /* 浅色模式 */
       html:not(.dark) .article-content pre.shiki {
-        background-color: var(--shiki-light-bg, #fff) !important;
+        background-color: #fff !important;
       }
       /* 深色模式 */
       html.dark .article-content pre.shiki {
-        background-color: var(--shiki-dark-bg, #24292e) !important;
+        background-color: #24292e !important;
       }
 
       /* ===== 代码块样式 ===== */
