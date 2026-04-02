@@ -8,13 +8,14 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeMathjax],
-    // Astro 5: shikiConfig 仍然在 markdown 里面
     shikiConfig: {
       themes: {
         light: 'github-light',
         dark: 'github-dark',
       },
-      defaultColor: 'light-dark()',  // CSS light-dark() 函数
+      // 不生成 light-dark() 内联样式，用 CSS 变量方式
+      defaultColor: false,
+      darkMode: 'class',
       wrap: true,
     },
   },
