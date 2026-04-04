@@ -176,17 +176,6 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       html:not(.dark) .article-content pre { border: 1px solid rgba(0,0,0,0.1); }
       html.dark .article-content pre { border: 1px solid rgba(255,255,255,0.08); }
       .article-content pre span { background-color: transparent !important; }
-      /* Code collapse */
-      .article-content .code-collapse-wrapper { position: relative; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
-      .article-content .code-collapse-wrapper pre { margin: 0 !important; border: none !important; border-radius: 0 !important; max-height: 200px; overflow-x: auto; overflow-y: hidden; }
-      .article-content .code-collapse-wrapper pre.expanded { max-height: none !important; overflow: auto; }
-      .article-content .code-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; pointer-events: none; border-radius: 0 0 9px 9px; }
-      html.dark .article-content .code-fade { background: linear-gradient(transparent, rgba(10,10,15,0.9)); }
-      html:not(.dark) .article-content .code-fade { background: linear-gradient(transparent, rgba(248,249,250,0.95)); }
-      .article-content .code-collapse-wrapper pre.expanded + .code-fade { display: none; }
-      .article-content .code-toggle { display: flex; align-items: center; justify-content: center; gap: 0.4rem; width: 100%; padding: 0.5rem; background: var(--bg-card); border: none; border-top: 1px solid var(--border); color: var(--accent); font-size: 0.78rem; font-family: 'JetBrains Mono', monospace; cursor: pointer; transition: all 0.2s; }
-      .article-content .code-toggle:hover { background: var(--bg-card-hover); }
-      .article-content .code-toggle svg { width: 13px; height: 13px; }
       @media (max-width: 768px) {
         nav { padding: 1rem 1.25rem; }
         .nav-left { gap: 1rem; }
@@ -291,60 +280,6 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
           });
         }
       })();
-    </script>
-
-    <script is:inline>
-      // Code collapse — init
-      (function() {
-        function init() {
-          var pres = document.querySelectorAll('.article-content pre');
-          for (var i = 0; i < pres.length; i++) {
-            var pre = pres[i];
-            if (pre.parentNode && pre.parentNode.classList.contains('code-collapse-wrapper')) continue;
-            var code = pre.querySelector('code');
-            var lineSpans = code ? Array.from(code.children).filter(function(c) { return c.classList.contains('line'); }) : [];
-            var totalLines = lineSpans.length;
-            if (totalLines <= 8) continue;
-            var wrap = document.createElement('div');
-            wrap.className = 'code-collapse-wrapper';
-            pre.parentNode.insertBefore(wrap, pre);
-            wrap.appendChild(pre);
-            var fade = document.createElement('div');
-            fade.className = 'code-fade';
-            wrap.appendChild(fade);
-            var btn = document.createElement('button');
-            btn.className = 'code-toggle';
-            btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg><span>Show ' + (totalLines - 8) + ' more lines</span>';
-            wrap.appendChild(btn);
-          }
-        }
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', init);
-        } else { init(); }
-      })();
-    </script>
-
-    <script is:inline>
-      // Code collapse toggle
-      document.addEventListener('click', function(e) {
-        var btn = e.target.closest('.code-toggle');
-        if (!btn) return;
-        var wrap = btn.closest('.code-collapse-wrapper');
-        if (!wrap) return;
-        var pre = wrap.querySelector('pre');
-        var isExpanded = pre.classList.toggle('expanded');
-        var span = btn.querySelector('span');
-        var svg = btn.querySelector('svg polyline');
-        if (isExpanded) {
-          span.textContent = 'Collapse';
-          svg.setAttribute('points', '18 15 12 9 6 15');
-        } else {
-          var code = pre.querySelector('code');
-          var lineCount = code ? code.querySelectorAll('.line').length : 0;
-          span.textContent = 'Show ' + (lineCount - 8) + ' more lines';
-          svg.setAttribute('points', '6 9 12 15 18 9');
-        }
-      });
     </script>
 
     <script is:inline>
