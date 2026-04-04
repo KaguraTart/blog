@@ -178,7 +178,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       .article-content pre span { background-color: transparent !important; }
       /* Code collapse */
       .article-content .code-collapse-wrapper { position: relative; margin: 1.5rem 0; border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
-      .article-content .code-collapse-wrapper pre { margin: 0 !important; border: none !important; border-radius: 0 !important; max-height: 200px; overflow: hidden; }
+      .article-content .code-collapse-wrapper pre { margin: 0 !important; border: none !important; border-radius: 0 !important; max-height: 200px; overflow-x: auto; overflow-y: hidden; }
       .article-content .code-collapse-wrapper pre.expanded { max-height: none !important; overflow: auto; }
       .article-content .code-fade { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; pointer-events: none; border-radius: 0 0 9px 9px; }
       html.dark .article-content .code-fade { background: linear-gradient(transparent, rgba(10,10,15,0.9)); }
@@ -301,7 +301,8 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
           for (var i = 0; i < pres.length; i++) {
             var pre = pres[i];
             if (pre.parentNode && pre.parentNode.classList.contains('code-collapse-wrapper')) continue;
-            var lineSpans = Array.from(pre.children).filter(function(c) { return c.tagName === 'SPAN'; });
+            var code = pre.querySelector('code');
+            var lineSpans = code ? Array.from(code.children).filter(function(c) { return c.classList.contains('line'); }) : [];
             var totalLines = lineSpans.length;
             if (totalLines <= 8) continue;
             var wrap = document.createElement('div');
@@ -338,7 +339,9 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
           span.textContent = 'Collapse';
           svg.setAttribute('points', '18 15 12 9 6 15');
         } else {
-          span.textContent = 'Show ' + (pre.querySelectorAll('span').length - 8) + ' more lines';
+          var code = pre.querySelector('code');
+          var lineCount = code ? code.querySelectorAll('.line').length : 0;
+          span.textContent = 'Show ' + (lineCount - 8) + ' more lines';
           svg.setAttribute('points', '6 9 12 15 18 9');
         }
       });
