@@ -316,7 +316,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
             var pre = pres[i];
             if (pre.parentNode && pre.parentNode.classList.contains('code-collapse-wrapper')) continue;
             var text = pre.textContent || '';
-            var lines = text.split('\n').length;
+            var lines = text.split('\n').filter(function(l) { return l.trim().length > 0; }).length;
             if (lines <= 10) continue;
             var wrap = document.createElement('div');
             wrap.className = 'code-collapse-wrapper';
