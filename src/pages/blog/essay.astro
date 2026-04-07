@@ -3,9 +3,13 @@ import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.category === 'Essay'))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  .sort((a, b) => {
+    const dateDiff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+    if (dateDiff !== 0) return dateDiff;
+    return a.slug.localeCompare(b.slug);
+  });
 ---
-< Layout title="Essay">
+<Layout title="Essay">
   <div class="page-wrapper">
     <div class="page-header">
       <h1 class="page-title">Essay</h1>

@@ -2,8 +2,13 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
+// 先按日期降序，同一天内按文件名顺序（保证创建顺序）
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  .sort((a, b) => {
+    const dateDiff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+    if (dateDiff !== 0) return dateDiff;
+    return a.slug.localeCompare(b.slug);
+  });
 const techPosts = allPosts.filter(p => p.data.category === 'Tech');
 const essayPosts = allPosts.filter(p => p.data.category === 'Essay');
 const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
@@ -27,9 +32,10 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {allPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
-              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
-              </div>
+            </div>
             <h2 class="post-title">{post.data.title}</h2>
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
@@ -47,9 +53,10 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {techPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
-              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
-              </div>
+            </div>
             <h2 class="post-title">{post.data.title}</h2>
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
@@ -67,9 +74,10 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {essayPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
-              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
-              </div>
+            </div>
             <h2 class="post-title">{post.data.title}</h2>
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
@@ -87,9 +95,10 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {paperPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
-              {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
-              </div>
+            </div>
             <h2 class="post-title">{post.data.title}</h2>
             <p class="post-desc">{post.data.description}</p>
             {post.data.tags.length > 0 && (
