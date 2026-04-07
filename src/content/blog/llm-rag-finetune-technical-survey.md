@@ -1,7 +1,7 @@
 ---
 title: "LLM RAG 知识库与微调训练技术全景调研"
 description: "深入解析 RAG 知识库全流程技术栈（检索/Embedding/向量数据库/重排序）与 LLM 微调完整指南（LoRA/QLoRA/全量微调/SFT/RLHF），从架构设计到工程落地，附主流框架对比与选型建议"
-pubDate: 2026-04-07
+pubDate: 2026-04-07T11:43:17+08:00
 tags: ["大语言模型", "RAG", "知识库", "向量数据库", "微调", "LoRA", "QLoRA", "SFT", "RLHF", "Embedding", "LLM"]
 category: Tech
 ---

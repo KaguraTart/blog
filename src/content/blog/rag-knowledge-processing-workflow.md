@@ -1,7 +1,7 @@
 ---
 title: "RAG 知识库知识处理工作流：从 PDF 解析到智能分类的完整方案"
 description: "深入探讨 RAG 知识库构建中的知识提取、处理、分类三大环节，分析 LLM 的适用场景与局限性，评估 Claude Code CLI / Gemini CLI 等外部工具的能力边界，并提出一套结合专用解析库与 Agent 工作流的混合架构"
-pubDate: 2026-04-07
+pubDate: 2026-04-07T12:13:15+08:00
 tags: ["RAG", "知识库", "知识抽取", "PDF解析", "Claude Code", "工作流", "Agent", "LlamaIndex", "LangChain"]
 category: Tech
 ---

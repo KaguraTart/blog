@@ -1,7 +1,7 @@
 ---
 title: "多智能体强化学习与图注意力网络：UAV 集群冲突消解的端到端方案"
 description: "深入解析 MARL（QMIX/COMA/MAPPO/MADDPG）与 GAT 的融合架构，探讨如何实现无人机集群冲突消解的端到端学习，从策略梯度到底层图结构，一文打通"
-pubDate: 2026-04-07
+pubDate: 2026-04-07T11:24:40+08:00
 tags: ["多智能体强化学习", "MARL", "GAT", "图注意力", "无人机", "路径规划", "深度学习"]
 category: Tech
 ---
