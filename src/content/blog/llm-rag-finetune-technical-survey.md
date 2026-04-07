@@ -1727,14 +1727,11 @@ llamafactory-cli train \
 **参考文献：**
 
 1. Lewis, P., et al. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks (RAG).* Conference on Neural Information Processing Systems (NeurIPS).
-2. Gao, Y., et al. (2023). *Retrieval-Augmented Generation for Large Language Models: A Survey.* arXiv:2312.10997.
-3. Khattab, O., & Potts, C. (2021). *Representing Documents via Maximal Marginal Relevance.* arXiv:2110.02932. *(注：此文为预印本，venue 待确认)*
-4. Ram, O., et al. (2023). *In-Context Retrieval-Augmented Language Models (kNN-LM).* Transactions of the Association for Computational Linguistics (TACL), 11, 953–970.
-5. Paranjape, B., et al. (2023). *When Not to Trust Language Models: A Systematic Analysis of the Temporal and Entity Knowledge in LMs.* arXiv:2312.17448. *(替代 Hoshi et al. ACL RuLES，原引用 venue 不确定)*
-6. Hu, E. J., et al. (2021). *LoRA: Low-Rank Adaptation of Large Language Models.* International Conference on Learning Representations (ICLR).
-7. Dettmers, T., et al. (2023). *QLoRA: Efficient Finetuning of Quantized LLMs.* Conference on Neural Information Processing Systems (NeurIPS).
-8. Abdin, M., et al. (2024). *Phi-3 Technical Report: A Highly Capable Language Model is Surprisingly Affordable.* arXiv:2404.14219. *(注：Phi-3 由 Microsoft Research 发布，原引用作者/venue 有误)*
-9. Ouyang, L., et al. (2022). *Training language models to follow instructions with human feedback (InstructGPT).* Conference on Neural Information Processing Systems (NeurIPS).
-10. Rafailov, R., et al. (2023). *Direct Preference Optimization: Your Language Model is Secretly a Reward Model (DPO).* Conference on Neural Information Processing Systems (NeurIPS).
-11. Meng, R., et al. (2024). *A Survey on Fine-Tuned Large Language Models.* Stanford CS224N Course Project Report. *(注：原引用作者/venue 有较大不确定性)*
-12. Zheng, Y., et al. (2024). *LLaMA-Factory: Unified Efficient Fine-Tuning of 100+ Large Language Models.* arXiv:2403.13372. *(注：原引用 Wang Y. 等人有误，Zheng Y. 等为实际作者)*
+2. Hu, E. J., et al. (2021). *LoRA: Low-Rank Adaptation of Large Language Models.* International Conference on Learning Representations (ICLR).
+3. Dettmers, T., et al. (2023). *QLoRA: Efficient Finetuning of Quantized LLMs.* Conference on Neural Information Processing Systems (NeurIPS).
+4. Ouyang, L., et al. (2022). *Training language models to follow instructions with human feedback (InstructGPT).* Conference on Neural Information Processing Systems (NeurIPS).
+5. Rafailov, R., et al. (2023). *Direct Preference Optimization: Your Language Model is Secretly a Reward Model (DPO).* Conference on Neural Information Processing Systems (NeurIPS).
+6. Lowe, R., et al. (2017). *Multi-agent actor-critic for mixed cooperative-competitive environments (MADDPG).* Conference on Neural Information Processing Systems (NeurIPS).
+7. Rashid, T., et al. (2018). *QMIX: Monotonic value function factorisation for deep multi-agent reinforcement learning.* International Conference on Machine Learning (ICML).
+8. Veličković, P., et al. (2018). *Graph attention networks.* International Conference on Learning Representations (ICLR).
+9. Shah, S., et al. (2018). *AirSim: High-Fidelity Visual and Physical Simulation for Autonomous Vehicles.* Field and Service Robotics (FSR), Springer.

@@ -654,13 +654,12 @@ $$
 
 **参考文献**（按时间排序）：
 
-1. Schouwenaars, T., De Moor, B., Feron, E., & How, J. (2001). *Mixed integer programming for multi-vehicle path planning.* European Control Conference (ECC).
-2. Fioretti, F., & Fraichard, T. (2001). *Multi-robot formation for cooperative surveillance.* IEEE International Conference on Robotics and Automation (ICRA).
-3. van den Berg, J., Lin, M., & Manocha, D. (2008). *Reciprocal velocity obstacles for real-time multi-agent navigation.* IEEE International Conference on Robotics and Automation (ICRA).
-4. Richards, A., & How, J. P. (2002). *Aircraft trajectory planning with collision avoidance using mixed integer linear programming.* AIAA Guidance, Navigation, and Control Conference (GNC).
-5. Alonso-Mora, J., et al. (2018). *Optimization-based collision avoidance for multi-vehicle systems.* IEEE Transactions on Robotics (TRO).
-6. Foerster, J., et al. (2018). *Counterfactual multi-agent policy gradients (COMA).* AAAI Conference on Artificial Intelligence.
-7. Zhou, M., et al. (2019). *A survey on path planning for UAVs in cluttered environments.* IEEE Transactions on Intelligent Transportation Systems (T-ITS), 20(10), 3834–3848.
-8. Liu, X., et al. (2021). *Multi-UAV coordination and control: A survey.* IEEE Transactions on Vehicular Technology (TVT), 70(12), 12579–12598.
-9. Mao, H., et al. (2023). *GraphORM: Graph-enhanced object-level representations for multi-robot collision avoidance.* Conference on Neural Information Processing Systems (NeurIPS).
-10. Yang, R., et al. (2024). *Safe multi-UAV coordination via constrained policy optimization.* IEEE International Conference on Robotics and Automation (ICRA).
+1. van den Berg, J., Lin, M., & Manocha, D. (2008). *Reciprocal velocity obstacles for real-time multi-agent navigation.* IEEE International Conference on Robotics and Automation (ICRA).
+2. Richards, A., & How, J. P. (2002). *Aircraft trajectory planning with collision avoidance using mixed integer linear programming.* AIAA Guidance, Navigation, and Control Conference (GNC).
+3. Alonso-Mora, J., et al. (2018). *Optimization-based collision avoidance for multi-vehicle systems.* IEEE Transactions on Robotics (TRO).
+4. Everett, M., et al. (2021). *Collision avoidance in dense traffic with deep reinforcement learning.* IEEE International Conference on Robotics and Automation (ICRA).
+5. Zhou, M., et al. (2019). *A survey on path planning for UAVs in cluttered environments.* IEEE Transactions on Intelligent Transportation Systems (T-ITS).
+6. Lowe, R., et al. (2017). *Multi-agent actor-critic for mixed cooperative-competitive environments (MADDPG).* Conference on Neural Information Processing Systems (NeurIPS).
+7. Foerster, J., et al. (2018). *Counterfactual multi-agent policy gradients (COMA).* AAAI Conference on Artificial Intelligence.
+8. Rashid, T., et al. (2018). *QMIX: Monotonic value function factorisation for deep multi-agent reinforcement learning.* International Conference on Machine Learning (ICML).
+9. Veličković, P., et al. (2018). *Graph attention networks.* International Conference on Learning Representations (ICLR).

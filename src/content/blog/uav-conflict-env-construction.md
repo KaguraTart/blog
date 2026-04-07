@@ -919,9 +919,8 @@ class DomainRandomizedEnv(UAVConflictGym):
 **参考文献：**
 
 1. Shah, S., et al. (2018). *AirSim: High-Fidelity Visual and Physical Simulation for Autonomous Vehicles.* Field and Service Robotics (FSR), Springer.
-2. Foehn, P., et al. (2021). *AlphaPilot: Autonomous Drone Racing.* Technical Report / Competition Paper, Microsoft AI for Earth & University of Zurich.
-3. Zhou, M., et al. (2019). *A Survey on Path Planning for UAVs in Cluttered Environments.* IEEE Transactions on Intelligent Transportation Systems (T-ITS), 20(10), 3834–3848.
-4. Schranz, M., et al. (2020). *Swarm Robotic Behaviors and Current Applications.* Frontiers in Robotics and AI, 7, 36.
-5. Everett, M., et al. (2021). *Collision Avoidance in Dense Traffic with Deep Reinforcement Learning.* IEEE International Conference on Robotics and Automation (ICRA).
-6. Alonso-Mora, J., et al. (2018). *Optimization-Based Collision Avoidance for Multi-Vehicle Systems.* IEEE Transactions on Robotics (TRO), 34(4), 837–856.
-7. Li, S., et al. (2021). *Cooperative Path Planning for Multi-UAV with Velocity Constraints.* IEEE Transactions on Aerospace and Electronic Systems, 57(2), 1310–1321.
+2. Zhou, M., et al. (2019). *A Survey on Path Planning for UAVs in Cluttered Environments.* IEEE Transactions on Intelligent Transportation Systems (T-ITS).
+3. Everett, M., et al. (2021). *Collision avoidance in dense traffic with deep reinforcement learning.* IEEE International Conference on Robotics and Automation (ICRA).
+4. Alonso-Mora, J., et al. (2018). *Optimization-based collision avoidance for multi-vehicle systems.* IEEE Transactions on Robotics (TRO).
+5. van den Berg, J., Lin, M., & Manocha, D. (2008). *Reciprocal velocity obstacles for real-time multi-agent navigation.* IEEE International Conference on Robotics and Automation (ICRA).
+6. Richards, A., & How, J. P. (2002). *Aircraft trajectory planning with collision avoidance using mixed integer linear programming.* AIAA Guidance, Navigation, and Control Conference (GNC).
