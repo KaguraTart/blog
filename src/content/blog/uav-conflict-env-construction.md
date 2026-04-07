@@ -924,3 +924,8 @@ class DomainRandomizedEnv(UAVConflictGym):
 4. Alonso-Mora, J., et al. (2018). *Optimization-based collision avoidance for multi-vehicle systems.* IEEE Transactions on Robotics (TRO).
 5. van den Berg, J., Lin, M., & Manocha, D. (2008). *Reciprocal velocity obstacles for real-time multi-agent navigation.* IEEE International Conference on Robotics and Automation (ICRA).
 6. Richards, A., & How, J. P. (2002). *Aircraft trajectory planning with collision avoidance using mixed integer linear programming.* AIAA Guidance, Navigation, and Control Conference (GNC).
+7. Fan, T., et al. (2020). *Distributed Multi-Robot Collision Avoidance via Deep Reinforcement Learning for Navigation in Complex Scenarios.* The International Journal of Robotics Research (IJRR).
+8. Yan, C., et al. (2025). *Multi-Agent Reinforcement Learning With Spatial-Temporal Attention for Flocking With Collision Avoidance of a Scalable Fixed-Wing UAV Fleet.* IEEE Transactions on Intelligent Transportation Systems (T-ITS).
+9. Yu, L., et al. (2025). *Hybrid Transformer Based Multi-Agent Reinforcement Learning for Multiple Unpiloted Aerial Vehicle Coordination in Air Corridors.* IEEE Transactions on Mobile Computing (TMC).
+10. Huo, D., et al. (2023). *Collision-Free Model Predictive Trajectory Tracking Control for UAVs in Obstacle Environment.* IEEE Transactions on Aerospace and Electronic Systems (TAES).
+11. Jiang, C., et al. (2024). *Distributed Sampling-Based Model Predictive Control via Belief Propagation for Multi-Robot Formation Navigation.* IEEE Robotics and Automation Letters (RA-L).

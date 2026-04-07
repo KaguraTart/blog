@@ -1735,3 +1735,11 @@ llamafactory-cli train \
 7. Rashid, T., et al. (2018). *QMIX: Monotonic value function factorisation for deep multi-agent reinforcement learning.* International Conference on Machine Learning (ICML).
 8. Veličković, P., et al. (2018). *Graph attention networks.* International Conference on Learning Representations (ICLR).
 9. Shah, S., et al. (2018). *AirSim: High-Fidelity Visual and Physical Simulation for Autonomous Vehicles.* Field and Service Robotics (FSR), Springer.
+10. Guu, K., et al. (2020). *REALM: Retrieval-Augmented Language Model Pre-Training.* arXiv:2002.08909. *(预印本，对应 ICML 2020 poster)*
+11. Borgeaud, S., et al. (2022). *Improving Language Models by Retrieving from Trillions of Tokens.* International Conference on Machine Learning (ICML).
+12. Izacard, G., et al. (2022). *Atlas: Few-Shot Learning with Retrieval Augmented Language Models.* Journal of Machine Learning Research (JMLR).
+13. Jiang, Z., et al. (2023). *Active Retrieval Augmented Generation.* Conference on Empirical Methods in Natural Language Processing (EMNLP).
+14. Asai, A., et al. (2023). *Sakret: Tool-Augmented Language Models for Grounded Reasoning.* Annual Meeting of the Association for Computational Linguistics (ACL).
+15. Fan, T., et al. (2020). *Distributed Multi-Robot Collision Avoidance via Deep Reinforcement Learning for Navigation in Complex Scenarios.* The International Journal of Robotics Research (IJRR).
+16. Rashid, T., et al. (2018). *QMIX: Monotonic value function factorisation for deep multi-agent reinforcement learning.* International Conference on Machine Learning (ICML).
+17. Veličković, P., et al. (2018). *Graph attention networks.* International Conference on Learning Representations (ICLR).

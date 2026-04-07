@@ -663,3 +663,8 @@ $$
 7. Foerster, J., et al. (2018). *Counterfactual multi-agent policy gradients (COMA).* AAAI Conference on Artificial Intelligence.
 8. Rashid, T., et al. (2018). *QMIX: Monotonic value function factorisation for deep multi-agent reinforcement learning.* International Conference on Machine Learning (ICML).
 9. Veličković, P., et al. (2018). *Graph attention networks.* International Conference on Learning Representations (ICLR).
+10. Yan, C., et al. (2025). *Multi-Agent Reinforcement Learning With Spatial-Temporal Attention for Flocking With Collision Avoidance of a Scalable Fixed-Wing UAV Fleet.* IEEE Transactions on Intelligent Transportation Systems (T-ITS).
+11. Huo, D., et al. (2023). *Collision-Free Model Predictive Trajectory Tracking Control for UAVs in Obstacle Environment.* IEEE Transactions on Aerospace and Electronic Systems (TAES).
+12. Fan, T., et al. (2020). *Distributed Multi-Robot Collision Avoidance via Deep Reinforcement Learning for Navigation in Complex Scenarios.* The International Journal of Robotics Research (IJRR).
+13. Jiang, C., et al. (2024). *Distributed Sampling-Based Model Predictive Control via Belief Propagation for Multi-Robot Formation Navigation.* IEEE Robotics and Automation Letters (RA-L).
+14. Goeckner, A., et al. (2024). *Graph Neural Network-based Multi-Agent Reinforcement Learning for Resilient Distributed Coordination of Multi-Robot Systems.* IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS).

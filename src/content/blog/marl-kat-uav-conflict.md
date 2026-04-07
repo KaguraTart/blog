@@ -1180,3 +1180,9 @@ $$
 4. Veličković, P., et al. (2018). *Graph attention networks.* International Conference on Learning Representations (ICLR).
 5. Everett, M., et al. (2021). *Collision avoidance in dense traffic with deep reinforcement learning.* IEEE International Conference on Robotics and Automation (ICRA).
 6. Hu, E. J., et al. (2021). *LoRA: Low-Rank Adaptation of Large Language Models.* International Conference on Learning Representations (ICLR).
+7. Fan, T., et al. (2020). *Distributed Multi-Robot Collision Avoidance via Deep Reinforcement Learning for Navigation in Complex Scenarios.* The International Journal of Robotics Research (IJRR).
+8. Mao, H., et al. (2020). *Learning Multi-Agent Communication with Double Attentional Deep Reinforcement Learning.* Autonomous Agents and Multi-Agent Systems (JAAMAS).
+9. Yu, L., et al. (2025). *Hybrid Transformer Based Multi-Agent Reinforcement Learning for Multiple Unpiloted Aerial Vehicle Coordination in Air Corridors.* IEEE Transactions on Mobile Computing (TMC).
+10. Zhu, Y., et al. (2025). *Multi-Task Multi-Agent Reinforcement Learning With Task-Entity Transformers and Value Decomposition Training.* IEEE Transactions on Automation Science and Engineering (TASE).
+11. Jiang, C., et al. (2024). *Distributed Sampling-Based Model Predictive Control via Belief Propagation for Multi-Robot Formation Navigation.* IEEE Robotics and Automation Letters (RA-L).
+12. Goeckner, A., et al. (2024). *Graph Neural Network-based Multi-Agent Reinforcement Learning for Resilient Distributed Coordination of Multi-Robot Systems.* IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS).
