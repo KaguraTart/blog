@@ -4,7 +4,10 @@ import { getCollection } from 'astro:content';
 
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.category === 'Paper'))
   .sort((a, b) => {
-    const dateDiff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+    // updatedDate 优先，否则 pubDate
+    const dateA = a.data.updatedDate ?? a.data.pubDate;
+    const dateB = b.data.updatedDate ?? b.data.pubDate;
+    const dateDiff = dateB.valueOf() - dateA.valueOf();
     if (dateDiff !== 0) return dateDiff;
     return a.slug.localeCompare(b.slug);
   });

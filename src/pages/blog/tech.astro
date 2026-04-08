@@ -5,7 +5,10 @@ import { getCollection } from 'astro:content';
 // 先按日期降序，同一天内按文件名顺序
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.category === 'Tech'))
   .sort((a, b) => {
-    const dateDiff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+    // updatedDate 优先，否则 pubDate
+    const dateA = a.data.updatedDate ?? a.data.pubDate;
+    const dateB = b.data.updatedDate ?? b.data.pubDate;
+    const dateDiff = dateB.valueOf() - dateA.valueOf();
     if (dateDiff !== 0) return dateDiff;
     return a.slug.localeCompare(b.slug);
   });
