@@ -337,7 +337,152 @@ sem_cluster_sim         # 聚类内凝聚度
 3. **序列增强**：Transformer / Multi-Head Attention 编码行为序列
 4. **LLM 增强**：完整数据上重新验证语义特征收益
 5. **FAISS 召回 + LightGBM 重排**（已有 retrieval.py / rerank.py 基础）
-6. **概率校准**： Platt Scaling / Isotonic Regression 提升 LogLoss
+6. **概率校准**：Platt Scaling / Isotonic Regression 提升 LogLoss
+7. **UAFM 统一架构**：单一 Transformer backbone 联合建模特征交互与序列（见第12节）
+
+---
+
+## 12. UAFM：统一特征交互与序列建模架构
+
+> TAAC2026 竞赛主题是"面向大规模推荐的序列建模与特征交互统一化"，对应两个奖项：
+> - **统一模块创新奖**（45,000美元）：表彰在统一架构设计上的创新
+> - **扩展规律创新奖**（45,000美元）：表彰在系统性 scaling law 探索上的进展
+>
+> 这两个奖项与 AUC 排名无关，评审重点是创新性和洞见。
+
+### 12.1 现有方案的问题：两套范式割裂
+
+当前方案（LGB + DIEN/DeepFM + Stacking）是两套独立模型拼接：
+
+| 问题 | 现状 | 理想状态 |
+|------|------|---------|
+| 跨范式交互浅薄 | LGB 学特征交互，DIEN 学序列，OOF 拼接 | 序列 token 和特征 token 在同一 attention 内交互 |
+| 优化目标不一致 | LGB 优化 LogLoss，DIEN 优化 BCE | 单一 BCE Loss 端到端 |
+| Embedding 冗余 | ID embedding 单独学，特征 embedding 单独学 | 统一 token embedding |
+| Scaling 不透明 | 不知道增大 DIEN hidden_dim 是否有收益 | 系统性 scaling 实验 |
+
+### 12.2 UAFM 核心设计
+
+**核心思想**：将所有输入视为同构 token，通过单一 Transformer backbone 联合建模。
+
+**Token 类型**：
+
+```
+[CLS]  ← 全局汇聚（用于最终分类）
+[USER] ← 用户属性序列起始符
+[ITEM] ← 物品属性序列起始符
+[ACT]  ← Action 行为序列
+[CON]  ← Content 内容交互序列
+[ITM]  ← Item 物品交互序列
+[PAD]  ← 填充
+```
+
+**Token 化策略**：
+
+```
+原始输入:
+  user_feature: {fid=1: 1, fid=3: 260, ..., fid=68: [0.1,...(50d)...]}
+  item_feature: {fid=6: 96, fid=7: 241, ...}
+  action_seq:   [1, 1, 1, 0, 0, ...]
+  content_seq:  [timestamp, timestamp, ...]
+  item_seq:     [item_id, item_id, ...]
+
+↓ Unified Tokenization ↓
+
+[CLS] [USER] (1%bucket) (260%bucket) ... [ITEM] (96%bucket) ...
+[ACT] (1%bucket) (1%bucket) ... [CON] ... [ITM] ...
+
+设计原则:
+  - 连续值 → 哈希分桶 (value % 1000)
+  - 序列步 → 每个 step 作为一个 token（展开）
+  - 预训练 embedding (uf68/uf81) → 独立投影层注入
+```
+
+**架构**：
+
+```
+[Token序列] → [UnifiedEmbedding]
+               ├─ Type Embedding: 区分 USER/ITEM/ACT/CON/ITM/PAD
+               ├─ Value Embedding: token bucket → d_model 向量
+               ├─ Per-Type Position Encoding: 每个类型内部独立位置编码
+               ├─ 预训练向量投影: uf68/uf81 → d_model 注入
+               └─ 标量特征: hour/dow → d_model
+
+           → [Transformer Encoder × N]
+               ├─ Multi-Head Self-Attention（所有 token 互相 attend）
+               ├─ Gated Linear Unit FFN
+               └─ Pre-norm + LayerDrop
+
+           → [CLS Token] → [MLP] → pCVR
+
+单一 Loss: BCE(pCVR)
+```
+
+### 12.3 关键创新点
+
+1. **类型感知位置编码**：每个 token 类型（USER/ITEM/ACT）有独立的 position embedding，序列内顺序和类型间顺序分开建模。这解决了"不同模态的位置语义不同"的问题。
+
+2. **统一 Attention**：在单一 Transformer 内，用户的属性 token 可以直接 attend 到行为序列 token，实现跨范式的深层交互。这比 DIEN 的两步（GRU → Attention）更彻底。
+
+3. **预训练 embedding 注入**：数据中预计算的 uf68（50d）、uf81（24d）作为额外信息，通过 MLP 融合到 [CLS] 表示中。不干扰序列建模，但保留预训练信息。
+
+4. **Scaling Law Ready**：参数量从 0.1M（micro）到 80M（xlarge）可调，可系统性研究模型规模与数据规模的最优配比。
+
+### 12.4 Scaling 配置
+
+| 规模 | d_model | n_heads | n_layers | 参数量 | 适用数据量 |
+|------|---------|---------|----------|--------|-----------|
+| micro | 32 | 4 | 1 | ~0.1M | 1K 样本 |
+| tiny | 64 | 4 | 2 | ~0.3M | 1K-10K |
+| small | 64 | 8 | 4 | ~1.2M | 10K |
+| medium | 128 | 8 | 4 | ~5M | 10K-100K |
+| large | 256 | 8 | 6 | ~20M | 100K+ |
+| xlarge | 512 | 16 | 12 | ~80M | 500K+ |
+
+### 12.5 与现有方案的对比
+
+| 维度 | 当前方案（LGB+DIEN） | UAFM 统一架构 |
+|------|---------------------|--------------|
+| 模型数量 | 3+（LGB/DIEN/DeepFM/Stacking） | 1 |
+| Loss 函数 | 多目标（BCE+LogLoss） | 单一 BCE |
+| 特征交互深度 | LGB（树分裂）/ DIEN（2阶FM） | Transformer attention（N阶） |
+| 序列建模 | DIEN（GRU+Attention） | Transformer（Multi-Head Attention）|
+| 跨范式交互 | 浅（OOF 拼接） | 深（统一 attention）|
+| 参数量调节 | 手动调 GRU hidden | 自动 scaling law |
+| 端到端 | 否（需先训 NN 再训 LGB） | 是 |
+
+### 12.6 Scaling Law 实验设计
+
+```
+实验维度：
+  1. 参数 scaling:   micro → xlarge（0.1M → 80M）
+  2. 数据 scaling:   1K → 100K（控制其他变量）
+  3. 序列长度 scaling: 10 → 1000 步
+
+目标：拟合
+  AUC = α × log(params)^β + γ × log(data)^δ + ε
+  → 找到计算最优（compute-optimal）的配置
+
+消融实验：
+  - 有/无预训练 embedding 注入
+  - 有/无类型感知位置编码
+  - 2层 vs 6层 Transformer
+  - Self-attention vs Cross-attention（USER attend ITEM）
+```
+
+### 12.7 代码文件
+
+```
+models/unified_transformer.py  # UAFM 主模型 + ScalingExperiment
+    ├── TokenType            # 枚举：CLS/USER/ITEM/ACT/CON/ITM/PAD
+    ├── UnifiedTokenizer      # 特征 → token 序列
+    ├── UnifiedEmbedding      # Type + Value + Position + 预训练注入
+    ├── TransformerBlock     # Multi-Head Attention + Gated FFN
+    ├── UAFM                 # 主模型类 + from_config 构造器
+    └── ScalingExperiment     # Scaling law 实验管理器
+
+train_unified.py              # 训练脚本：5-Fold CV / Scaling Experiment
+```
 
 ---
 
