@@ -2,7 +2,7 @@
 title: "CARLA-SUMO 协同仿真强化学习框架：让自动驾驶汽车学会主动换道"
 description: "基于 CARLA 与 SUMO 协同仿真架构，使用 PPO 算法训练自动驾驶车辆在混合交通流中自主决策换道。详解双仿真器同步机制、奖励函数设计与万步训练实验结果。"
 tags: ["强化学习", "自动驾驶", "CARLA", "SUMO", "协同仿真", "PPO", "换道决策", "Stable-Baselines3"]
-date: 2026-04-15
+pubDate: 2026-04-15
 ---
 
 # CARLA-SUMO 协同仿真强化学习框架：让自动驾驶汽车学会主动换道

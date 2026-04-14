@@ -2,7 +2,7 @@
 title: "从幻觉到实事求是的学术研究工作流：我用 OpenClaw Skills 搭了一套论文追踪系统"
 description: "记录我如何设计 paper-research + paper-verifier 两个 OpenClaw Skill，构建一套强调「真实可验证」的学术文献研究工作流。核心原则：不生成虚假文献，手动搜索 + 工具辅助整理，配合 Zotero 管理，形成从检索到综述的完整闭环。"
 tags: ["OpenClaw", "Skill", "学术研究", "LLM", "Zotero", "文献管理", "RAG", "知识管理"]
-date: 2026-04-15
+pubDate: 2026-04-15
 ---
 
 # 从幻觉到实事求是的学术研究工作流：我用 OpenClaw Skills 搭了一套论文追踪系统

@@ -1,8 +1,8 @@
 ---
-title: "分层 VLM 规划：让无人机读懂"去3号楼东侧降落"这类指令"
+title: "分层 VLM 规划：让无人机读懂「去3号楼东侧降落」这类指令"
 description: "深入解析视觉-语言-动作模型（VLA）在无人机路径规划中的应用，梳理从单一端到端到分层语义规划的演进路线，涵盖 RT-2、OpenVLA、Compositional Foundation Models、LangStrands 等关键工作，分析为什么分层架构是 UAV VLA 的最优解，并给出实现指南。"
 tags: ["VLM", "VLA", "具身智能", "无人机", "分层规划", "RT-2", "OpenVLA", "Foundation Model", "Robotics"]
-date: 2026-04-15
+pubDate: 2026-04-15
 ---
 
 # 分层 VLM 规划：让无人机读懂"去3号楼东侧降落"这类指令
