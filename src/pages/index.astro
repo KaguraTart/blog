@@ -25,7 +25,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
             <h1 class="profile-name">{profile.name}</h1>
             <div class="profile-aka">{profile.aka}</div>
             <p class="profile-tagline">{profile.tagline}</p>
-            {profile.pronouns && <p class="profile-pronouns">{profile.pronouns}</p>}
+            {profile.pronouns && <p class="profile-pronouns">pronouns: {profile.pronouns}</p>}
           </div>
         </div>
 
