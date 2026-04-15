@@ -13,6 +13,9 @@ export const profile = {
   // 一句话简介
   tagline: 'Ph.D. Candidate · BUAA · Transportation Engineering',
 
+  // 代词
+  pronouns: 'she/her',
+
   // 个人介绍（支持换行）
   about: '是蛋挞！\nPh.D. candidate at Beihang University (BUAA).\nFormer M.Sc. at Tongji University, College of Transportation Engineering.\nResearch on traffic simulation and autonomous driving — focusing on connected autonomous vehicles at signalized intersections, highway traffic modeling with reinforcement learning, and LLM-powered mobility tools.',
 
