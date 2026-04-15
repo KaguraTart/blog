@@ -25,15 +25,6 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
             <h1 class="profile-name">{profile.name}</h1>
             <div class="profile-aka">{profile.aka}</div>
             <p class="profile-tagline">{profile.tagline}</p>
-            {profile.pronouns && <p class="profile-pronouns">pronouns: {profile.pronouns}</p>}
-          </div>
-        </div>
-
-        <div class="divider"></div>
-
-        <div class="about">
-          <div class="about-label">About</div>
-          <p class="about-text" set:html={aboutHtml} />
         </div>
 
         <div class="tags-section">
@@ -197,7 +188,6 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
     font-size: 0.88rem; color: var(--text-secondary);
     font-weight: 300; line-height: 1.5;
   }
-  .profile-pronouns {
     font-size: 0.78rem; color: var(--accent); opacity: 0.75;
     margin-top: 0.15rem; font-weight: 300;
   }
