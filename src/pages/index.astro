@@ -105,7 +105,6 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
   }
 
   .card {
-    display: block;
     width: 100%;
     max-width: 640px;
     background: var(--bg-card);
@@ -115,7 +114,7 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
     -webkit-backdrop-filter: blur(20px);
     animation: fadeUp 0.8s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both;
   }
-  .card-inner { display: block; padding: 2.5rem; }
+  .card-inner { padding: 2.5rem; }
 
   .profile { display: flex; align-items: center; gap: 2rem; margin-bottom: 1.75rem; }
   .avatar-wrap {
@@ -188,6 +187,9 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
   .profile-tagline {
     font-size: 0.88rem; color: var(--text-secondary);
     font-weight: 300; line-height: 1.5;
+  }
+    font-size: 0.78rem; color: var(--accent); opacity: 0.75;
+    margin-top: 0.15rem; font-weight: 300;
   }
 
   .divider { height: 1px; background: var(--border); margin: 0 0 1.5rem; }
@@ -293,13 +295,14 @@ const recentPosts = (await getCollection('blog', ({ data }) => !data.draft))
     overflow: hidden;
   }
   .post-item:hover .post-title { color: var(--text-primary); }
-  .post-tags { flex-shrink: 0; margin-top: 0.25rem; }
+  .post-tags { flex-shrink: 0; }
   .post-tag {
     background: var(--accent-dim); border: 1px solid var(--border-accent);
     color: var(--text-secondary); padding: 0.15rem 0.5rem;
     border-radius: 5px; font-size: 0.7rem;
   }
-
+  .post-item { flex-wrap: wrap; }
+  .post-tags { margin-top: 0.25rem; }
 
   /* Reveal animations */
   .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s, transform 0.5s; }
