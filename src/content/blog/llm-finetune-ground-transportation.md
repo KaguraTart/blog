@@ -3,6 +3,7 @@ title: 'LLM 微调实战：打造地面交通专业大模型'
 description: '从数据构建到微调部署，手把手教你用 LoRA/QLoRA 微调开源 LLM 构建交通领域专家模型'
 pubDate: '2026-04-25'
 tags: ['LLM', '微调', '地面交通', 'LoRA', 'QLoRA']
+category: Tech
 ---
 
 ## 引言
