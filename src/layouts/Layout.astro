@@ -189,6 +189,14 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         .article-content { font-size: 0.88rem !important; line-height: 1.7 !important; }
         .article-content pre { font-size: 0.75rem !important; }
       }
+      details.code-collapsible {
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        margin: 1.5em 0;
+        overflow: hidden;
+      }
+      details.code-collapsible summary::-webkit-details-marker { display: none; }
+      details.code-collapsible pre { margin: 0; border-radius: 0; border: none; }
     </style>
   </head>
   <body>
@@ -290,6 +298,28 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         el.style.setProperty('--mouse-x', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
         el.style.setProperty('--mouse-y', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
       });
+    </script>
+  <script is:inline>
+      // Collapsible code blocks
+      (function() {
+        var COLSPAN_THRESHOLD = 15;
+        document.querySelectorAll('pre').forEach(function(pre) {
+          var lines = pre.textContent.split('\n').length;
+          if (lines < COLSPAN_THRESHOLD) return;
+          var wrapper = document.createElement('details');
+          wrapper.className = 'code-collapsible';
+          var summary = document.createElement('summary');
+          summary.textContent = '代码 (' + lines + ' 行，点击展开/收起)';
+          summary.style.cssText = 'cursor:pointer; user-select:none; padding:4px 0; color:var(--text-secondary); font-size:0.85em; list-style:none;';
+          summary.addEventListener('click', function(e) { e.preventDefault(); });
+          pre.parentNode.insertBefore(wrapper, pre);
+          wrapper.appendChild(summary);
+          wrapper.appendChild(pre);
+          wrapper.addEventListener('toggle', function() {
+            summary.textContent = wrapper.open ? '点击收起 ▲' : '代码 (' + lines + ' 行，点击展开/收起)';
+          });
+        });
+      })();
     </script>
   </body>
 </html>
