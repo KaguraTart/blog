@@ -1,8 +1,9 @@
 ---
-title: 'LLM-Guided UAV 任务规划：从推理到执行的前沿'
-tags: ['UAV', 'LLM', '任务规划', 'PDDL', '具身智能', '端到端']
-category: Tech
-pubDate: '2026-04-27'
+title: "LLM-Guided UAV 任务规划：从推理到执行的前沿"
+description: "深入解析 LLM 做 UAV 任务规划的三大范式：LLM as Planner、LLM+PDDL 符号规划、LLM+RAG，覆盖 UniPlan(CVPR 2026)、双进程架构(IROS 2026)等前沿工作"
+tags: ["UAV", "LLM", "任务规划", "PDDL", "具身智能", "端到端"]
+category: "Tech"
+pubDate: 2026-04-27
 ---
 
 # LLM-Guided UAV 任务规划：从推理到执行的前沿

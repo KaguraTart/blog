@@ -1,8 +1,9 @@
 ---
-title: 'Vision-Language Models for UAV Navigation：视觉-语言导航的基础与前沿'
-tags: ['UAV', 'VLM', 'Vision-Language Navigation', '多模态大模型', '具身智能']
-category: Tech
-pubDate: '2026-04-27'
+title: "Vision-Language Models for UAV Navigation：视觉-语言导航的基础与前沿"
+description: "综述 VLM+UAV 导航的基础范式、核心架构与代表性工作，覆盖 LogisticsVLN、OmniVLN、ASMA 等最新论文，CVPR/ICRA/IROS 2024-2026"
+tags: ["UAV", "VLM", "Vision-Language Navigation", "多模态大模型", "具身智能"]
+category: "Tech"
+pubDate: 2026-04-27
 ---
 
 # Vision-Language Models for UAV Navigation：视觉-语言导航的基础与前沿

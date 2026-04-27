@@ -1,8 +1,9 @@
 ---
-title: '信息论视角的主动感知：Fisher Information 与 Cramér-Rao 下界'
-tags: ['UAV', '主动感知', '信息论', 'Fisher Information', 'SLAM', 'Cramér-Rao']
-category: Tech
-pubDate: '2026-04-27'
+title: "信息论视角的主动感知：Fisher Information 与 Cramér-Rao 下界"
+description: "从第一性原理讲解主动感知的信息论基础：Fisher Information、Cramér-Rao 下界、互信息，以及在 FIT-SLAM、Continuous Info Modeling 等 SLAM 工作中的应用"
+tags: ["UAV", "主动感知", "信息论", "Fisher Information", "SLAM", "Cramér-Rao"]
+category: "Tech"
+pubDate: 2026-04-27
 ---
 
 # 信息论视角的主动感知：Fisher Information 与 Cramér-Rao 下界

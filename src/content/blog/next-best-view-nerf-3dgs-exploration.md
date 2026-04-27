@@ -1,8 +1,9 @@
 ---
-title: 'Next-Best-View 规划与 NeRF/3DGS 的碰撞：主动感知的信息前沿'
-tags: ['UAV', 'NeRF', '3DGS', 'Next-Best-View', '主动感知', 'Gaussian Splatting']
-category: Tech
-pubDate: '2026-04-27'
+title: "Next-Best-View 规划与 NeRF/3DGS 的碰撞：主动感知的信息前沿"
+description: "NBV + NeRF/3DGS 前沿方法详解：ActiveGAMER 主动 Gaussian 建图、SO-NeRF 代理目标、AutoNeRF 自主数据采集，覆盖 arXiv/ICRA/ACC 2024-2025 最新工作"
+tags: ["UAV", "NeRF", "3DGS", "Next-Best-View", "主动感知", "Gaussian Splatting"]
+category: "Tech"
+pubDate: 2026-04-27
 ---
 
 # Next-Best-View 规划与 NeRF/3DGS 的碰撞：主动感知的信息前沿
