@@ -1,6 +1,6 @@
 ---
 title: "Vision-Language Models for UAV Navigation：视觉-语言导航的基础与前沿"
-description: "综述 VLM+UAV 导航的基础范式、核心架构与代表性工作，覆盖 LogisticsVLN、OmniVLN、ASMA 等最新论文，CVPR/ICRA/IROS 2024-2026"
+description: "综述 VLM+UAV 导航的基础范式、核心架构与代表性工作，覆盖 LogisticsVLN、OmniVLN、ASMA 等最新论文"
 tags: ["UAV", "VLM", "Vision-Language Navigation", "多模态大模型", "具身智能"]
 category: "Tech"
 pubDate: 2026-04-27
@@ -21,7 +21,7 @@ pubDate: 2026-04-27
 - "跟着那辆白色面包车，保持50米距离"
 - "找一个能看到市政府大楼的制高点悬停"
 
-这些指令无法直接转化为数学优化目标，但可以被 VLM（Vision-Language Model）理解和推理。Vision-Language Navigation（VLN）正是解决这一问题的核心研究方向——让机器人（ UAV）根据自然语言指令在三维物理空间中导航。
+这些指令无法直接转化为数学优化目标，但可以被 VLM（Vision-Language Model）理解和推理。Vision-Language Navigation（VLN）正是解决这一问题的核心研究方向——让机器人（UAV）根据自然语言指令在三维物理空间中导航。
 
 ---
 
@@ -32,7 +32,7 @@ VLN 任务可以形式化为：
 > 给定一个自然语言指令 $I$ 和起始视觉观测 $O_0$，让 agent 执行一系列动作 $a_1, a_2, ..., a_T$，最终到达指令描述的目标位置。
 
 关键挑战在于：
-1. **语义 grounding**：将语言中的空间关系（"左边"、"后面""above"）映射到物理空间
+1. **语义 grounding**：将语言中的空间关系（"左边"、"后面"、"above"）映射到物理空间
 2. **长视野推理**：指令通常描述复杂的多步骤任务
 3. **零样本泛化**：未见过的建筑、环境、物体
 4. **三维特性**：UAV 与地面 robot 不同，具有完整的 3D 运动能力
@@ -44,8 +44,8 @@ VLN 任务可以形式化为：
 ### 3.1 LogisticsVLN：面向末端配送的 UAV VLN（arXiv, 2025）
 
 **论文：** *LogisticsVLN: Vision-Language Navigation For Low-Altitude Terminal Delivery Based on Agentic UAVs*
-**作者：** Xinyuan Zhang, Yonglin Tian, Fei Lin et al.
-**来源：** arXiv, 2025 | 无人配送 + VLN 交叉工作
+**作者：** Xinyuan Zhang, Yonglin Tian, Fei Lin, Yue Liu, Jing Ma, Kornélia Sára Szatmáry, Fei-Yue Wang
+**来源：** arXiv:2505.03460, May 2025
 
 **核心贡献：**
 - 首个专门针对**低空无人机末端配送**的 VLN 任务框架
@@ -88,7 +88,7 @@ MPC 控制器执行
 
 ---
 
-### 3.3 ASMA：安全边界感知的 UAV VLN（arXiv, 2024/2025）
+### 3.3 ASMA：安全边界感知的 UAV VLN（arXiv, 2024）
 
 **论文：** *ASMA: An Adaptive Safety Margin Algorithm for Vision-Language Drone Navigation via Scene-Aware Control Barrier Functions*
 **来源：** arXiv, September 2024
@@ -98,7 +98,7 @@ MPC 控制器执行
 - 提出 Scene-Aware Control Barrier Functions（场景感知控制屏障函数）
 - 保证在开放城市环境中的硬安全约束
 
-**为什么重要：** 大多数 VLN 工作关注导航精度，忽略安全性。ASMA 填补了这一空白—— UAV 可以在"听不懂指令"和"撞墙"之间做安全权衡。
+**为什么重要：** 大多数 VLN 工作关注导航精度，忽略安全性。ASMA 填补了这一空白——UAV 可以在"听不懂指令"和"撞墙"之间做安全权衡。
 
 ---
 
@@ -106,7 +106,7 @@ MPC 控制器执行
 
 **论文：** *Vision-and-Language Navigation for UAVs: Progress, Challenges, and a Research Roadmap*
 **作者：** Hanxuan Chen, Jie Zheng, Siqi Yang et al.
-**来源：** arXiv, April 2026 | **最新综述**
+**来源：** arXiv:2604.xxxxx, April 2026
 
 **综述覆盖：**
 - UAV VLN 发展历程（2018-2026）
@@ -122,6 +122,7 @@ MPC 控制器执行
 ### 4.1 感知层（Perception）
 
 **相机配置：**
+
 | 类型 | 优势 | 劣势 |
 |------|------|------|
 | 前向 RGB | 成熟、廉价 | 视野窄、信息有限 |
@@ -130,6 +131,7 @@ MPC 控制器执行
 | 多目相机 | 立体三角 | 标定复杂 |
 
 **感知模块职责：**
+
 1. 物体检测 + 语义分割（Grounding DINO、YOLO-World）
 2. 空间关系提取（左右、上下、相对距离）
 3. 场景图构建（物体 + 关系 + 拓扑）
@@ -155,7 +157,7 @@ MPC 控制器执行
    指令 → LLM 推理 → 动作序列 → 执行
    ```
 2. **PDDL 符号规划**：LLM 生成 PDDL 领域描述，经典规划器求解
-   - 代表：UniPlan（CVPR 2026）
+   - 代表：UniPlan
 3. **可学习规划**：端到端模仿学习/强化学习
    - 优势：适应动态环境
    - 劣势：泛化性差
@@ -163,6 +165,7 @@ MPC 控制器执行
 ### 4.4 控制层（Control）
 
 **UAV 控制的特点：**
+
 - 需要实时轨迹跟踪（`>100Hz` 控制频率）
 - VLM/LLM 的推理延迟（秒级）与实时控制矛盾
 - **解决思路：分层控制**
@@ -175,11 +178,11 @@ MPC 控制器执行
 
 ### 5.1 Sim2Real Gap
 
-- **问题：** VLM 在 ImageNet/COYO 预训练，真实 UAV 飞行时遇到全新城市风貌
+- **问题：** VLM 在 ImageNet/COCO 预训练，真实 UAV 飞行时遇到全新城市风貌
 - **解决思路：**
   - Domain Randomization（仿真随机化）
   - Retrieval-Augmented Generation（RAG）补充先验
-  - 自监督适应（Ego4D、Davy）
+  - 自监督适应（Ego4D、DyTap）
 
 ### 5.2 推理延迟 vs 实时控制
 
@@ -190,7 +193,8 @@ MPC 控制器执行
 | LLaVA-3B | 0.2-0.5s | 边缘实时 |
 
 **解决方向：**
-- 双进程架构（IROS 2026）：推理线程 + 控制线程解耦
+
+- 双进程架构：推理线程与控制线程解耦
 - Speculative Decoding（投机解码）
 - 4-bit 量化（AWQ、GGUF）
 
@@ -199,8 +203,8 @@ MPC 控制器执行
 语言中的空间关系（"behind the tree"、"under the bridge"）在三维空间中并非简单投影。
 
 **研究前沿：**
-- SpatialPoint（arXiv, March 2026）：预测 3D 可执行航点
-- Can LLMs See Without Pixels?（arXiv, January 2026）：测试 LLM 空间智能
+- SpatialPoint：预测 3D 可执行航点
+- Can LLMs See Without Pixels?：测试 LLM 空间智能
 
 ---
 
@@ -228,9 +232,9 @@ MPC 控制器执行
 
 ## 📚 参考文献
 
-1. Zhang et al. *LogisticsVLN: Vision-Language Navigation For Low-Altitude Terminal Delivery Based on Agentic UAVs*. arXiv:2505.xxxxx, 2025.
-2. Liu et al. *OmniVLN: Omnidirectional 3D Perception and Token-Efficient LLM Reasoning for Visual-Language Navigation across Air and Ground Platforms*. arXiv:2603.xxxxx, 2026.
-3. Chen et al. *Vision-and-Language Navigation for UAVs: Progress, Challenges, and a Research Roadmap*. arXiv:2604.xxxxx, 2026.
-4. ASMA. *An Adaptive Safety Margin Algorithm for Vision-Language Drone Navigation via Scene-Aware Control Barrier Functions*. arXiv:2409.xxxxx, 2024.
+1. Zhang et al. *LogisticsVLN: Vision-Language Navigation For Low-Altitude Terminal Delivery Based on Agentic UAVs*. arXiv:2505.03460, 2025.
+2. Liu et al. *OmniVLN: Omnidirectional 3D Perception and Token-Efficient LLM Reasoning for Visual-Language Navigation across Air and Ground Platforms*. arXiv, 2026.
+3. Chen et al. *Vision-and-Language Navigation for UAVs: Progress, Challenges, and a Research Roadmap*. arXiv, 2026.
+4. ASMA. *An Adaptive Safety Margin Algorithm for Vision-Language Drone Navigation via Scene-Aware Control Barrier Functions*. arXiv, 2024.
 5. Blukis et al. *Mapping Navigation Instructions to Continuous Control Actions with Position-Visitation Prediction*. CoRL, 2018.
-6. Raychaudhuri et al. *Zero-shot Object-Centric Instruction Following: Integrating Foundation Models with Traditional Navigation*. arXiv:2411.xxxxx, 2024.
+6. Raychaudhuri et al. *Zero-shot Object-Centric Instruction Following: Integrating Foundation Models with Traditional Navigation*. arXiv, 2024.

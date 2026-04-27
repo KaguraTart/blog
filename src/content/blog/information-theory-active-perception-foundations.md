@@ -116,14 +116,14 @@ $$
 
 ### 3.2 主动感知系统的三大组件
 
-**He et al. (ACC 2024)** 在 *Active Perception using Neural Radiance Fields* 中提出了主动感知系统的三组件框架：
+**信息论主动感知框架**提出了主动感知系统的三组件：
 
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                   Active Perception System              │
 │                                                         │
 │  Component 1: 状态估计 & 地图表示                        │
-│  (State Estimation & Map Representation)                 │
+│  (State Estimation & Map Representation)               │
 │  → 当前已观测区域的完整表示（几何 + 语义）               │
 │                                                         │
 │  Component 2: 未来观测合成                               │
@@ -176,27 +176,14 @@ $$
 
 **论文：** *FIT-SLAM -- Fisher Information and Traversability estimation-based Active SLAM for exploration in 3D environments*
 **作者：** Suchetan Saravanan, Corentin Chauffaut, Caroline Chanel, Damien Vivet
-**来源：** arXiv:2401.07504 | IROS 2024（投稿）
+**来源：** arXiv:2401.09322, January 2024
 
 **核心贡献：**
 - 将 **Fisher Information** 显式引入 **Active SLAM** 的目标函数
 - 同时考虑**可通行性（Traversability）**——不只是"看得清楚"，还要"飞得到"
 - 针对 **3D 环境**（非平面），适合 UAV 在复杂城市峡谷中的探索
 
-**方法：**
-
-```
-传统 SLAM：
-  minimize: Σ ||z - h(x,m)||²（重投影误差）
-
-FIT-SLAM：
-  minimize: Σ ||z - h(x,m)||² - λ · log det I(x,m)（重投影误差 - 信息增益）
-```
-
-**关键创新：**
-1. **信息-可通行性联合优化**：信息增益大的位置如果飞不到，也没用
-2. **3D-aware FIM 计算**：考虑 UAV 的完整六自由度运动
-3. **地形可达性估计**：地形坡度、障碍物密度作为约束
+**注意：** 该论文在 arXiv 发表（曾投稿 IEEE ICARA 2024），目前尚未找到明确的顶会发表记录，引用时应注明 arXiv 版本。
 
 ---
 
@@ -204,7 +191,7 @@ FIT-SLAM：
 
 **论文：** *Active View Planning for Visual SLAM in Outdoor Environments Based on Continuous Information Modeling*
 **作者：** Zhihao Wang, Haoyao Chen, Shiwu Zhang, Yunjiang Lou
-**来源：** arXiv:2211.xxxxx | ICRA/IROS 2023
+**来源：** arXiv:2211.xxxxx, 2022
 
 **核心贡献：**
 - 提出**连续信息建模**替代离散信息网格
@@ -298,10 +285,10 @@ $$
 
 ## 📚 参考文献
 
-1. He et al. *Active Perception using Neural Radiance Fields*. ACC 2024. arXiv:2310.09892.
-2. Saravanan et al. *FIT-SLAM -- Fisher Information and Traversability estimation-based Active SLAM for exploration in 3D environments*. arXiv:2401.07504, January 2024.
-3. Wang et al. *Active View Planning for Visual SLAM in Outdoor Environments Based on Continuous Information Modeling*. arXiv:2211.xxxxx, 2022/2023.
-4. Lee et al. *SO-NeRF: Active View Planning for NeRF using Surrogate Objectives*. arXiv:2312.xxxxx, December 2023.
-5. Pan et al. *How Many Views Are Needed to Reconstruct an Unknown Object Using NeRF?* ICRA/IROS 2024.
-6. Marza et al. *AutoNeRF: Training Implicit Scene Representations with Autonomous Agents*. ICRA 2024.
-7. Chen et al. *Active Human Pose Estimation via an Autonomous UAV Agent*. IROS 2024.
+1. Saravanan et al. *FIT-SLAM -- Fisher Information and Traversability estimation-based Active SLAM for exploration in 3D environments*. arXiv:2401.09322, January 2024.
+2. Wang et al. *Active View Planning for Visual SLAM in Outdoor Environments Based on Continuous Information Modeling*. arXiv, 2022.
+3. Chen et al. *ActiveGAMER: Active Gaussian Mapping through Efficient Rendering*. arXiv:2501.06897, January 2025.
+4. Lee et al. *SO-NeRF: Active View Planning for NeRF using Surrogate Objectives*. arXiv:2312.XXXXX, December 2023.
+5. He et al. *Active Perception using Neural Radiance Fields*. arXiv:2310.09892, October 2023.
+6. Marza et al. *AutoNeRF: Training Implicit Scene Representations with Autonomous Agents*. arXiv, 2024.
+7. Chaplot et al. *Learning Visual Exploration for Long-Range Navigation*. NeurIPS, 2020.

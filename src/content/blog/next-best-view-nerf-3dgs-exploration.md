@@ -1,6 +1,6 @@
 ---
 title: "Next-Best-View 规划与 NeRF/3DGS 的碰撞：主动感知的信息前沿"
-description: "NBV + NeRF/3DGS 前沿方法详解：ActiveGAMER 主动 Gaussian 建图、SO-NeRF 代理目标、AutoNeRF 自主数据采集，覆盖 arXiv/ICRA/ACC 2024-2025 最新工作"
+description: "NBV + NeRF/3DGS 前沿方法详解：ActiveGAMER 主动 Gaussian 建图、SO-NeRF 代理目标、AutoNeRF 自主数据采集，覆盖主动感知与神经辐射场的交叉前沿"
 tags: ["UAV", "NeRF", "3DGS", "Next-Best-View", "主动感知", "Gaussian Splatting"]
 category: "Tech"
 pubDate: 2026-04-27
@@ -31,15 +31,15 @@ NeRF/3DGS：
   → 可以渲染背面的大致外观，评估信息增益的真实上限
 ```
 
-这就是为什么 **NeRF/3DGS 作为主动感知的"生成模型"（Component 2）是完美的**——它可以从任意视角"想象"未观测区域的外观，用于计算真实的信息增益。
+这就是为什么 **NeRF/3DGS 作为主动感知的"生成模型"** 是完美的——它可以从任意视角"想象"未观测区域的外观，用于计算真实的信息增益。
 
 ---
 
 ## 2. ActiveGAMER：主动 Gaussian 地图重建（arXiv, 2025）
 
-**论文：** *ActiveGAMER: Active GAussian Mapping through Efficient Rendering*
+**论文：** *ActiveGAMER: Active Gaussian Mapping through Efficient Rendering*
 **作者：** Liyan Chen, Huangying Zhan, Kevin Chen, Xiangyu Xu, Qingan Yan, Changjiang Cai, Yi Xu
-**来源：** arXiv:2501.xxxxx（January 2025）
+**来源：** arXiv:2501.06897, January 2025 | **CVPR 2025**
 
 **核心贡献：**
 - 首个**主动感知 + 3D Gaussian Splatting** 的完整系统
@@ -112,11 +112,13 @@ $$
 
 **论文：** *SO-NeRF: Active View Planning for NeRF using Surrogate Objectives*
 **作者：** Keifer Lee, Shubham Gupta, Sunglyoung Kim, Bhargav Makwana, Chao Chen, Chen Feng
-**来源:** ICRA 2024 / arXiv:2312.xxxxx
+**来源：** arXiv:2312.XXXXX, December 2023
 
 **核心贡献：**
 - 提出 **Surrogate Objectives（代理目标）** 解决 NBV 优化中的非凸性
 - 避免了直接优化重建质量（不可微、计算重）的问题
+
+**注意：** SO-NeRF 发表于 arXiv，尚未找到明确的顶会发表记录。
 
 **方法：**
 
@@ -140,11 +142,11 @@ SO-NeRF：
 
 ---
 
-## 4. AutoNeRF：自主数据收集（ICRA 2024）
+## 4. AutoNeRF：自主数据收集（arXiv, 2024）
 
 **论文：** *AutoNeRF: Training Implicit Scene Representations with Autonomous Agents*
 **作者：** Pierre Marza, Laetitia Matignon, Olivier Simonin, Dhruv Batra, Christian Wolf, Devendra Singh Chaplot
-**来源：** ICRA 2024
+**来源：** arXiv, 2024
 
 **核心贡献：**
 - 让 **agent（机器人）自主决定去哪里采集 NeRF 训练数据**
@@ -163,11 +165,11 @@ SO-NeRF：
 
 ---
 
-## 5. Active Perception using NeRF（ACC 2024）
+## 5. Active Perception using NeRF（arXiv, 2023）
 
 **论文：** *Active Perception using Neural Radiance Fields*
 **作者：** Siming He, Christopher D. Hsu, Dexter Ong, Yifei Simon Shao, Pratik Chaudhari
-**来源：** ACC 2024 | arXiv:2310.09892
+**来源：** arXiv:2310.09892, October 2023
 
 **这是你 blog 中可以直接引用的信息论基础论文！**
 
@@ -182,7 +184,7 @@ SO-NeRF：
 - $Z_{new}(a)$ = 执行动作 $a$ 后会获得的新观测
 - $Y$ = 环境的完整状态
 
-**三个关键组件（前述框架的详细版）：**
+**三个关键组件：**
 
 ```
 1. Scene Representation（场景表示）
@@ -366,11 +368,10 @@ NBV 的主要计算代价：
 
 ## 📚 参考文献
 
-1. Chen et al. *ActiveGAMER: Active Gaussian Mapping through Efficient Rendering*. arXiv:2501.xxxxx, January 2025.
-2. Lee et al. *SO-NeRF: Active View Planning for NeRF using Surrogate Objectives*. arXiv:2312.xxxxx, ICRA 2024.
-3. He et al. *Active Perception using Neural Radiance Fields*. ACC 2024. arXiv:2310.09892.
-4. Marza et al. *AutoNeRF: Training Implicit Scene Representations with Autonomous Agents*. ICRA 2024.
-5. Pan et al. *How Many Views Are Needed to Reconstruct an Unknown Object Using NeRF?* ICRA/IROS 2024.
-6. Saravanan et al. *FIT-SLAM: Fisher Information and Traversability estimation-based Active SLAM*. arXiv:2401.07504, January 2024.
-7. Zhan et al. *Active Human Pose Estimation via an Autonomous UAV Agent*. IROS 2024.
-8. Chaplot et al. *Learning Visual Exploration for Long-Range Navigation*. NeurIPS 2020.
+1. Chen et al. *ActiveGAMER: Active Gaussian Mapping through Efficient Rendering*. arXiv:2501.06897, January 2025.
+2. Lee et al. *SO-NeRF: Active View Planning for NeRF using Surrogate Objectives*. arXiv:2312.XXXXX, December 2023.
+3. He et al. *Active Perception using Neural Radiance Fields*. arXiv:2310.09892, October 2023.
+4. Marza et al. *AutoNeRF: Training Implicit Scene Representations with Autonomous Agents*. arXiv, 2024.
+5. Saravanan et al. *FIT-SLAM: Fisher Information and Traversability estimation-based Active SLAM*. arXiv:2401.09322, January 2024.
+6. Zhan et al. *Active Human Pose Estimation via an Autonomous UAV Agent*. arXiv, 2024.
+7. Chaplot et al. *Learning Visual Exploration for Long-Range Navigation*. NeurIPS, 2020.
