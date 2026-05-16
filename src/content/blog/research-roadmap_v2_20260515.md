@@ -130,7 +130,7 @@ category: Tech
 2028/06     最终发表
 ```
 
-详细的 Paper C 规划见 [Paper C v2 专项文档](/blog/paper-c-fim-3dgs-uav-active-perception_v2_20260515)。
+详细的 Paper C 规划见 [Paper C v2 专项文档](/blog/paper-c-fim-3dgs-uav-active-perception_v2_20260515/)。
 
 ---
 
