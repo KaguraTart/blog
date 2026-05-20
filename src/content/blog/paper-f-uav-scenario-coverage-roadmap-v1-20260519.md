@@ -31,7 +31,7 @@ Paper F 的价值在于它可以成为前面几篇论文的 **实验基础设施
 - Paper E 需要任务语义、地图实体和安全约束。
 - Paper F 可以提供统一的 scenario grammar、coverage metric、criticality score 和 benchmark。
 
-你提到的 “FENG SHOU 丰硕” 方向，建议规范对应为 **Shuo Feng** 的自动驾驶 accelerated testing / testing scenario library generation 工作。其核心思想是：安全关键事件在自然数据里极其稀少，不能只靠普通随机测试，而要用数据方法构造更危险但仍合理的场景，从而加速测试和安全验证 [1,2,3]。这个思想非常适合迁移到 UAV obstacle avoidance、低空通道飞行和高速应急巡检。
+你提到的 “FENG SHOU 丰硕” 方向，建议规范对应为 **Shuo Feng** 的自动驾驶 accelerated testing / testing scenario library generation 工作。其核心思想是：安全关键事件在自然数据里极其稀少，不能只靠普通随机测试，而要用数据方法构造更危险但仍合理的场景，从而加速测试和安全验证 [1] [2] [3]。这个思想非常适合迁移到 UAV obstacle avoidance、低空通道飞行和高速应急巡检。
 
 ---
 
@@ -160,7 +160,7 @@ $$
 
 ### 5.2 背景
 
-自动驾驶 accelerated testing 的核心不是“制造必撞场景”，而是提高测试对 safety-critical event 的采样效率，同时保持场景真实性和可行动性 [1,2,3]。如果生成的场景对任何 planner 都不可行，那么它不能帮助区分算法能力；如果生成的场景过于安全，又无法暴露系统弱点。
+自动驾驶 accelerated testing 的核心不是“制造必撞场景”，而是提高测试对 safety-critical event 的采样效率，同时保持场景真实性和可行动性 [1] [2] [3]。如果生成的场景对任何 planner 都不可行，那么它不能帮助区分算法能力；如果生成的场景过于安全，又无法暴露系统弱点。
 
 UAV 避障训练也存在同样问题：
 
