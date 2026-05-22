@@ -239,6 +239,39 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
           }
         }
       }
+      function enhanceCodeBlocks() {
+        var pres = document.querySelectorAll('.article-content pre');
+        for (var i = 0; i < pres.length; i++) {
+          var pre = pres[i];
+          if (pre.closest('.code-block-shell')) continue;
+          var text = (pre.textContent || '').replace(/\n$/, '');
+          var lines = text ? text.split(/\r\n|\r|\n/).length : 0;
+          if (lines <= 18) continue;
+
+          var shell = document.createElement('div');
+          shell.className = 'code-block-shell is-collapsed';
+          pre.parentNode.insertBefore(shell, pre);
+          shell.appendChild(pre);
+
+          var button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'code-toggle glow-on-hover';
+          shell.appendChild(button);
+
+          (function(blockShell, toggleButton, lineCount) {
+            function setExpanded(expanded) {
+              blockShell.classList.toggle('is-expanded', expanded);
+              blockShell.classList.toggle('is-collapsed', !expanded);
+              toggleButton.setAttribute('aria-expanded', String(expanded));
+              toggleButton.textContent = expanded ? '收起代码 (' + lineCount + ' 行)' : '展开代码 (' + lineCount + ' 行)';
+            }
+            setExpanded(false);
+            toggleButton.addEventListener('click', function() {
+              setExpanded(!blockShell.classList.contains('is-expanded'));
+            });
+          })(shell, button, lines);
+        }
+      }
       function getTheme() {
         var s = localStorage.getItem(SK);
         if (s) return s;
@@ -249,6 +282,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         if (t === 'dark') { html.classList.add('dark'); } else { html.classList.remove('dark'); }
         applyShiki(t === 'dark');
       }
+      enhanceCodeBlocks();
       applyTheme(getTheme());
       var tb = document.getElementById('themeToggle');
       if (tb) tb.addEventListener('click', function() {

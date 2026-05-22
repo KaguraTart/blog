@@ -2,6 +2,7 @@
 title: "研究路线图 v2：顶刊战略全面升级 — 老师要求 Q1 顶刊后的重新规划"
 description: "v1 包含 RA-L、ICRA 等快速发表路径，老师要求全部论文必须发顶刊（IF ≥ 7 Q1）。本文将全部 6 篇论文重新定位至 IEEE T-ITS / TR Part C / T-RO 顶刊路径，给出更新后的创新点、实验扩展、时间线和投稿策略。"
 pubDate: 2026-05-15
+updatedDate: 2026-05-22
 tags: ["论文规划", "研究路线图", "顶刊战略", "T-ITS", "TR Part C", "T-RO", "UAV", "低空"]
 category: Tech
 ---
@@ -40,6 +41,44 @@ category: Tech
 | D | 3–4 月 | 6–8 月 | 加多城市泛化 + 实际飞行案例 |
 | **E** | **6–8 月** | **12–15 月** | **从会议升级期刊，加大规模评测** |
 | F | 3–4 月 | 6–8 月 | 加多智能体扩展 + Sim2Real 验证 |
+
+### 0.4 2026-05-22 校准：交通期刊不是“讲故事”，而是系统问题闭环
+
+这次需要把路线图重新校准一下。交通领域确实比纯算法领域更重视问题叙事和系统意义，但不能理解成“故事讲圆就可以”。更准确的标准是：
+
+> 交通论文要讲一个可信的系统故事，但这个故事必须被模型、实验、指标和边界条件支撑起来。
+
+因此，后续所有偏 TR-C / T-ITS 的规划都要按下面这条链检查：
+
+```text
+真实交通系统问题
+  -> 现实假设与边界条件
+  -> 数学建模 / 运行机制
+  -> 强 baseline 与消融
+  -> 交通含义指标
+  -> 敏感性 / 泛化 / 失败分析
+  -> 对运行控制、规划设计或管理政策的启示
+```
+
+不是所有论文都要套 TR-C 逻辑。强算法驱动的 AAAI / ICLR / robotics 方法论文，核心仍然是算法新意、理论性质、benchmark 难度和可复现性。只有当目标是 TR-C / T-ITS / transportation journal 时，才必须把“交通系统意义”放到主线。
+
+| 论文 | 主定位 | 是否套交通系统叙事 | 当前写作校准 |
+|------|--------|--------------------|--------------|
+| Paper A：KAT-MARL 冲突消解 | T-ITS / 低空交通安全控制 | 是，但不能弱化算法 | 从“新 MARL 算法”改成“通信退化、非合作 UAV、高密度 corridor 下的低空冲突消解系统验证” |
+| Paper B：百架 UAV 三层调度 | TR-C first | 强烈需要 | 重点是 capacity、delay、queue stability、vertiport/charging/corridor bottleneck 和 multimodal fallback |
+| Paper C：FIM-3DGS 主动感知 | 算法 + 交通使能技术 | 有条件需要 | 如果投 T-ITS/TR-C，必须证明主动感知改善巡检、应急、配送等交通任务指标；否则保持机器人感知算法论文 |
+| Paper D：语义功能区规划 | TR-C / 城市低空规划 | 需要 | 重点是 ODD、城市功能区、风险暴露、规划建议，不是单纯语义分割 |
+| Paper E：VERA-UAV | AAAI / 形式化语言规划 | 不强行套 | 先按 AI planning / verification 论文做；后续 ITS 扩展再加交通运行场景 |
+| Paper F：场景覆盖与应急 | T-ITS + TR-C 分叉 | F-J1 部分需要，F-J2 强烈需要 | F-J1 写 safety testing benchmark；F-J2 写山东高速应急资源调配的交通运营论文 |
+| Paper G/G1：低空交通云脑 LLM Agent | AAAI/IJCAI first，T-ITS extension | G1 不强行套，期刊扩展需要 | G1 保持 agent/tool-use/verification 方法贡献；期刊版补系统指标和运行启示 |
+
+交通期刊版本的最低实验硬度要求也统一提高：
+
+- 至少 5 个随机种子，主表报告 mean ± std 或 bootstrap confidence interval。
+- baseline 不能只放 no-control / greedy，必须包括该问题领域的强经典方法、启发式方法和学习式方法。
+- 指标不能只报 reward、accuracy、success rate；必须加入 conflict count、LoWC、NMAC、delay、extra distance、energy、throughput、resource utilization、runtime 等交通含义指标。
+- 必须做泛化：训练低密度测试高密度、训练小规模测试大规模、训练固定拓扑测试新拓扑、训练合作 traffic 测试非合作/通信退化 traffic。
+- 必须有失败案例分析，说明系统在什么密度、通信丢失率、非合作行为或资源瓶颈下失效。
 
 ---
 

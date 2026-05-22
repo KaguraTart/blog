@@ -4,10 +4,14 @@ import { getCollection } from 'astro:content';
 
 const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.category === 'Essay'))
   .sort((a, b) => {
-    const dateDiff = b.data.pubDate.valueOf() - a.data.pubDate.valueOf();
+    const dateA = a.data.updatedDate ?? a.data.pubDate;
+    const dateB = b.data.updatedDate ?? b.data.pubDate;
+    const dateDiff = dateB.valueOf() - dateA.valueOf();
     if (dateDiff !== 0) return dateDiff;
     return a.slug.localeCompare(b.slug);
   });
+const getDisplayDate = (post) => post.data.updatedDate ?? post.data.pubDate;
+const getDatePrefix = (post) => post.data.updatedDate ? 'Updated ' : '';
 ---
 <Layout title="Essay">
   <div class="page-wrapper">
@@ -23,8 +27,8 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft && data.
           <a href={`/blog/${post.slug}`} class="post-card">
             <div class="post-meta">
               <span class="cat-badge">Essay</span>
-              <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time datetime={getDisplayDate(post).toISOString()}>
+                {getDatePrefix(post)}{getDisplayDate(post).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
             </div>
             <h2 class="post-title">{post.data.title}</h2>

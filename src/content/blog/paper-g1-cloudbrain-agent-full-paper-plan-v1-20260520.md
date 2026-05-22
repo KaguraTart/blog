@@ -2,6 +2,7 @@
 title: "Paper G1 完整论文方案 v1：面向低空交通云脑的可验证 LLM Agent"
 description: "完整规划 CloudBrain-Agent 第一篇会议论文的研究问题、投稿定位、算法设计、数据构建、模型选择、本地部署、实验方案、评价指标、预期结论、图表设计、风险控制与执行计划。"
 pubDate: 2026-05-20
+updatedDate: 2026-05-22
 tags: ["Paper G1", "CloudBrain-Agent", "低空交通云脑", "LLM Agent", "MCP", "Tool Use", "AAAI", "IJCAI", "UAV", "形式化验证"]
 category: Tech
 ---
@@ -35,6 +36,32 @@ category: Tech
 3. 真实低空交通运行数据稀缺，第一篇如果把贡献压在“大模型训练”上，会被问数据规模、训练预算和模型新意。
 
 因此第一篇应该聚焦 **Agent + Tools + Verifier + Simulator Feedback**。大模型不是最终控制器，而是任务理解、工具编排、反例修复和解释层。这个设定与 ReAct、ToolLLM、LLM+P 等 agent/tool-use/planning 工作自然衔接 [6] [7] [8]，也能接住 TrafficGPT 对交通 foundation model 与 LLM 交互的讨论 [9]。
+
+### 1.4 2026-05-22 写作校准：不要把 G1 写成 TR-C 故事，但保留交通系统证据
+
+G1 的首投是 AAAI/IJCAI，因此主贡献必须是 AI agent 方法，而不是交通期刊式系统叙事。更准确的写法是：
+
+> CloudBrain-Agent is an AI agent method evaluated in a safety-critical low-altitude traffic domain.
+
+也就是说，交通场景提供真实难度和安全约束，但论文仍要回答 agent 领域的问题：工具调用是否可靠、状态是否一致、反例修复是否有效、模型是否幻觉、评测是否可复现。
+
+同时，G1 不能只报 `task_success` 和 `tool_call_accuracy`。因为低空交通是安全关键域，必须从第一版实验就保留交通系统证据：
+
+| 层次 | AAAI/IJCAI 主文重点 | 后续 T-ITS 扩展重点 |
+|------|---------------------|---------------------|
+| Agent 能力 | IR validity、tool-call accuracy、repair success、hallucination rate | human confirmation、operator workload、stateful consistency |
+| 安全 | safety violation、NFZ violation、battery violation | LoWC/NMAC proxy、risk ratio、weather/communication degradation |
+| 效率 | executable decision、latency、runtime | delay、extra distance、energy、throughput |
+| 泛化 | unseen city、stress、UNSAT/ambiguous tasks | 高密度 corridor、非合作 UAV、通信丢失、真实上下文 city split |
+| 系统启示 | verifier feedback 何时必要 | 哪些场景必须从 LLM agent 退回 deterministic solver/human supervisor |
+
+因此 G1 的边界条件要写清楚：
+
+- 不宣称真实部署；
+- 不宣称端到端自动控制；
+- 不宣称 LLM 替代调度器/规划器/验证器；
+- 只宣称 LLM agent 在工具链和验证反馈中承担任务理解、编排、修复和解释；
+- 交通系统结论只写成“可观察的运行启示”，不夸大成政策建议。
 
 ---
 
@@ -1218,6 +1245,17 @@ $$
 - deadline violation；
 - unsafe fallback；
 - hallucinated permission。
+
+低空交通扩展版建议把安全指标进一步交通化：
+
+| 指标 | 定义 | 用途 |
+|------|------|------|
+| LoWC proxy | 任意时刻低于 well-clear separation 的比例 | 衡量失隔风险 |
+| NMAC proxy | 低于 near-mid-air-collision 阈值的次数 | 衡量严重近距风险 |
+| Risk ratio | 相对 rule-based safe baseline 的风险事件比例 | 让不同场景可比 |
+| Safe-refusal precision | 拒绝/请求人工确认中真正不可安全执行的比例 | 防止 agent 过度保守 |
+
+AAAI/IJCAI 主文可以只报告 SVR 与 violation type breakdown；T-ITS 扩展应报告 LoWC/NMAC proxy 和 risk ratio。
 
 ### 12.5 幻觉指标
 

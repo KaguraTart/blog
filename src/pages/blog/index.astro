@@ -15,6 +15,8 @@ const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
 const techPosts = allPosts.filter(p => p.data.category === 'Tech');
 const essayPosts = allPosts.filter(p => p.data.category === 'Essay');
 const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
+const getDisplayDate = (post) => post.data.updatedDate ?? post.data.pubDate;
+const getDatePrefix = (post) => post.data.updatedDate ? 'Updated ' : '';
 ---
 <Layout title="Blog">
   <div class="page-wrapper">
@@ -35,8 +37,8 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {allPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
-              <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time datetime={getDisplayDate(post).toISOString()}>
+                {getDatePrefix(post)}{getDisplayDate(post).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
             </div>
             <h2 class="post-title">{post.data.title}</h2>
@@ -56,8 +58,8 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {techPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
-              <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time datetime={getDisplayDate(post).toISOString()}>
+                {getDatePrefix(post)}{getDisplayDate(post).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
             </div>
             <h2 class="post-title">{post.data.title}</h2>
@@ -77,8 +79,8 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {essayPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
-              <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time datetime={getDisplayDate(post).toISOString()}>
+                {getDatePrefix(post)}{getDisplayDate(post).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
             </div>
             <h2 class="post-title">{post.data.title}</h2>
@@ -98,8 +100,8 @@ const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
         {paperPosts.map(post => (
           <a href={`/blog/${post.slug}`} class="post-card glow-on-hover">
             <div class="post-meta">
-              <time datetime={post.data.pubDate.toISOString()}>
-                {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              <time datetime={getDisplayDate(post).toISOString()}>
+                {getDatePrefix(post)}{getDisplayDate(post).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
               </time>
             </div>
             <h2 class="post-title">{post.data.title}</h2>

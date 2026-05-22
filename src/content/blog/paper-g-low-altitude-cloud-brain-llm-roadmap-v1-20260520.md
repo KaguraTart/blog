@@ -2,6 +2,7 @@
 title: "Paper G 规划 v1：低空交通云脑中的 LLM Agent 与模型微调路线"
 description: "规划如何训练或微调 LLM，使其成为低空交通云脑中的可验证 Agent，并形成 AAAI/IJCAI 首篇会议论文、后续交通期刊与通用 embodied agent 转型路线。"
 pubDate: 2026-05-20
+updatedDate: 2026-05-22
 tags: ["Paper G", "低空交通云脑", "LLM Agent", "模型微调", "Tool Use", "AAAI", "IJCAI", "UAV", "AGI"]
 category: Tech
 ---
@@ -40,6 +41,26 @@ category: Tech
 这与 TrafficGPT 的思想接近：TrafficGPT 已经指出 LLM 本身难以处理交通数值数据和仿真交互，因此需要和 traffic foundation models 结合 [1]。Paper G 的差异在于：我们把对象从地面交通扩展到低空交通，并进一步加入 UAV 状态、空域约束、形式化验证和安全闭环。
 
 从更宽的交通智能综述看，LLM 已经被讨论为 ITS 中的语义接口、推理模块和交通决策辅助组件 [2] [3]；UrbanGPT 与 UniST 则说明城市时空预测正在向 spatio-temporal foundation model 过渡 [4] [5]。Paper G 不直接重复这些方向，而是把“城市时空智能 + UAV 运行工具 + 可验证 agent”组合成低空交通云脑。
+
+### 1.1 2026-05-22 写作校准：G1 是 AI agent 论文，期刊扩展才需要完整交通系统叙事
+
+Paper G 容易被写成“低空交通大模型故事”。这条路线要分清两种评价标准：
+
+| 阶段 | 目标 | 主要审稿逻辑 | 不能犯的错误 |
+|------|------|--------------|--------------|
+| G1 AAAI/IJCAI | 可验证 LLM Agent 方法 | tool use、planning、verification、benchmark、reproducibility | 为了交通叙事牺牲方法清晰度，或把 agent 写成平台展示 |
+| G2 T-ITS/T-IV | 低空交通领域 LLM 微调 | 领域数据、部署可复现、交通决策辅助能力 | 只做通用 LoRA/SFT，没有交通工具链和安全指标 |
+| G3 AAMAS/T-ITS | 多 agent 云脑协同 | 多角色协作、通信、冲突处理、人机协同 | 多 agent 只是多个 prompt，没有系统状态和责任边界 |
+| 期刊扩展版 | 交通系统运行意义 | 安全、效率、容量、延误、资源利用、管理启示 | 只报 accuracy/tool-call success，不回答交通问题 |
+
+所以 G1 的主线仍然是强 AI 方法：typed IR、tool-use、verifier repair、stateful evaluation。
+但所有低空交通相关指标要从一开始保留，方便后续扩展到 T-ITS：
+
+- 安全：LoWC/NMAC proxy、no-fly-zone violation、battery reserve violation。
+- 效率：delay、extra distance、energy、throughput、runtime。
+- 运行管理：safe refusal rate、human confirmation rate、ambiguous-task handling。
+- 鲁棒性：通信缺失、天气扰动、非合作 UAV、unseen city/topology。
+- 系统启示：什么条件下 LLM agent 需要退出给 deterministic solver 或 human supervisor。
 
 ---
 
