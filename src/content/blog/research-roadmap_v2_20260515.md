@@ -1,13 +1,13 @@
 ---
-title: "研究路线图 v2：顶刊战略全面升级 — 老师要求 Q1 顶刊后的重新规划"
-description: "v1 包含 RA-L、ICRA 等快速发表路径，老师要求全部论文必须发顶刊（IF ≥ 7 Q1）。本文将全部 6 篇论文重新定位至 IEEE T-ITS / TR Part C / T-RO 顶刊路径，给出更新后的创新点、实验扩展、时间线和投稿策略。"
+title: "研究路线图 v2：顶刊战略全面升级与低空交通论文群整理"
+description: "在 Q1 顶刊目标下重新整理低空 UAV、低空交通云脑、场景覆盖、调度与形式化规划论文路线，明确近期优先级、投稿定位、交通系统叙事边界和专项规划入口。"
 pubDate: 2026-05-15
-updatedDate: 2026-05-22
+updatedDate: 2026-05-23
 tags: ["论文规划", "研究路线图", "顶刊战略", "T-ITS", "TR Part C", "T-RO", "UAV", "低空"]
 category: Tech
 ---
 
-# 研究路线图 v2：顶刊战略全面升级
+# 研究路线图 v2：顶刊战略全面升级与低空交通论文群整理
 
 > **v1 → v2 触发：** 老师明确要求所有论文必须发 SCI Q1 顶刊（IF ≥ 7）。v1 中包含 RA-L（IF 4.6）、ICRA 会议等"快速发表"路径，被整体上移到 IEEE T-ITS、TR Part C、IEEE T-RO 这三个顶刊矩阵。
 
@@ -23,8 +23,8 @@ category: Tech
 | B: 三层调度 | TR Part C | 8.5 | **TR Part C / T-ITS（保持）** | 8.5 | — |
 | **C: FIM-3DGS 主动感知** | **RA-L / ICRA** | **4.6** | **IEEE T-ITS → TR-C** | **8.5** | **重大升级** |
 | D: 功能分区规划 | T-ITS / TR-C | 8.5 | **TR Part C（保持）** | 8.5 | — |
-| **E: LLM + 形式验证** | **ICRA / IJCAI** | **会议** | **IEEE T-ITS** | **8.5** | **重大升级** |
-| **F: CARLA 变道 RL** | **TR Part C** | **8.5** | **TR Part C（保持）+ 多智能体扩展** | **8.5** | 工作量增加 |
+| **E: VERA-UAV 形式化语言规划** | **ICRA / IJCAI** | **会议** | **AAAI first + T-ITS extension** | **会议 + 8.5** | 先会议方法，后期刊扩展 |
+| **F: UAV 安全关键场景工程** | **TR Part C** | **8.5** | **T-ITS first + TR-C 应急扩展** | **8.5** | 新增独立低空安全测试路线 |
 
 ### 0.2 时间线整体延长
 
@@ -39,8 +39,8 @@ category: Tech
 | B | 4–5 月 | 8–10 月 | 加多场景泛化测试 + 真实地图数据 |
 | **C** | **3–4 月** | **12–15 月** | **完全重构为低空经济 ITS 论文** |
 | D | 3–4 月 | 6–8 月 | 加多城市泛化 + 实际飞行案例 |
-| **E** | **6–8 月** | **12–15 月** | **从会议升级期刊，加大规模评测** |
-| F | 3–4 月 | 6–8 月 | 加多智能体扩展 + Sim2Real 验证 |
+| **E** | **6–8 月** | **8–12 月** | **先做 AAAI 方法论文，再扩展为 ITS 系统论文** |
+| F | 3–4 月 | 8–12 月 | 7600 万次探索日志清洗、coverage metric、accelerated testing、真实高速应急扩展 |
 
 ### 0.4 2026-05-22 校准：交通期刊不是“讲故事”，而是系统问题闭环
 
@@ -79,6 +79,29 @@ category: Tech
 - 指标不能只报 reward、accuracy、success rate；必须加入 conflict count、LoWC、NMAC、delay、extra distance、energy、throughput、resource utilization、runtime 等交通含义指标。
 - 必须做泛化：训练低密度测试高密度、训练小规模测试大规模、训练固定拓扑测试新拓扑、训练合作 traffic 测试非合作/通信退化 traffic。
 - 必须有失败案例分析，说明系统在什么密度、通信丢失率、非合作行为或资源瓶颈下失效。
+
+---
+
+### 0.5 2026-05-23 整理：当前规划文档的阅读顺序与优先级
+
+当前总路线图保留为“研究矩阵入口”，具体执行以 B/E/F/G/G1 专项文档为准。建议阅读顺序如下：
+
+| 优先级 | 文档 | 当前定位 | 近期动作 |
+|--------|------|----------|----------|
+| P0 | Paper G1：CloudBrain-Agent 完整论文方案 | AAAI / IJCAI first | 先实现可验证 agent、CloudBrain-Bench、工具链和主实验 |
+| P1 | Paper B：百架 UAV 三层分层调度 | TR-C first | 建 synthetic queueing benchmark、Lyapunov 调度器和强 baseline |
+| P1 | Paper F：UAV 安全关键场景工程 | T-ITS first，TR-C 应急扩展 | 先完成 F-J1：coverage metric + accelerated testing |
+| P2 | Paper E：VERA-UAV | AAAI 方法论文，T-ITS 后续扩展 | 收束为 typed IR + LTL/STL + verifier repair，不先做交通系统大论文 |
+| P3 | Paper C / Paper D | 待进一步数据和任务收敛 | 保留方向，但不与 B/F/G1 抢近期实验资源 |
+
+这一版需要特别澄清：**旧的 Paper F = CARLA-SUMO 多智能体变道 RL 线不再计入当前低空 UAV 论文群。** 如果以后重新做地面自动驾驶方向，它可以作为独立地面交通论文恢复；当前 Paper F 专指 UAV safety-critical scenario engineering。
+
+近期执行顺序建议为：
+
+1. 先做 G1，因为它能把 Paper B 的调度器、Paper E 的验证器、Paper F 的场景压力测试统一成“低空交通云脑”工具链。
+2. 同步启动 B 的 synthetic benchmark，因为它是后续 TR-C 系统论文和 G1 调度工具的核心底座。
+3. F-J1 在有探索日志和场景生成脚本后推进，避免一开始陷入过多真实应用叙事。
+4. E 保持 AAAI 方法论文，不要提前膨胀成低空交通期刊大系统。
 
 ---
 
@@ -199,52 +222,55 @@ category: Tech
 
 ## 3. Tier 2：技术挑战较大的顶刊论文
 
-### Paper E：LLM + 形式化验证（**升级为顶刊路径**）
+### Paper E：VERA-UAV 形式化语言规划（先 AAAI，后 ITS 扩展）
 
 **v1 目标：** ICRA / IJCAI（会议）
-**v2 目标：** IEEE T-ITS（IF 8.5 Q1）
 
-**升级理由：** 老师要求顶刊，且 LLM 在 ITS 应用是 2026–2027 年热点
+**当前目标：** AAAI / IJCAI first，T-ITS extension backup
 
-#### v2 重构方向
+**校准理由：** Paper E 的核心贡献是 AI planning / verification，不应为了顶刊强行变成大而散的交通系统论文。AAAI 版本优先回答“自然语言 UAV 任务如何经 typed IR、LTL/STL、验证器反例和符号 fallback 形成可执行安全轨迹”。
 
-- **应用场景上移：** 从"UAV 任务规划"→"低空空域 ITS 决策"
-- **评测数据集：** 构建 NL→LTL 1000+ 对（v1 是 500）
-- **多 UAV 协同：** LLM 协调多 UAV 任务，而非单机
-- **形式化保障：** STL 时序逻辑 + 概率模型检测
+#### 当前收束方向
+
+- **方法主线：** NL instruction -> typed TaskIR -> LTL/STL -> verifier -> counterexample/robustness repair -> trajectory verification。
+- **理论边界：** 不声称 LLM 完备；在有限 DSL、可判定验证器和完备底层 planner 假设下证明 relative completeness。
+- **实验边界：** 主实验使用 synthetic controlled benchmark；AirSim、真实物流、多 UAV ITS 指标放入后续扩展。
+- **投稿策略：** AAAI 主文强调方法、理论、benchmark 与强 baseline；T-ITS 扩展再加入交通运行指标和真实低空场景。
 
 #### v2 时间线
 ```
-2026/09–12  NL→LTL 数据集构建（1000 对）
-2027/01–04  LLM 转译实验 + 模型检测集成
-2027/05–06  多 UAV 协调案例研究
-2027/07–08  写稿
-2027/09     ◉ 投稿 IEEE T-ITS
-2028/03     接受目标
+2026/06–07  冻结 TaskIR DSL、任务生成器和验证器接口
+2026/08–09  实现 Direct LLM / NL2LTL-style / LTLCodeGen-style / VERA-UAV baselines
+2026/10     跑主实验、消融和泛化测试
+2026/11     完成理论证明、图表和初稿
+2026/12     ◉ 投稿 AAAI / IJCAI 对应批次
+2027/03     根据结果扩展 T-ITS 版本
 ```
 
 ---
 
-### Paper F：CARLA-SUMO 多智能体变道 RL（保持顶刊定位）
+### Paper F：UAV 安全关键场景工程与应急应用（替代旧 CARLA-SUMO 线）
 
-**目标期刊：** Transportation Research Part C（IF 8.5 Q1）
+**当前目标：** F-J1 主投 IEEE T-ITS；F-J2 主投 TR-C。
 
-**与 v1 的变化：** 多智能体扩展更深入 + Sim2Real 验证
+**定位变化：** 当前 Paper F 不再指 CARLA-SUMO 变道 RL，而是围绕 UAV safety-critical scenario engineering 做期刊优先路线：先建立可复现的安全关键场景覆盖与加速测试论文，再把同一平台扩展到山东高速应急救援资源调配。
 
-#### v2 新增要求
+#### 当前新增要求
 
-- **多智能体扩展：** 5–10 → **10–20 辆车**同时变道协调
-- **不确定性量化：** Dropout + Ensemble + 反事实推理
-- **Sim2Real：** 用 nuScenes / Waymo 数据集验证策略零样本迁移
+- **场景空间：** 明确定义 50m x 50m x 50m UAV test cell、障碍组合、动态障碍、风场、可视域遮挡、禁飞区和任务目标。
+- **已有实验资产：** 7600 万次探索日志只能写成“可用基础”，不能写成最终实验结果；需要清洗成 failure taxonomy、coverage holes 和 planner stress cases。
+- **方法主线：** coverage metric -> coverage-guided sampler -> danger-validity filter -> accelerated testing -> cross-planner evaluation。
+- **强 baseline：** random generation、grid/LHS sampling、Bayesian optimization、CMA-ES、RL adversarial generation、Scenic-style constrained generation。
+- **交通扩展：** F-J2 才引入山东高速应急，关注事故发现、UAV 侦察、地面资源调配、响应时间和交通恢复。
 
 #### v2 时间线
 ```
-2026/06–08  多智能体环境扩展（基于现有 270k 步 PPO 基础）
-2026/09–11  不确定性量化模块开发
-2026/12     Sim2Real 验证实验
-2027/01–02  写稿
-2027/03     ◉ 投稿 TR Part C
-2027/09     接受目标
+2026/06–07  整理 7600 万次探索日志，冻结场景空间和 coverage metric
+2026/08–10  实现 accelerated testing 与强 baseline
+2026/11     cross-planner evaluation、failure taxonomy、统计检验
+2026/12–2027/01  写 F-J1 初稿
+2027/02     ◉ 投稿 IEEE T-ITS
+2027/03–06  扩展山东高速应急资源调配 F-J2
 ```
 
 ---
@@ -253,18 +279,18 @@ category: Tech
 
 ```
 ─────────────────────────────────────────────────────────────────────────────────────────
-时间        A (T-ITS)    B (TR-C)     C (T-ITS)    D (TR-C)     E (T-ITS)    F (TR-C)
+时间        A (T-ITS)    B (TR-C)     C (T-ITS)    D (TR-C)     E (AAAI)     F (T-ITS/TR-C)
 ─────────────────────────────────────────────────────────────────────────────────────────
-2026/06    ▶ 环境搭建                  ▶ 算法实现                              ▶ MA扩展
+2026/06    ▶ 环境搭建                  ▶ 算法实现                              ▶ 日志清洗
 2026/07    实验训练                    AirSim搭建    ▶ GIS采集
 2026/08    实验                        案例1巡检    实验          
-2026/09                  ▶ 框架实现    案例2配送                                Sim2Real
-2026/10                  规模实验      案例3应急    多城市实验    ▶ 数据集
+2026/09                  ▶ 框架实现    案例2配送                                加速测试
+2026/10                  规模实验      案例3应急    多城市实验    ▶ 数据集     baseline
 2026/11                  实验          多机系统级   案例研究
 2026/12                  实验          初稿         案例研究      数据集完成    
-2027/01                  理论分析      润色         写稿          实验          写稿
-2027/02                  写稿          润色         润色          实验          写稿
-2027/03    ◉ 投 T-ITS               ◉ 投 T-ITS                              ◉ 投 TR-C
+2027/01                  理论分析      润色         写稿          实验          F-J1 写稿
+2027/02                  写稿          润色         润色          实验          ◉ 投 T-ITS
+2027/03    ◉ 投 T-ITS               ◉ 投 T-ITS                              F-J2 启动
 2027/04                  ◉ 投 TR-C                ◉ 投 TR-C
 2027/05                                                          实验
 2027/06                                                          多UAV案例
@@ -281,9 +307,10 @@ category: Tech
 ```
 
 **核心节奏：**
-- **2027 春季：** 4 篇同期投稿（A、B、C、D） — 一波集中冲刺
-- **2027 秋季：** 第 5 篇投稿（E）
-- **2028 上半年：** 主要接收期
+- **2026 下半年：** G1 / E / F-J1 形成首批可跑实验，避免所有工作同时压到 2027 春季。
+- **2027 春季：** A / B / C / D 继续作为顶刊系统论文主线推进。
+- **2027 上半年：** F-J2 从 F-J1 平台分化为高速应急资源调配 TR-C 版本。
+- **2028 上半年：** 主要接收期。
 
 ---
 
@@ -291,8 +318,8 @@ category: Tech
 
 | 期刊 | 领域 | IF | 接收率 | 审稿周期 | v2 适配 Paper |
 |------|------|-----|--------|---------|--------------|
-| **IEEE T-ITS** | ITS 综合 | 8.5 | ~20% | 4–6 月 | A, C, E |
-| **TR Part C** | 运输新技术 | 8.5 | ~18% | 4–6 月 | B, D, F |
+| **IEEE T-ITS** | ITS 综合 | 8.5 | ~20% | 4–6 月 | A, C, F-J1，G/G1 期刊扩展 |
+| **TR Part C** | 运输新技术 | 8.5 | ~18% | 4–6 月 | B, D, F-J2 |
 | **IEEE T-RO** | 机器人 | 7.4 | ~25% | 6–10 月 | C 备投 |
 | **TR Part B** | 运输方法论 | 6.0 | ~15% | 6–8 月 | B 备投 |
 | **Transportation Science** | 运输科学 | 5.4 | ~12% | 6–10 月 | B 备投 |
@@ -315,7 +342,7 @@ category: Tech
 
 **风险 2：实验工作量过大**
 - v2 总工作量约 50–60 月（如果串行），需要团队/合作分工
-- **应对：** Paper A、F 优先（已有较好基础），C、E 投入主要精力
+- **应对：** 近期优先 G1 / B / F-J1 / E，其他方向只保留概念和数据入口，避免资源摊薄
 
 **风险 3：拒稿后转投损失时间**
 - 一轮拒稿 + 转投 = 约 6 个月损失
@@ -329,14 +356,14 @@ category: Tech
 | B | TR Part C | T-ITS | TR Part B |
 | C | T-ITS | TR Part C | IEEE T-RO |
 | D | TR Part C | T-ITS | TR Part D（环境） |
-| E | T-ITS | TR Part C | IEEE T-SMC |
-| F | TR Part C | T-ITS | TR Part F（行为） |
+| E | AAAI / IJCAI | T-ITS | IEEE T-SMC |
+| F | T-ITS | TR Part C | T-ASE / T-RO |
 
 ---
 
 ## 7. 给老师汇报的一句话总结
 
-> "全部 6 篇论文重新定位至 SCI Q1 顶刊（IF 8.5 为主），投稿矩阵为 IEEE T-ITS × 3 + TR Part C × 3，时间窗口从 12 个月扩展为 30 个月，2027 春集中投稿 4 篇，2028 年内目标接收 4–5 篇。Paper C 受变化最大，从 RA-L 8 页升级为 T-ITS 22 页顶刊论文，详见专项规划文档。"
+> "当前论文群已重新整理为低空 UAV/低空交通云脑主线：G1 先冲 AAAI/IJCAI，B 主投 TR-C，F-J1 主投 T-ITS，E 保持 AAAI 方法论文并预留 T-ITS 扩展。交通期刊论文必须用系统问题、数学模型、强 baseline、交通指标和失败分析支撑，不再只靠方向叙事。"
 
 ---
 
@@ -365,4 +392,9 @@ category: Tech
 | uav-digital-twin-semantic-mapping | D（参考） |
 | llm-uav-semantic-planning | E（主） |
 | llm-guided-uav-planning-frontiers | E（参考） |
-| carla-sumo-rl-lane-change | F（主） |
+| paper-b-hierarchical-uav-scheduling-trc-plan-v1-20260519 | B 专项规划 |
+| paper-e-vera-uav-experiment-taskbook-v1-20260517 | E 专项任务书 |
+| paper-f-uav-scenario-coverage-journal-roadmap-v2-20260520 | F 专项规划 |
+| paper-g-low-altitude-cloud-brain-llm-roadmap-v1-20260520 | G 总路线 |
+| paper-g1-cloudbrain-agent-full-paper-plan-v1-20260520 | G1 首篇完整论文方案 |
+| carla-sumo-rl-lane-change | 旧 F 线，当前暂不计入低空 UAV 论文群 |

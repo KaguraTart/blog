@@ -2,7 +2,7 @@
 title: "Paper B 规划 v1：面向 TR-C 的百架 UAV 三层分层调度"
 description: "调研 Paper B 是否更适合 TR Part C，并规划背景、相关方法、问题定义、算法路线、实验数据、预期结论、创新点与推进计划。"
 pubDate: 2026-05-19
-updatedDate: 2026-05-22
+updatedDate: 2026-05-23
 tags: ["Paper B", "TR-C", "T-ITS", "UAV", "UAM", "分层调度", "排队论", "Lyapunov", "多模态运输"]
 category: Tech
 ---
@@ -56,6 +56,29 @@ Paper B 最适合吸收“交通期刊不是只讲算法”的逻辑。它不能
 - **多模态价值**：UAV-only 何时不够，ground fallback 如何降低 deadline violation？
 - **理论对应**：Lyapunov drift-plus-penalty 的 backlog/cost tradeoff 是否能在实验中观察到？
 - **管理启示**：如果只新增一个资源，是增加 UAV、charging pad、vertiport slot，还是 corridor capacity？
+
+### 1.2 2026-05-23 整理：最小可投稿版本与边界
+
+Paper B 的最小可投稿版本应当是一篇 **TR-C transportation system operation paper**，而不是“调度器 + MARL + 空域仿真 + 低空平台展示”的混合体。第一版必须把系统问题打穿：动态需求下，有限 UAV、vertiport、charging pad 和 corridor capacity 如何共同决定延误、吞吐、队列稳定性和服务可靠性。
+
+| 必须完成 | 暂缓到扩展版 |
+|----------|--------------|
+| synthetic city UAM queueing benchmark | AirSim/UE 级高保真视觉仿真 |
+| Lyapunov-regulated online scheduler | 真实飞行部署或硬件闭环 |
+| 20 / 50 / 100 / 200 UAV scalability | LLM dispatcher 作为主算法 |
+| vertiport / charging / corridor bottleneck analysis | 完整通信协议和链路层仿真 |
+| FCFS、greedy、rolling MILP、ALNS、backpressure、MARL/GNN baselines | 多城市政策评估和全量经济分析 |
+| stability、cost-delay tradeoff、deadline violation、runtime | 真实商业订单系统接入 |
+
+第一版实验包建议冻结为五个 deliverables：
+
+1. **Benchmark generator**：生成城市区域、vertiport、charging pad、corridor、需求流、deadline、ground fallback 和 shock demand。
+2. **System model**：输出 demand queue、vertiport queue、charging queue、corridor virtual queue、deadline virtual queue 的可复现实验日志。
+3. **H-LyraUAV core**：实现 drift-plus-penalty 决策，学习模块只提供需求/服务时间/风险估计，不作为稳定性来源。
+4. **Baseline suite**：每个 baseline 使用同一组 demand traces、capacity setting、UAV fleet 和随机种子。
+5. **TR-C result package**：主表报告 delay、95th delay、deadline violation、throughput、backlog、resource utilization、energy、conflict proxy、runtime；附表报告瓶颈归因和敏感性。
+
+这个边界能让 Paper B 的系统故事和实验责任一致：先证明“百架级低空物流/应急服务系统可以在线稳定运行”，再谈真实地图、真实订单或更复杂智能体。
 
 ---
 

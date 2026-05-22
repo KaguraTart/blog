@@ -2,7 +2,7 @@
 title: "Paper F 期刊规划 v2：UAV 安全关键场景工程的期刊优先路线"
 description: "在不考虑博士论文结构的前提下，重新规划 Paper F 的期刊优先产出路线，聚焦 UAV 安全关键场景覆盖、加速测试、风险保证与高速应急应用。"
 pubDate: 2026-05-20
-updatedDate: 2026-05-22
+updatedDate: 2026-05-23
 tags: ["Paper F", "期刊规划", "UAV", "场景生成", "场景覆盖", "Safety-Critical", "加速测试", "风险保证", "TR-C", "T-ITS"]
 category: Tech
 ---
@@ -59,6 +59,28 @@ Paper F 很容易写散，因为它同时有场景生成、覆盖度、危险场
 > **我定义了 UAV 安全关键场景空间，能度量覆盖，能发现 coverage holes，并能用覆盖引导的方法更高效地生成真实、危险、可行的测试场景。**
 
 这更像一篇期刊论文。
+
+### 1.2 2026-05-23 整理：F 系列当前只推进两条主线
+
+当前 Paper F 不按博士论文目录铺开，先按期刊产出收束为两条主线。F-J3 和 F-J4 保留，但不抢 F-J1 的实验资源。
+
+| 论文 | 主投 | 当前角色 | 近期策略 |
+|------|------|----------|----------|
+| F-J1 | T-ITS | coverage-guided accelerated testing | 主推进；必须使用 7600 万次探索日志、coverage metric、强 baseline 和 cross-planner evaluation |
+| F-J2 | TR-C | 山东高速应急救援资源调配 | F-J1 平台稳定后启动；重点是真实高速拓扑、事故 proxy、响应时间和资源瓶颈 |
+| F-J3 | T-RO / T-ASE / T-ITS | coverage-to-risk assurance | 暂缓；等 F-J1 形成 failure distribution 和 coverage statistics 后再证明风险边界 |
+| F-J4 | TR-C / T-ITS | city-level ODD to local UAV scenario | 暂缓；等 OSM/POI/building/airspace pipeline 足够稳再做 |
+
+F-J1 的第一版论文大纲建议固定为：
+
+1. **Scenario space**：定义 UAV local test cell、障碍物语法、动态因素、任务目标和 invalid scenario 判定。
+2. **Coverage metric**：把几何覆盖、语义覆盖、动力学覆盖、风险覆盖和 failure-mode 覆盖分开统计。
+3. **Accelerated generation**：用 coverage holes 和 failure likelihood 引导采样，过滤不真实或不可执行场景。
+4. **Benchmark protocol**：统一地图 seed、planner set、控制器参数、随机种子、失败阈值和统计检验。
+5. **Main experiments**：比较 random、grid/LHS、BO、CMA-ES、RL adversarial、Scenic-style constrained generation 和本文方法。
+6. **Failure analysis**：说明哪些障碍组合、速度/高度条件、遮挡和动态障碍最容易触发 failure。
+
+这次整理后的判断是：F-J1 先追求“一篇能投 T-ITS 的安全测试期刊论文”，不要同时承诺城市规划、风险理论和山东高速应用。F-J2 可以在 F-J1 的场景库和风险指标成熟后，把故事切换成 TR-C 所需的交通应急运行闭环。
 
 ---
 
