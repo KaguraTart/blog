@@ -2,7 +2,7 @@
 title: "Paper E 实验任务书 v2：面向 AAAI 的验证纠错式 UAV 语言规划"
 description: "v2 聚焦 AAAI 顶会投稿：补充 30+ 篇真实可引用定会/顶刊/关键预印本文献，深化 VERA-UAV 的实验指标、对比与消融方案、可复现实验协议，并给出相对完备性的数学证明。"
 pubDate: 2026-05-17
-updatedDate: 2026-05-19
+updatedDate: 2026-05-23
 tags: ["Paper E", "AAAI", "UAV", "LLM", "LTL", "STL", "形式化验证", "实验任务书", "完备性证明"]
 category: Tech
 ---
@@ -818,6 +818,36 @@ $$
 4. **论文呈现策略**：AAAI 篇幅有限，需要提前确定主文图表，否则容易把主线写散。
 
 这四点不改变 VERA-UAV 的核心贡献，但能把任务书从“想法路线”推进到“可以直接组织实验和论文”的状态。
+
+### 12.4 2026-05-23 整理：AAAI 主线收束
+
+Paper E 当前应当优先收束为 **AAAI / IJCAI 方法论文**，不要提前写成完整 ITS 系统论文。核心问题是：LLM 生成的 UAV 任务规划如何经过 typed IR、时序逻辑验证、反例修复和符号 fallback，变成可执行、可验证、可解释的轨迹方案。
+
+第一版论文只保留三条贡献：
+
+1. **Typed TaskIR**：把自然语言 UAV 指令转换成实体、动作、时序约束、安全约束和资源约束均可检查的中间表示。
+2. **LTL/STL + verifier + trajectory closure**：不仅验证公式语法，还验证规格能否生成满足安全约束的轨迹。
+3. **Counterexample / robustness repair with finite DSL fallback**：利用反例、unsat core 和 STL robustness 反馈修复；当 LLM 无法修复时，用有限 DSL 枚举给出 relative completeness。
+
+主文中不要提前承诺以下内容：
+
+- 不做完整多 UAV 交通管理；
+- 不做真实物流系统部署；
+- 不把 AirSim 高保真仿真作为主实验依赖；
+- 不把 ITS 政策或低空经济系统启示写成 AAAI 主贡献。
+
+最小实验矩阵建议冻结为：
+
+| 维度 | 第一版设置 |
+|------|------------|
+| 任务族 | patrol、delivery、inspection、avoidance、temporal ordering、UNSAT / ambiguous |
+| 地图 | 程序生成 city grid / obstacle / no-fly-zone / charging-point |
+| baselines | Direct LLM planning、ReAct / prompt-only、NL2LTL-style、LTLCodeGen-style、VERA-UAV no repair、VERA-UAV full |
+| 主指标 | ESS、FSR、safety violation rate、repair success、fail-to-pass conversion、runtime |
+| 消融 | no typed IR、no counterexample、no STL robustness、one-shot vs iterative repair、no symbolic fallback |
+| 泛化 | unseen map、unseen entity naming、longer horizon、harder constraints、UNSAT detection |
+
+T-ITS 扩展可以放在后续版本：接入 Paper B 的 fleet scheduling、Paper F 的 stress scenarios 和低空交通系统指标。但 AAAI 版本必须保持问题干净，否则会同时被 AI 审稿人和交通审稿人追问边界。
 
 ---
 

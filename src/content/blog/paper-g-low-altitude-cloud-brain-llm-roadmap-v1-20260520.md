@@ -2,7 +2,7 @@
 title: "Paper G 规划 v1：低空交通云脑中的 LLM Agent 与模型微调路线"
 description: "规划如何训练或微调 LLM，使其成为低空交通云脑中的可验证 Agent，并形成 AAAI/IJCAI 首篇会议论文、后续交通期刊与通用 embodied agent 转型路线。"
 pubDate: 2026-05-20
-updatedDate: 2026-05-22
+updatedDate: 2026-05-23
 tags: ["Paper G", "低空交通云脑", "LLM Agent", "模型微调", "Tool Use", "AAAI", "IJCAI", "UAV", "AGI"]
 category: Tech
 ---
@@ -61,6 +61,26 @@ Paper G 容易被写成“低空交通大模型故事”。这条路线要分清
 - 运行管理：safe refusal rate、human confirmation rate、ambiguous-task handling。
 - 鲁棒性：通信缺失、天气扰动、非合作 UAV、unseen city/topology。
 - 系统启示：什么条件下 LLM agent 需要退出给 deterministic solver 或 human supervisor。
+
+### 1.2 2026-05-23 整理：G 路线的先后顺序
+
+Paper G 是 umbrella roadmap，真正近期要完成的是 **G1 CloudBrain-Agent**。当前最快、最可投稿的路线不是先训练垂类大模型，而是用通用强模型 + typed IR + 工具链 + verifier + simulator feedback 形成可复现闭环。垂类模型训练放到 G2，用 G1 产生的 tool-call traces、repair traces 和 failure cases 做数据。
+
+| 阶段 | 是否训练模型 | 推荐模型/部署 | 目标 |
+|------|--------------|---------------|------|
+| G1 now | 不作为主贡献训练 | 本地 vLLM 跑 Qwen / DeepSeek，API 模型做 teacher / upper bound | 证明 agent 工具调用、验证修复和低空任务 benchmark 有效 |
+| G2 next | LoRA / SFT / DPO | 用 G1 traces 微调 Qwen / Llama / DeepSeek 系列 | 形成 LowAltitudeGPT domain cognitive module |
+| G3 later | 可选多 agent 轨迹蒸馏 | 多角色 agent + shared memory + verifier | 研究空域监控、调度、风险、应急、人机协同 |
+| G4 long-term | 多模态 / world model / VLA | 取决于数据与算力 | 向 embodied traffic intelligence 迁移 |
+
+部署策略建议如下：
+
+- **主实验用本地开源模型**：可复现、可控成本、方便报告 latency 和硬件条件；建议用 vLLM / llama.cpp 作为推理服务。
+- **API 模型做 teacher 和上限**：用于生成高质量初始样本、难例修复示范和 upper-bound baseline；论文中要把 API 结果和本地模型结果分开报告。
+- **MCP 先做接口风格，不先做产品化**：第一版先实现 Python tool registry 和 JSON schema；等工具稳定后再封装成 MCP-compatible server，避免把工程复杂度压到论文主线。
+- **垂类模型训练不抢 G1 主线**：G1 的贡献是 agent 架构和验证闭环；G2 才把运行轨迹蒸馏进本地模型。
+
+这个顺序能最快形成可投稿闭环：先让系统跑起来、评测起来、能解释失败，再决定哪些能力值得微调进模型。
 
 ---
 
