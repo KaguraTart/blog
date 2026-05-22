@@ -256,7 +256,7 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
           var button = document.createElement('button');
           button.type = 'button';
           button.className = 'code-toggle glow-on-hover';
-          shell.appendChild(button);
+          shell.insertBefore(button, pre);
 
           (function(blockShell, toggleButton, lineCount) {
             function setExpanded(expanded) {
