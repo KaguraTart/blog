@@ -2,17 +2,17 @@
 import { getCollection } from 'astro:content';
 import BlogPostPage from '../../components/BlogPostPage.astro';
 import { defaultLocale } from '../../i18n/config.mjs';
-import { isDefaultLocalePost } from '../../i18n/utils.mjs';
+import { getAvailablePostLocales, isDefaultLocalePost } from '../../i18n/utils.mjs';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   return posts.filter(isDefaultLocalePost).map(post => ({
     params: { slug: post.slug },
-    props: { post },
+    props: { post, nativeLocaleCodes: getAvailablePostLocales(post, posts) },
   }));
 }
 
-const { post } = Astro.props;
+const { post, nativeLocaleCodes } = Astro.props;
 ---
 
-<BlogPostPage post={post} locale={defaultLocale} />
+<BlogPostPage post={post} locale={defaultLocale} nativeLocaleCodes={nativeLocaleCodes} />

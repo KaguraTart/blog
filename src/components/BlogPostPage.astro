@@ -3,14 +3,24 @@ import Layout from '../layouts/Layout.astro';
 import { defaultLocale } from '../i18n/config.mjs';
 import { getDisplayDate, getPostBaseSlug, localizePath } from '../i18n/utils.mjs';
 
-const { post, locale = defaultLocale } = Astro.props;
+const {
+  post,
+  locale = defaultLocale,
+  nativeLocaleCodes = [defaultLocale],
+} = Astro.props;
 const { Content } = await post.render();
 const displayDate = getDisplayDate(post);
 const isUpdated = Boolean(post.data.updatedDate);
 const canonicalSlug = getPostBaseSlug(post);
 ---
 
-<Layout title={post.data.title} description={post.data.description} locale={locale} canonicalPath={`/blog/${canonicalSlug}`}>
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  locale={locale}
+  canonicalPath={`/blog/${canonicalSlug}`}
+  nativeLocaleCodes={nativeLocaleCodes}
+>
   <article class="article-wrapper">
     <header class="article-header">
       <div class="article-meta-top">

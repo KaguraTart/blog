@@ -5,7 +5,13 @@ import { localizePath, normalizeLocale } from '../i18n/utils.mjs';
 
 const locale = normalizeLocale(Astro.currentLocale ?? defaultLocale);
 ---
-<Layout title="About Me" description="About Deng Diantao (邓典涛)" locale={locale} canonicalPath="/about">
+<Layout
+  title="About Me"
+  description="About Deng Diantao (邓典涛)"
+  locale={locale}
+  canonicalPath="/about"
+  nativeLocaleCodes={[defaultLocale, 'en']}
+>
   <div class="about-wrapper">
     <header class="about-header">
       <div class="lang-toggle-wrap">

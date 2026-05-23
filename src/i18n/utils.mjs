@@ -40,6 +40,16 @@ export function localizePath(pathname, locale) {
   return basePath === '/' ? `/${targetLocale}` : `/${targetLocale}${basePath}`;
 }
 
+export function getMachineTranslationUrl(sourceUrl, targetLocale) {
+  const params = new URLSearchParams({
+    sl: 'auto',
+    tl: normalizeLocale(targetLocale),
+    u: sourceUrl,
+  });
+
+  return `https://translate.google.com/translate?${params.toString()}`;
+}
+
 export function normalizePath(pathname) {
   const pathOnly = String(pathname || '/').split('?')[0].split('#')[0];
   const withLeadingSlash = pathOnly.startsWith('/') ? pathOnly : `/${pathOnly}`;
@@ -82,6 +92,14 @@ export function getLocalizedPost(basePost, locale, posts) {
 
   const baseSlug = getPostBaseSlug(basePost);
   return posts.find(post => post.slug === `${targetLocale}/${baseSlug}`) ?? basePost;
+}
+
+export function getAvailablePostLocales(basePost, posts) {
+  const baseSlug = getPostBaseSlug(basePost);
+  return [
+    defaultLocale,
+    ...routeLocales.filter(locale => posts.some(post => post.slug === `${locale}/${baseSlug}`)),
+  ];
 }
 
 export function getLocalizedPostList(posts, locale) {
