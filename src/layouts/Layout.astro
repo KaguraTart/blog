@@ -7,7 +7,7 @@ interface Props {
   nativeLocaleCodes?: string[];
 }
 import { defaultLocale, siteLocales } from '../i18n/config.mjs';
-import { getHtmlLang, getMachineTranslationUrl, localizePath, normalizeLocale, stripLocaleFromPath } from '../i18n/utils.mjs';
+import { getHtmlLang, localizePath, normalizeLocale, stripLocaleFromPath } from '../i18n/utils.mjs';
 
 const {
   title,
@@ -22,7 +22,6 @@ const canonicalPath = stripLocaleFromPath(rawCanonicalPath ?? Astro.url.pathname
 const htmlLang = getHtmlLang(locale);
 const absoluteUrl = (pathname: string) => new URL(pathname, Astro.site ?? Astro.url.origin).toString();
 const nativeLocaleSet = new Set([defaultLocale, ...nativeLocaleCodes.map(normalizeLocale)]);
-const sourceUrl = absoluteUrl(localizePath(canonicalPath, defaultLocale));
 const navLinks = [
   { href: localizePath('/', locale), label: 'Home' },
   { href: localizePath('/blog', locale), label: 'Blog' },
@@ -31,13 +30,11 @@ const navLinks = [
 ];
 const localeLinks = siteLocales.map(item => ({
   ...item,
-  href: nativeLocaleSet.has(item.code)
-    ? localizePath(canonicalPath, item.code)
-    : getMachineTranslationUrl(sourceUrl, item.code),
+  href: localizePath(canonicalPath, item.code),
   current: nativeLocaleSet.has(item.code) && item.code === locale,
-  external: !nativeLocaleSet.has(item.code),
+  available: nativeLocaleSet.has(item.code),
 }));
-const nativeSeoLocaleLinks = localeLinks.filter(item => !item.external);
+const nativeSeoLocaleLinks = localeLinks.filter(item => item.available);
 ---
 
 <!doctype html>
@@ -236,7 +233,8 @@ const nativeSeoLocaleLinks = localeLinks.filter(item => !item.external);
         backdrop-filter: blur(18px);
       }
       .translate-menu[hidden] { display: none; }
-      .translate-menu a {
+      .translate-menu a,
+      .translate-menu span {
         display: block;
         padding: 0.55rem 0.65rem;
         border-radius: 7px;
@@ -248,6 +246,10 @@ const nativeSeoLocaleLinks = localeLinks.filter(item => !item.external);
       .translate-menu a:hover {
         background: var(--accent-dim);
         color: var(--text-primary);
+      }
+      .translate-menu span[aria-disabled="true"] {
+        opacity: 0.45;
+        cursor: not-allowed;
       }
       /* Shiki dual-theme: CSS overrides inline !important styles */
       :root {
@@ -327,17 +329,29 @@ const nativeSeoLocaleLinks = localeLinks.filter(item => !item.external);
       </div>
     </nav>
     <div class="translate-widget" id="translateWidget">
-      <button class="translate-toggle glow-on-hover" id="translateToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="选择语言或自动翻译">文</button>
+      <button class="translate-toggle glow-on-hover" id="translateToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="选择语言">文</button>
       <div class="translate-menu" id="translateMenu" role="menu" hidden>
         {localeLinks.map(item => (
-          <a
-            href={item.href}
-            role="menuitem"
-            aria-current={item.current ? 'page' : undefined}
-            data-translation-mode={item.external ? 'machine' : 'native'}
-          >
-            {item.label}
-          </a>
+          item.available ? (
+            <a
+              href={item.href}
+              role="menuitem"
+              aria-current={item.current ? 'page' : undefined}
+              data-translation-mode="native"
+              data-translation-available="true"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <span
+              role="menuitem"
+              aria-disabled="true"
+              data-translation-mode="native"
+              data-translation-available="false"
+            >
+              {item.label}
+            </span>
+          )
         ))}
       </div>
     </div>

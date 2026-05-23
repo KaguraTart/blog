@@ -6,6 +6,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "translate:i18n": "python3 scripts/generate_i18n_content.py",
+    "check:i18n": "node scripts/check-i18n-ssg.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
