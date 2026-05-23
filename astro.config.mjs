@@ -6,6 +6,7 @@ import { i18n } from './src/i18n/config.mjs';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://blog.kaguratart.com',
   i18n,
   markdown: {
     remarkPlugins: [remarkMath],

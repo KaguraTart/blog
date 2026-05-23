@@ -2,18 +2,48 @@
 interface Props {
   title: string;
   description?: string;
+  locale?: string;
+  canonicalPath?: string;
 }
-import { defaultHtmlLang, translationTargets } from '../i18n/config.mjs';
-const { title, description = 'Kagura Tart 的博客' } = Astro.props;
+import { defaultLocale, siteLocales } from '../i18n/config.mjs';
+import { getHtmlLang, localizePath, normalizeLocale, stripLocaleFromPath } from '../i18n/utils.mjs';
+
+const {
+  title,
+  description = 'Kagura Tart 的博客',
+  locale: rawLocale = Astro.currentLocale ?? defaultLocale,
+  canonicalPath: rawCanonicalPath,
+} = Astro.props;
+
+const locale = normalizeLocale(rawLocale);
+const canonicalPath = stripLocaleFromPath(rawCanonicalPath ?? Astro.url.pathname);
+const htmlLang = getHtmlLang(locale);
+const navLinks = [
+  { href: localizePath('/', locale), label: 'Home' },
+  { href: localizePath('/blog', locale), label: 'Blog' },
+  { href: localizePath('/about', locale), label: 'About' },
+  { href: localizePath('/search', locale), label: '🔍', ariaLabel: 'Search' },
+];
+const localeLinks = siteLocales.map(item => ({
+  ...item,
+  href: localizePath(canonicalPath, item.code),
+  current: item.code === locale,
+}));
+const absoluteUrl = (pathname: string) => new URL(pathname, Astro.site ?? Astro.url.origin).toString();
 ---
 
 <!doctype html>
-<html lang={defaultHtmlLang}>
+<html lang={htmlLang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="description" content={description} />
+    <link rel="canonical" href={absoluteUrl(localizePath(canonicalPath, locale))} />
+    {localeLinks.map(item => (
+      <link rel="alternate" hreflang={item.htmlLang} href={absoluteUrl(item.href)} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={absoluteUrl(localizePath(canonicalPath, defaultLocale))} />
     <title>{title} | KaguraTart</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -262,12 +292,15 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
   <body>
     <nav>
       <div class="nav-left">
-        <a href="/" class="nav-logo">Kagura Tart</a>
+        <a href={localizePath('/', locale)} class="nav-logo">Kagura Tart</a>
         <ul class="nav-links">
-          <li><a href="/" class="glow-on-hover">Home</a></li>
-          <li><a href="/blog" class="glow-on-hover">Blog</a></li>
-          <li><a href="/about" class="glow-on-hover">About</a></li>
-          <li><a href="/search" class="glow-on-hover">🔍</a></li>
+          {navLinks.map(link => (
+            <li>
+              <a href={link.href} class="glow-on-hover" aria-label={link.ariaLabel}>
+                {link.label}
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
       <div class="nav-right">
@@ -286,10 +319,10 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
       </div>
     </nav>
     <div class="translate-widget" id="translateWidget">
-      <button class="translate-toggle glow-on-hover" id="translateToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="翻译页面">译</button>
+      <button class="translate-toggle glow-on-hover" id="translateToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="选择语言">文</button>
       <div class="translate-menu" id="translateMenu" role="menu" hidden>
-        {translationTargets.map(locale => (
-          <a href="#" data-translate-lang={locale.code} role="menuitem" target="_blank" rel="noopener noreferrer">{locale.label}</a>
+        {localeLinks.map(item => (
+          <a href={item.href} role="menuitem" aria-current={item.current ? 'page' : undefined}>{item.label}</a>
         ))}
       </div>
     </div>
@@ -364,21 +397,10 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
         var toggle = document.getElementById('translateToggle');
         var menu = document.getElementById('translateMenu');
         if (!widget || !toggle || !menu) return;
-        var links = menu.querySelectorAll('[data-translate-lang]');
-        function refreshLinks() {
-          var currentUrl = window.location.href;
-          for (var i = 0; i < links.length; i++) {
-            var link = links[i];
-            var lang = link.getAttribute('data-translate-lang');
-            link.setAttribute('href', 'https://translate.google.com/translate?sl=auto&tl=' + encodeURIComponent(lang) + '&u=' + encodeURIComponent(currentUrl));
-          }
-        }
         function setOpen(open) {
           toggle.setAttribute('aria-expanded', String(open));
           menu.hidden = !open;
-          if (open) refreshLinks();
         }
-        refreshLinks();
         toggle.addEventListener('click', function(event) {
           event.stopPropagation();
           setOpen(menu.hidden);

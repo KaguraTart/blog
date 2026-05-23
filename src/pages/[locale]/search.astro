@@ -1,0 +1,13 @@
+---
+import SearchPage from '../search.astro';
+import { routeLocales } from '../../i18n/config.mjs';
+
+export function getStaticPaths() {
+  return routeLocales.map(locale => ({
+    params: { locale },
+    props: { locale },
+  }));
+}
+---
+
+<SearchPage />
