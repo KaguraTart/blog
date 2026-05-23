@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
-import { defaultLocale } from '../i18n/config.mjs';
-import { getDisplayDate, getLocalizedPostList, getMachineTranslationUrl, getPostBaseSlug, localizePath, sortPostsByDisplayDate } from '../i18n/utils.mjs';
+import { defaultLocale, locales } from '../i18n/config.mjs';
+import { getDisplayDate, getLocalizedPostList, getPostBaseSlug, localizePath, sortPostsByDisplayDate } from '../i18n/utils.mjs';
 
 const { locale = defaultLocale } = Astro.props;
 
@@ -12,14 +12,9 @@ const techPosts = allPosts.filter(p => p.data.category === 'Tech');
 const essayPosts = allPosts.filter(p => p.data.category === 'Essay');
 const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
 const getDatePrefix = (post) => post.data.updatedDate ? 'Updated ' : '';
-const absoluteUrl = (pathname) => new URL(pathname, Astro.site ?? Astro.url.origin).toString();
 const getPostHref = (post) => {
   const baseSlug = getPostBaseSlug(post);
-  const basePath = `/blog/${baseSlug}`;
-  const hasNativeContent = locale === defaultLocale || post.slug !== baseSlug;
-  return hasNativeContent
-    ? localizePath(basePath, locale)
-    : getMachineTranslationUrl(absoluteUrl(basePath), locale);
+  return localizePath(`/blog/${baseSlug}`, locale);
 };
 
 const tabGroups = [
@@ -29,7 +24,7 @@ const tabGroups = [
   { id: 'Paper', label: 'Paper', posts: paperPosts },
 ];
 ---
-<Layout title="Blog" locale={locale} canonicalPath="/blog">
+<Layout title="Blog" locale={locale} canonicalPath="/blog" nativeLocaleCodes={locales}>
   <div class="page-wrapper">
     <div class="page-header">
       <h1 class="page-title">Blog</h1>

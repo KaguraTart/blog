@@ -40,16 +40,6 @@ export function localizePath(pathname, locale) {
   return basePath === '/' ? `/${targetLocale}` : `/${targetLocale}${basePath}`;
 }
 
-export function getMachineTranslationUrl(sourceUrl, targetLocale) {
-  const params = new URLSearchParams({
-    sl: 'auto',
-    tl: normalizeLocale(targetLocale),
-    u: sourceUrl,
-  });
-
-  return `https://translate.google.com/translate?${params.toString()}`;
-}
-
 export function normalizePath(pathname) {
   const pathOnly = String(pathname || '/').split('?')[0].split('#')[0];
   const withLeadingSlash = pathOnly.startsWith('/') ? pathOnly : `/${pathOnly}`;
