@@ -2,7 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { defaultLocale } from '../i18n/config.mjs';
-import { getDisplayDate, getLocalizedPostList, getPostBaseSlug, localizePath, sortPostsByDisplayDate } from '../i18n/utils.mjs';
+import { getDisplayDate, getLocalizedPostList, getMachineTranslationUrl, getPostBaseSlug, localizePath, sortPostsByDisplayDate } from '../i18n/utils.mjs';
 
 const { locale = defaultLocale } = Astro.props;
 
@@ -12,6 +12,15 @@ const techPosts = allPosts.filter(p => p.data.category === 'Tech');
 const essayPosts = allPosts.filter(p => p.data.category === 'Essay');
 const paperPosts = allPosts.filter(p => p.data.category === 'Paper');
 const getDatePrefix = (post) => post.data.updatedDate ? 'Updated ' : '';
+const absoluteUrl = (pathname) => new URL(pathname, Astro.site ?? Astro.url.origin).toString();
+const getPostHref = (post) => {
+  const baseSlug = getPostBaseSlug(post);
+  const basePath = `/blog/${baseSlug}`;
+  const hasNativeContent = locale === defaultLocale || post.slug !== baseSlug;
+  return hasNativeContent
+    ? localizePath(basePath, locale)
+    : getMachineTranslationUrl(absoluteUrl(basePath), locale);
+};
 
 const tabGroups = [
   { id: 'all', label: 'All', posts: allPosts },
@@ -37,7 +46,7 @@ const tabGroups = [
       <div class="tab-content" id={`tab-${group.id}`} style={group.id === 'all' ? '' : 'display:none'}>
         <div class="posts">
           {group.posts.map(post => (
-            <a href={localizePath(`/blog/${getPostBaseSlug(post)}`, locale)} class="post-card glow-on-hover">
+            <a href={getPostHref(post)} class="post-card glow-on-hover">
               <div class="post-meta">
                 <time datetime={getDisplayDate(post).toISOString()}>
                   {getDatePrefix(post)}{getDisplayDate(post).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}

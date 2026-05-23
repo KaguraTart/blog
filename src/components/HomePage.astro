@@ -3,13 +3,22 @@ import Layout from '../layouts/Layout.astro';
 import { profile } from '../config';
 import { getCollection } from 'astro:content';
 import { defaultLocale } from '../i18n/config.mjs';
-import { getDisplayDate, getLocalizedPostList, getPostBaseSlug, localizePath, sortPostsByDisplayDate } from '../i18n/utils.mjs';
+import { getDisplayDate, getLocalizedPostList, getMachineTranslationUrl, getPostBaseSlug, localizePath, sortPostsByDisplayDate } from '../i18n/utils.mjs';
 
 const { locale = defaultLocale } = Astro.props;
 const aboutHtml = profile.about.replace(/\n/g, '<br>');
 
 const allPosts = await getCollection('blog', ({ data }) => !data.draft);
 const recentPosts = sortPostsByDisplayDate(getLocalizedPostList(allPosts, locale)).slice(0, 5);
+const absoluteUrl = (pathname) => new URL(pathname, Astro.site ?? Astro.url.origin).toString();
+const getPostHref = (post) => {
+  const baseSlug = getPostBaseSlug(post);
+  const basePath = `/blog/${baseSlug}`;
+  const hasNativeContent = locale === defaultLocale || post.slug !== baseSlug;
+  return hasNativeContent
+    ? localizePath(basePath, locale)
+    : getMachineTranslationUrl(absoluteUrl(basePath), locale);
+};
 ---
 
 <Layout title="Home" locale={locale} canonicalPath="/">
@@ -66,7 +75,7 @@ const recentPosts = sortPostsByDisplayDate(getLocalizedPostList(allPosts, locale
               </div>
               <div class="posts-list">
                 {recentPosts.map(post => (
-                  <a href={localizePath(`/blog/${getPostBaseSlug(post)}`, locale)} class="post-item glow-on-hover">
+                  <a href={getPostHref(post)} class="post-item glow-on-hover">
                     <div class="post-left">
                       <span class="post-day">{getDisplayDate(post).getDate().toString().padStart(2, '0')}</span>
                       <span class="post-month">{getDisplayDate(post).toLocaleDateString('en-US', { month: 'short' })}</span>
