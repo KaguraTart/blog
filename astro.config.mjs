@@ -2,9 +2,11 @@
 import { defineConfig } from 'astro/config';
 import remarkMath from 'remark-math';
 import rehypeMathjax from 'rehype-mathjax';
+import { i18n } from './src/i18n/config.mjs';
 
 // https://astro.build/config
 export default defineConfig({
+  i18n,
   markdown: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeMathjax],

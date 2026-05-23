@@ -3,11 +3,12 @@ interface Props {
   title: string;
   description?: string;
 }
+import { defaultHtmlLang, translationTargets } from '../i18n/config.mjs';
 const { title, description = 'Kagura Tart 的博客' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="zh-CN">
+<html lang={defaultHtmlLang}>
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -287,12 +288,9 @@ const { title, description = 'Kagura Tart 的博客' } = Astro.props;
     <div class="translate-widget" id="translateWidget">
       <button class="translate-toggle glow-on-hover" id="translateToggle" type="button" aria-haspopup="menu" aria-expanded="false" aria-label="翻译页面">译</button>
       <div class="translate-menu" id="translateMenu" role="menu" hidden>
-        <a href="#" data-translate-lang="en" role="menuitem" target="_blank" rel="noopener noreferrer">English</a>
-        <a href="#" data-translate-lang="ja" role="menuitem" target="_blank" rel="noopener noreferrer">日本語</a>
-        <a href="#" data-translate-lang="ko" role="menuitem" target="_blank" rel="noopener noreferrer">한국어</a>
-        <a href="#" data-translate-lang="fr" role="menuitem" target="_blank" rel="noopener noreferrer">Français</a>
-        <a href="#" data-translate-lang="de" role="menuitem" target="_blank" rel="noopener noreferrer">Deutsch</a>
-        <a href="#" data-translate-lang="es" role="menuitem" target="_blank" rel="noopener noreferrer">Español</a>
+        {translationTargets.map(locale => (
+          <a href="#" data-translate-lang={locale.code} role="menuitem" target="_blank" rel="noopener noreferrer">{locale.label}</a>
+        ))}
       </div>
     </div>
     <slot />
