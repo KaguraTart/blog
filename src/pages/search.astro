@@ -1,7 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { defaultLocale } from '../i18n/config.mjs';
+import { normalizeLocale } from '../i18n/utils.mjs';
+
+const locale = normalizeLocale(Astro.currentLocale ?? defaultLocale);
 ---
-<Layout title="Search" description="Search the blog">
+<Layout title="Search" description="Search the blog" locale={locale} canonicalPath="/search">
   <div class="search-wrapper">
     <header class="search-header">
       <h1 class="search-title">Search</h1>

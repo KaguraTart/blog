@@ -1,0 +1,22 @@
+---
+import { getCollection } from 'astro:content';
+import BlogPostPage from '../../../components/BlogPostPage.astro';
+import { routeLocales } from '../../../i18n/config.mjs';
+import { getLocalizedPost, getPostBaseSlug, isDefaultLocalePost } from '../../../i18n/utils.mjs';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const basePosts = posts.filter(isDefaultLocalePost);
+
+  return routeLocales.flatMap(locale => (
+    basePosts.map(basePost => ({
+      params: { locale, slug: getPostBaseSlug(basePost) },
+      props: { locale, post: getLocalizedPost(basePost, locale, posts) },
+    }))
+  ));
+}
+
+const { post, locale } = Astro.props;
+---
+
+<BlogPostPage post={post} locale={locale} />

@@ -1,0 +1,19 @@
+---
+import BlogCategoryPage from '../../../components/BlogCategoryPage.astro';
+import { routeLocales } from '../../../i18n/config.mjs';
+
+export function getStaticPaths() {
+  return routeLocales.map(locale => ({
+    params: { locale },
+    props: { locale },
+  }));
+}
+
+const { locale } = Astro.props;
+---
+
+<BlogCategoryPage
+  locale={locale}
+  category="Paper"
+  description="Research papers, code tutorials, and research notes."
+/>

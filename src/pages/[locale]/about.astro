@@ -1,0 +1,13 @@
+---
+import AboutPage from '../about.astro';
+import { routeLocales } from '../../i18n/config.mjs';
+
+export function getStaticPaths() {
+  return routeLocales.map(locale => ({
+    params: { locale },
+    props: { locale },
+  }));
+}
+---
+
+<AboutPage />
