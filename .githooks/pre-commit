@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+scripts/ensure_i18n_ready.sh

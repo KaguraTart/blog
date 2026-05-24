@@ -7,7 +7,12 @@
     "start": "astro dev",
     "build": "astro build",
     "translate:i18n": "python3 scripts/generate_i18n_content.py",
+    "check:i18n:coverage": "node scripts/check-i18n-coverage.mjs",
     "check:i18n": "node scripts/check-i18n-ssg.mjs",
+    "test:i18n:coverage": "node scripts/test_i18n_coverage.mjs",
+    "setup:hooks": "bash scripts/setup_git_hooks.sh",
+    "gate:precommit": "bash scripts/ensure_i18n_ready.sh",
+    "gate:prepush": "bash .githooks/pre-push",
     "preview": "astro preview",
     "astro": "astro"
   },

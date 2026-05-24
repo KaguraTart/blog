@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+scripts/ensure_i18n_ready.sh
+
+echo "[gate] Building Astro site..."
+rm -rf .astro
+npm run build
+
+echo "[gate] Checking built i18n SSG routes..."
+npm run check:i18n
+
+echo "[gate] Building Pagefind index..."
+npx pagefind --site dist
+
+echo "[gate] Push gate passed."
