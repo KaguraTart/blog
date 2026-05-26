@@ -4,6 +4,7 @@ description: "Ausführliche Erläuterung der hochmodernen NBV + NeRF/3DGS-Method
 tags: ["UAV", "NRF", "3DGS", "Nächstbeste Ansicht", "aktive Wahrnehmung", "Gaußsches Splatting"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "030ae332e13fe029a870b23907cdc45d7e0018c0"
 ---
 
 # Next-Best-View-Planung trifft auf NeRF/3DGS: die Informationsgrenze der aktiven Sensorik

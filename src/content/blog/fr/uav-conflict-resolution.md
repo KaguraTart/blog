@@ -4,6 +4,7 @@ description: "Analyse approfondie des algorithmes d'identification et de résolu
 pubDate: 2026-04-07T11:12:59+08:00
 tags: ["drone", "planification du chemin", "résolution de conflits", "multi-agent", "Présentation de l'algorithme"]
 category: Tech
+sourceHash: "bdea72e467b5ee1ca0825e4536706f6e89e09f1b"
 ---
 
 # Présentation de l'algorithme de résolution des conflits de planification de trajectoire d'UAV

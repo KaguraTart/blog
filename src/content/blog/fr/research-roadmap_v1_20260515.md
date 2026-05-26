@@ -4,6 +4,7 @@ description: "Triez systématiquement la valeur de recherche de 18 articles sur 
 pubDate: 2026-05-15
 tags: ["Planification de thèse", "Feuille de route de la recherche", "drone", "basse altitude", "Stratégie de soumission", "T-ITS", "ICRA"]
 category: Tech
+sourceHash: "d7d759c643601fa494ff168b952f49bf00509471"
 ---
 
 # Blog de recherche sur les drones à basse altitude Feuille de route culturelle : un plan complet du blog au journal

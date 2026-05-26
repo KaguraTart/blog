@@ -5,6 +5,7 @@ pubDate: 2026-05-15
 updatedDate: 2026-05-23
 tags: ["Thesis planning", "Submission to top journal", "T-ITS", "TR Part C", "low altitude economy", "active perception", "3DGS", "UAV", "Fisher information"]
 category: Tech
+sourceHash: "05230e9d3f9c4368c3f98b16b9aca758a7d23ecc"
 ---
 
 # Paper C v2: Repositioning from RA-L to Top Issue

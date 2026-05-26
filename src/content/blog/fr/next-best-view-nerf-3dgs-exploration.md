@@ -4,6 +4,7 @@ description: "Explication détaillée des méthodes de pointe NBV + NeRF/3DGS :
 tags: ["drone", "FRN", "3DGS", "Meilleure vue suivante", "perception active", "Éclaboussures gaussiennes"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "030ae332e13fe029a870b23907cdc45d7e0018c0"
 ---
 
 # Next-Best-View Planning rencontre NeRF/3DGS : la frontière de l'information de la détection active

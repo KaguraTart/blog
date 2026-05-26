@@ -4,6 +4,7 @@ description: "原理からコードに至るまでの物理情報に基づいた
 pubDate: 2026-04-01
 tags: ["ディープラーニング", "偏微分方程式", "ピン", "パイトーチ", "科学計算"]
 category: Tech
+sourceHash: "fa3b95a40058132ef3a4bbb2cd75cf75ba7a8e02"
 ---
 
 # Physical Information Network PINN: ニューラルネットワークを使用して偏微分方程式を解く

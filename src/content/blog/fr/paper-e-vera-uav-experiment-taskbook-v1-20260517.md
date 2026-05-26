@@ -5,6 +5,7 @@ pubDate: 2026-05-17
 updatedDate: 2026-05-23
 tags: ["Papier E", "AAAI", "drone", "LLM", "LTL", "STL", "Vérification formelle", "Cahier de tâches expérimentales", "Preuve d'exhaustivité"]
 category: Tech
+sourceHash: "5a168001b03609769dacbd93bde621f2660a2405"
 ---
 
 # Paper E Experimental Task Book v2 : Vérification et correction d'erreurs Planification du langage UAV pour AAAI

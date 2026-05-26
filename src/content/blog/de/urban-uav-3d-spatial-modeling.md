@@ -4,6 +4,7 @@ description: "Überprüfen Sie systematisch die dreidimensionalen Raummodellieru
 tags: ['UAV', '路径规划', '城市空域']
 category: Tech
 pubDate: 2026-04-08T14:54:00+08:00
+sourceHash: "5207e2b900596685eafb34524553f682fb5b6948"
 ---
 
 ## Einführung

@@ -4,6 +4,7 @@ description: "Eingehende Analyse der beiden hochmodernen Routen von LLM als Plan
 tags: ["LLM", "Drohne", "Planung", "Neurosymbolisch", "LTL", "Formale Überprüfung", "Multi-Agent", "Zusammenarbeit in natürlicher Sprache", "verkörperte Intelligenz", "sicherheitskritisch"]
 pubDate: 2026-04-18
 category: Tech
+sourceHash: "1aaabede73e5882ed99ac79a008d3128323454c6"
 ---
 
 # LLM ermöglicht die Drohnenplanung: vom semantischen Verständnis bis zur sicheren Zusammenarbeit

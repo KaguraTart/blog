@@ -4,6 +4,7 @@ description: "Une analyse approfondie des réseaux de neurones fondés sur la ph
 pubDate: 2026-04-01
 tags: ["apprentissage profond", "PDE", "NIP", "PyTorch", "calcul scientifique"]
 category: Tech
+sourceHash: "fa3b95a40058132ef3a4bbb2cd75cf75ba7a8e02"
 ---
 
 # Réseau d'information physique PINN : Résolution d'équations aux dérivées partielles à l'aide de réseaux de neurones

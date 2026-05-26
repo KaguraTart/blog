@@ -4,6 +4,7 @@ description: "In-depth analysis of the two cutting-edge routes of LLM as the pla
 tags: ["LLM", "drone", "planning", "Neuro-symbolic", "LTL", "Formal verification", "multi-agent", "natural language collaboration", "embodied intelligence", "safety critical"]
 pubDate: 2026-04-18
 category: Tech
+sourceHash: "1aaabede73e5882ed99ac79a008d3128323454c6"
 ---
 
 # LLM empowers drone planning: from semantic understanding to safe collaboration

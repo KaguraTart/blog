@@ -4,6 +4,7 @@ description: "Systematically review the construction method of UAV multi-aircraf
 pubDate: 2026-04-07T11:34:43+08:00
 tags: ["drone", "simulation environment", "multi-agent", "path planning", "Gym", "Gazebo", "AirSim", "reinforcement learning"]
 category: Tech
+sourceHash: "ff9e37b397ab58192e278968dc5a92dd4877ea60"
 ---
 
 # UAV path conflict simulation environment construction: from paper practice to code implementation

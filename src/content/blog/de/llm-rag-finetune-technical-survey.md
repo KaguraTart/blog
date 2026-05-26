@@ -4,6 +4,7 @@ description: "Eine ausführliche Analyse des gesamten Prozesstechnologie-Stacks 
 pubDate: 2026-04-07T11:43:17+08:00
 tags: ["großes Sprachmodell", "LAPPEN", "Wissensbasis", "Vektordatenbank", "Feinabstimmung", "LoRA", "QLoRA", "SFT", "RLHF", "Einbetten", "LLM"]
 category: Tech
+sourceHash: "2860624c046e8bbdb4c91f6836f0348410230fbc"
 ---
 
 # LLM RAG Panoramaumfrage zur Wissensbasis und zur Feinabstimmung der Schulungstechnologie

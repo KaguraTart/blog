@@ -4,6 +4,7 @@ description: "NBV + NeRF/3DGS 最先端手法の詳細説明: ActiveGAMER アク
 tags: ["無人航空機", "NRF", "3DGS", "次に最適なビュー", "能動的な知覚", "ガウス スプラッティング"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "030ae332e13fe029a870b23907cdc45d7e0018c0"
 ---
 
 # Next-Best-View Planning と NeRF/3DGS の出会い: アクティブ センシングの情報フロンティア

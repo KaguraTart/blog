@@ -4,6 +4,7 @@ description: "Es sind mehrere Papierrouten für die Generierung sicherheitskriti
 pubDate: 2026-05-19
 tags: ["Papier F", "UAV", "Szenengenerierung", "Szenenberichterstattung", "Sicherheitskritisch", "beschleunigtes Testen", "Notfallrettung", "TR-C", "T-ITS"]
 category: Tech
+sourceHash: "e8583115b5944094ad19a72285ecf76f319d06d8"
 ---
 
 # Papier F Papiergruppenplanung v1: Erstellung, Abdeckung und Notfallanwendung sicherheitskritischer UAV-Szenarien

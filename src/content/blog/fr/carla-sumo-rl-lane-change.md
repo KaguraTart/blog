@@ -3,6 +3,7 @@ title: "Cadre d'apprentissage par renforcement par simulation collaborative CARL
 description: "Basé sur l'architecture de co-simulation CARLA et SUMO, l'algorithme PPO est utilisé pour entraîner les véhicules autonomes à prendre des décisions autonomes de changement de voie dans des flux de trafic mixtes. Explication détaillée du mécanisme de synchronisation du double émulateur, de la conception de la fonction de récompense et des résultats expérimentaux de formation en 10 000 étapes."
 tags: ["apprentissage par renforcement", "Conduite autonome", "CARLA", "SUMO", "Co-simulation", "OPP", "Décision de changement de voie", "Lignes de base stables3"]
 pubDate: 2026-04-15
+sourceHash: "2e44771daacc92991bbe77702eaa1e4bdbc4bcfc"
 ---
 
 #CARLA-SUMO Cadre d'apprentissage par renforcement par cosimulation : laissez les voitures autonomes apprendre à changer activement de voie

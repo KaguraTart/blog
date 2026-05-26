@@ -4,6 +4,7 @@ description: "Analyse approfondie de l'architecture d'intégration de MARL (QMIX
 pubDate: 2026-04-07T11:24:40+08:00
 tags: ["Apprentissage par renforcement multi-agents", "MARNE", "FLINGUE", "Attention aux figures", "drone", "planification du chemin", "apprentissage profond"]
 category: Tech
+sourceHash: "41cd4a89dae677119d19d92d790e780642b52e5c"
 ---
 
 # Apprentissage par renforcement multi-agents et réseau d'attention aux graphes : une solution de bout en bout pour la résolution des conflits de clusters de drones

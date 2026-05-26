@@ -5,6 +5,7 @@ pubDate: 2026-05-19
 updatedDate: 2026-05-23
 tags: ["Papier B", "TR-C", "T-ITS", "UAV", "UAM", "hierarchische Planung", "Warteschlangentheorie", "Ljapunow", "multimodaler Transport"]
 category: Tech
+sourceHash: "ed9e6e52930a3853c8677d15a6be553b48ecb4cc"
 ---
 
 # Paper B Planning v1: Dreischichtige hierarchische Planung von Hunderten von UAVs für TR-C

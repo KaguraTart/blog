@@ -4,6 +4,7 @@ description: "Plusieurs itinéraires papier sont prévus pour la génération de
 pubDate: 2026-05-19
 tags: ["Papier F", "drone", "génération de scène", "couverture de la scène", "Critique pour la sécurité", "tests accélérés", "secours d'urgence", "TR-C", "T-ITS"]
 category: Tech
+sourceHash: "e8583115b5944094ad19a72285ecf76f319d06d8"
 ---
 
 # Paper F Paper group planning v1 : Génération de scénarios critiques pour la sécurité des drones, couverture et application d'urgence

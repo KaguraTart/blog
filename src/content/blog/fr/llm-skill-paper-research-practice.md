@@ -3,6 +3,7 @@ title: "De l'illusion au flux de travail pratique de recherche universitaire : 
 description: "Enregistrez comment j'ai conçu deux compétences OpenClaw, recherche sur papier + vérification sur papier, pour créer un ensemble de flux de travail de recherche de documents académiques qui mettent l'accent sur « réel et vérifiable ». Principes de base : ne pas générer de fausse littérature, recherche manuelle + tri assisté par outils, et coopérer avec la direction de Zotero pour former une boucle fermée complète de la récupération à la révision."
 tags: ["Griffe Ouverte", "Compétence", "recherche universitaire", "LLM", "Zotéro", "Gestion des documents", "CHIFFON", "gestion des connaissances"]
 pubDate: 2026-04-15
+sourceHash: "c4999eb3aaaa694755ba1afe0971a2a88935fdb8"
 ---
 
 # De l'illusion au workflow de recherche académique pratique : j'ai utilisé OpenClaw Skills pour créer un système de suivi papier

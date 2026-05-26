@@ -4,6 +4,7 @@ description: "Eine Reflexion über die Entwicklung der Verkehrssignalsteuerung �
 pubDate: 2026-04-02
 tags: ["Verkehrstechnik", "Verstärkungslernen", "Adaptive Steuerung", "Intelligente Stadt"]
 category: Tech
+sourceHash: "ca62dbbd7b3acf68e773871e122fe3a9b1d895c9"
 ---
 
 # Verkehrssignalsteuerung neu denken: Vom festen Timing zur adaptiven Intelligenz

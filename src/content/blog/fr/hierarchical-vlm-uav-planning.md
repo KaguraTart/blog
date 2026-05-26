@@ -3,6 +3,7 @@ title: "Planification hiérarchique du VLM : laissez le drone comprendre des in
 description: "Analyse approfondie de l'application du modèle vision-langage-action (VLA) dans la planification de trajectoire d'UAV, passant au peigne fin l'itinéraire d'évolution de la planification sémantique unique de bout en bout à la planification sémantique hiérarchique, couvrant des travaux clés tels que RT-2, OpenVLA, Compositional Foundation Models, LangStrands, etc., analysant pourquoi l'architecture hiérarchique est la solution optimale pour UAV VLA et donnant des directives de mise en œuvre."
 tags: ["VLM", "VLA", "intelligence incarnée", "drone", "planification hiérarchique", "RT-2", "OuvertVLA", "Modèle de fondation", "Robotique"]
 pubDate: 2026-04-15
+sourceHash: "aee6b5f68ec2e1d8ceaef7083cebe6ce1b1d2c08"
 ---
 
 # Planification hiérarchique VLM : Laissez le drone comprendre des instructions telles que "atterrir du côté est du bâtiment 3"

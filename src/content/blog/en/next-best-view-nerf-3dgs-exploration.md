@@ -4,6 +4,7 @@ description: "Detailed explanation of NBV + NeRF/3DGS cutting-edge methods: Acti
 tags: ["UAV", "NRF", "3DGS", "Next-Best-View", "active perception", "Gaussian Splatting"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "030ae332e13fe029a870b23907cdc45d7e0018c0"
 ---
 
 # Next-Best-View Planning meets NeRF/3DGS: the information frontier of active sensing

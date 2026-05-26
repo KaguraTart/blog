@@ -4,6 +4,7 @@ description: "Enquête approfondie sur les meilleurs articles dans le domaine de
 pubDate: 2026-05-15
 tags: ["Planification de thèse", "perception active", "3DGS", "Informations sur les pêcheurs", "VNB", "drone", "ICRA"]
 category: Tech
+sourceHash: "efa60b1231da62d4a7c66d365ef35b47d464c46c"
 ---
 
 # Planification de la recherche papier C : Planification de la détection active du drone FIM-3DGS

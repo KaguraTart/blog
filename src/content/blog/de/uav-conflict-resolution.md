@@ -4,6 +4,7 @@ description: "Eingehende Analyse von Konflikterkennungs- und -lösungsalgorithme
 pubDate: 2026-04-07T11:12:59+08:00
 tags: ["Drohne", "Wegplanung", "Konfliktlösung", "Multi-Agent", "Algorithmusübersicht"]
 category: Tech
+sourceHash: "bdea72e467b5ee1ca0825e4536706f6e89e09f1b"
 ---
 
 # Überblick über den Konfliktlösungsalgorithmus zur UAV-Pfadplanung

@@ -3,6 +3,7 @@ title: "Des centaines de machines volent ensemble : un examen complet de la mé
 description: "De l’apprentissage par renforcement multi-agents aux réseaux de neurones graphiques, nous recherchons systématiquement des solutions aux problèmes de répartition de drones à grande échelle. Couvrant l'allocation globale des tâches au niveau macro (MARL/GNN/Attention), la coordination des conflits au niveau méso (QMIX/MAPPO/GNN) et l'évitement d'obstacles en temps réel au niveau micro (MPC/ORCA), en abandonnant les méthodes hors ligne telles que la planification entière, en se concentrant sur des itinéraires d'apprentissage différenciables de bout en bout et en analysant les défis d'ingénierie réels dans les scénarios de trafic aérien urbain (UAM)."
 tags: ["drone", "planification à grande échelle", "Apprentissage par renforcement multi-agents", "MARNE", "GNN", "UAM", "mobilité aérienne urbaine", "planification du chemin", "ORQUE", "mécanisme d'attention", "Attention"]
 pubDate: 2026-04-15
+sourceHash: "9fbd426769d12070bb2cc1eb5cfd88e0dd839003"
 ---
 
 # Des centaines d'engins volent ensemble : Une revue complète de la méthodologie pour les problèmes de dispatching de drones à grande échelle

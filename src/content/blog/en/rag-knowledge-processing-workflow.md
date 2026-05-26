@@ -4,6 +4,7 @@ description: "In-depth discussion of the three major aspects of knowledge extrac
 pubDate: 2026-04-07T12:13:15+08:00
 tags: ["RAG", "knowledge base", "knowledge extraction", "PDF analysis", "Claude Code", "Workflow", "Agent", "LlamaIndex", "LangChain"]
 category: Tech
+sourceHash: "d591a24644f8ae642381da21591e0d2b5db90e3f"
 ---
 
 # RAG knowledge base knowledge processing workflow: a complete solution from PDF parsing to intelligent classification

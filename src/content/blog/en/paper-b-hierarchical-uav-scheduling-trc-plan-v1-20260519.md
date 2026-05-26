@@ -5,6 +5,7 @@ pubDate: 2026-05-19
 updatedDate: 2026-05-23
 tags: ["Paper B", "TR-C", "T-ITS", "UAV", "UAM", "hierarchical scheduling", "queuing theory", "Lyapunov", "multimodal transport"]
 category: Tech
+sourceHash: "ed9e6e52930a3853c8677d15a6be553b48ecb4cc"
 ---
 
 # Paper B Planning v1: Three-layer hierarchical scheduling of hundreds of UAVs for TR-C

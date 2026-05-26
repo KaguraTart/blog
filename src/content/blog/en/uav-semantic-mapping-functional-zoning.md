@@ -4,6 +4,7 @@ description: "Review the research progress of semantic mapping and functional ar
 tags: ["UAV", "Semantic mapping", "Functional area division", "path planning", "airspace management"]
 category: "Tech"
 pubDate: 2026-04-09
+sourceHash: "08d3fe8e5bc0d4f3026e3bc685987a74bf10d34f"
 ---
 
 # Urban low-altitude UAV route planning: semantic mapping and functional area division

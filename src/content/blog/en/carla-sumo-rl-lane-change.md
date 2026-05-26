@@ -3,6 +3,7 @@ title: "CARLA-SUMO collaborative simulation reinforcement learning framework: Le
 description: "Based on the CARLA and SUMO co-simulation architecture, the PPO algorithm is used to train autonomous vehicles to make autonomous decisions to change lanes in mixed traffic flows. Detailed explanation of the dual emulator synchronization mechanism, reward function design and 10,000-step training experimental results."
 tags: ["reinforcement learning", "Autonomous driving", "CARLA", "SUMO", "Co-simulation", "PPO", "Lane changing decision", "Stable-Baselines3"]
 pubDate: 2026-04-15
+sourceHash: "2e44771daacc92991bbe77702eaa1e4bdbc4bcfc"
 ---
 
 #CARLA-SUMO Co-simulation reinforcement learning framework: Let self-driving cars learn to actively change lanes

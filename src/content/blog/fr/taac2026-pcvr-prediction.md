@@ -4,6 +4,7 @@ description: "Concours conjoint d'algorithmes publicitaires Tencent KDD 2026, t�
 pubDate: 2026-04-13T22:00:00+08:00
 tags: ["pCVR", "LumièreGBM", "DIEN", "DeepFM", "Empilage", "fuite de données", "ingénierie des fonctionnalités", "Système de recommandation", "KDD", "algorithme publicitaire", "ChatBoost", "XGBoost", "séries chronologiques", "Encodage cible", "Amorçage", "Apprentissage d'ensemble"]
 category: Tech
+sourceHash: "20276ffdb975c19a75f18d96b18f022f699d1157"
 ---
 
 # Concours d'algorithmes publicitaires Tencent TAAC2026 Solution technique : modélisation de séquences et interaction de fonctionnalités dans la prédiction pCVR

@@ -4,6 +4,7 @@ description: "Overview of the application of multimodal data synthesis and simul
 tags: ["UAV", "Multimodal simulation", "Data synthesis", "Sim2Real", "reinforcement learning"]
 category: "Tech"
 pubDate: 2026-04-09
+sourceHash: "946877605d6074e428721e879d238873c8cb1d00"
 ---
 
 # Urban low-altitude UAV route planning: multi-modal simulation data synthesis

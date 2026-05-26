@@ -5,6 +5,7 @@ pubDate: 2026-05-19
 updatedDate: 2026-05-23
 tags: ["Papier B", "TR-C", "T-ITS", "drone", "UAM", "planification hiérarchique", "théorie des files d'attente", "Liapounov", "transport multimodal"]
 category: Tech
+sourceHash: "ed9e6e52930a3853c8677d15a6be553b48ecb4cc"
 ---
 
 # Paper B Planning v1 : Planification hiérarchique à trois niveaux de centaines de drones pour TR-C

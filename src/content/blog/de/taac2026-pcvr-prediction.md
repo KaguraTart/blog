@@ -4,6 +4,7 @@ description: "KDD 2026 Joint Tencent Advertising Algorithm Competition, Aufgabe 
 pubDate: 2026-04-13T22:00:00+08:00
 tags: ["pCVR", "LightGBM", "DIEN", "DeepFM", "Stapeln", "Datenverlust", "Feature-Engineering", "Empfehlungssystem", "KDD", "Werbealgorithmus", "CatBoost", "XGBoost", "Zeitreihen", "Zielkodierung", "Bootstrap", "Ensemble-Lernen"]
 category: Tech
+sourceHash: "20276ffdb975c19a75f18d96b18f022f699d1157"
 ---
 
 # Tencent Advertising Algorithm Competition TAAC2026 Technische Lösung: Sequenzmodellierung und Feature-Interaktion bei der pCVR-Vorhersage

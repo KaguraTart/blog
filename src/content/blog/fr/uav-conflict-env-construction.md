@@ -4,6 +4,7 @@ description: "Examiner systématiquement la méthode de construction de l'enviro
 pubDate: 2026-04-07T11:34:43+08:00
 tags: ["drone", "environnement de simulation", "multi-agent", "planification du chemin", "Salle de sport", "Belvédère", "AirSim", "apprentissage par renforcement"]
 category: Tech
+sourceHash: "ff9e37b397ab58192e278968dc5a92dd4877ea60"
 ---
 
 # Construction d'un environnement de simulation de conflits de trajectoire de drone : de la pratique papier à l'implémentation du code

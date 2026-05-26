@@ -4,6 +4,7 @@ description: "LogisticsVLN、OmniVLN、ASMA などの最新論文を網羅した
 tags: ["無人航空機", "VLM", "視覚言語ナビゲーション", "マルチモーダル大型モデル", "身体化された知性"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "afcc4f7205fc6b593288c445afbd3bcab294c159"
 ---
 
 # UAV ナビゲーションのための視覚言語モデル: 視覚言語ナビゲーションの基礎と最前線

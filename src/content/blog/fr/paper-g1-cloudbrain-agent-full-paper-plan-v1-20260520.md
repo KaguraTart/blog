@@ -5,6 +5,7 @@ pubDate: 2026-05-20
 updatedDate: 2026-05-23
 tags: ["Papier G1", "Agent CloudBrain", "Cerveau de nuage de trafic à basse altitude", "Agent LLM", "PCM", "Utilisation des outils", "AAAI", "IJCAI", "drone", "Vérification formelle"]
 category: Tech
+sourceHash: "2ed5410ff6c19732b204575ec5b7ca12788c230b"
 ---
 
 # Article G1 Proposition d'article complète v1 : Agent LLM vérifiable pour le cerveau des nuages ​​de trafic à basse altitude

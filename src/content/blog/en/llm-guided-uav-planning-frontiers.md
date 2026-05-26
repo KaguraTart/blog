@@ -4,6 +4,7 @@ description: "In-depth analysis of the three major paradigms of LLM for UAV miss
 tags: ["UAV", "LLM", "mission planning", "PDDL", "embodied intelligence", "end-to-end"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "da6a65e942e29f4e1a718bd909a7275cfe43fa9b"
 ---
 
 # LLM-Guided UAV Mission Planning: The Frontier from Inference to Execution

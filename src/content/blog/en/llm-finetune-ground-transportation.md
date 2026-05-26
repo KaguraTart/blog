@@ -4,6 +4,7 @@ description: "From data construction to fine-tuning deployment, we will teach yo
 pubDate: 2026-04-25
 tags: ['LLM', '微调', '地面交通', 'LoRA', 'QLoRA']
 category: Tech
+sourceHash: "e3866339bf46e05c8aa1b79ce5655fb7c4adcd60"
 ---
 
 ## Introduction

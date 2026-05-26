@@ -4,6 +4,7 @@ description: "In-depth analysis of Physics-Informed Neural Networks, from princi
 pubDate: 2026-04-01
 tags: ["deep learning", "PDE", "PINN", "PyTorch", "scientific computing"]
 category: Tech
+sourceHash: "fa3b95a40058132ef3a4bbb2cd75cf75ba7a8e02"
 ---
 
 # Physical Information Network PINN: Solving partial differential equations using neural networks

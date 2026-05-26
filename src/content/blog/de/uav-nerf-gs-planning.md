@@ -4,6 +4,7 @@ description: "Überblick über die Anwendung von NeRF/3DGS in der aktiven Erfass
 tags: ["UAV", "NRF", "3DGS", "aktive Wahrnehmung", "Wegplanung"]
 category: "Tech"
 pubDate: 2026-04-08
+sourceHash: "5557d17ae8bb31a91500f574bc8cc486e4e032d1"
 ---
 
 # Städtische UAV-Routenplanung in geringer Höhe: NeRF- und 3DGS-Neuronale Rendering-Methoden

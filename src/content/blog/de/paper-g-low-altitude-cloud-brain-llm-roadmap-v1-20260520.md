@@ -5,6 +5,7 @@ pubDate: 2026-05-20
 updatedDate: 2026-05-23
 tags: ["Papier G", "Gehirn der Verkehrswolke in geringer Höhe", "LLM-Agent", "Feinabstimmung des Modells", "Werkzeuggebrauch", "AAAI", "IJCAI", "UAV", "AGI"]
 category: Tech
+sourceHash: "f37d501e3b68b293076f6f90f7f7c3da5c91513d"
 ---
 
 # Paper G Planning v1: LLM-Agent und Modell-Feinabstimmung der Route im Cloud-Brain für den Verkehr in geringer Höhe

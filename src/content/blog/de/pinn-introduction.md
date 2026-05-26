@@ -4,6 +4,7 @@ description: "Eine eingehende Analyse physikalisch-informierter neuronaler Netze
 pubDate: 2026-04-01
 tags: ["tiefes Lernen", "PDE", "PINN", "PyTorch", "Wissenschaftliches Rechnen"]
 category: Tech
+sourceHash: "fa3b95a40058132ef3a4bbb2cd75cf75ba7a8e02"
 ---
 
 # Physical Information Network PINN: Lösung partieller Differentialgleichungen mithilfe neuronaler Netze

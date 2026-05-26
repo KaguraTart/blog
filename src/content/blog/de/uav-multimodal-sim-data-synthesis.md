@@ -4,6 +4,7 @@ description: "Überblick über die Anwendung multimodaler Datensynthese- und Sim
 tags: ["UAV", "Multimodale Simulation", "Datensynthese", "Sim2Real", "Verstärkungslernen"]
 category: "Tech"
 pubDate: 2026-04-09
+sourceHash: "946877605d6074e428721e879d238873c8cb1d00"
 ---
 
 # Städtische UAV-Routenplanung in geringer Höhe: multimodale Simulationsdatensynthese

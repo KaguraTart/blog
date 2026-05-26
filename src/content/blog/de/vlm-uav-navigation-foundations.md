@@ -4,6 +4,7 @@ description: "Überblick über das grundlegende Paradigma, die Kernarchitektur u
 tags: ["UAV", "VLM", "Vision-Sprachnavigation", "Multimodales Großmodell", "verkörperte Intelligenz"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "afcc4f7205fc6b593288c445afbd3bcab294c159"
 ---
 
 # Vision-Language-Modelle für die UAV-Navigation: Die Grundlage und Grenze der Vision-Language-Navigation

@@ -4,6 +4,7 @@ description: "ループ検出器や固定計画から強化学習やコネクテ
 pubDate: 2026-04-02
 tags: ["交通工学", "強化学習", "適応制御", "スマートシティ"]
 category: Tech
+sourceHash: "ca62dbbd7b3acf68e773871e122fe3a9b1d895c9"
 ---
 
 # 交通信号制御の再考: 固定タイミングから適応型インテリジェンスへ

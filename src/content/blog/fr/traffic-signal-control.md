@@ -4,6 +4,7 @@ description: "Une réflexion sur l'évolution du contrôle des feux de circulati
 pubDate: 2026-04-02
 tags: ["Ingénierie du trafic", "Apprentissage par renforcement", "Contrôle adaptatif", "Ville intelligente"]
 category: Tech
+sourceHash: "ca62dbbd7b3acf68e773871e122fe3a9b1d895c9"
 ---
 
 # Repenser le contrôle des feux de circulation : du timing fixe à l'intelligence adaptative

@@ -5,6 +5,7 @@ pubDate: 2026-05-15
 updatedDate: 2026-05-23
 tags: ["Abschlussarbeitsplanung", "Einreichung bei Top-Journal", "T-ITS", "TR Teil C", "Wirtschaft in geringer Höhe", "aktive Wahrnehmung", "3DGS", "UAV", "Fisher-Informationen"]
 category: Tech
+sourceHash: "05230e9d3f9c4368c3f98b16b9aca758a7d23ecc"
 ---
 
 # Paper C v2: Neupositionierung von RA-L zur Top-Ausgabe

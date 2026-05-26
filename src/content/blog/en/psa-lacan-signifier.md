@@ -4,6 +4,7 @@ description: "An essay exploring how Jacques Lacan reframed Freudian psychoanaly
 pubDate: 2026-04-02
 tags: ["Essay"]
 category: Essay
+sourceHash: "99712a91f8c22e59ebd01dba8395b5e8e7a224ac"
 ---
 
 # The Unconscious as a Language: Lacan, the Signifier, and the Structure of Desire

@@ -4,6 +4,7 @@ description: "Systematically analyzes the core problems and solution ideas of ur
 pubDate: 2026-05-15
 tags: ["UAV", "path planning", "urban airspace", "Optimization algorithm", "UTM", "conflict resolution"]
 category: Tech
+sourceHash: "5588745289f1f698abd6def7ed9650375344a695"
 ---
 
 # Urban low-altitude UAV route planning: theory and algorithm in high-density CBD scenarios

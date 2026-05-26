@@ -4,6 +4,7 @@ description: "Discussion approfondie des trois aspects majeurs de l'extraction, 
 pubDate: 2026-04-07T12:13:15+08:00
 tags: ["CHIFFON", "base de connaissances", "extraction de connaissances", "Analyse PDF", "Claude Code", "Flux de travail", "Agent", "LamaIndex", "LangChaîne"]
 category: Tech
+sourceHash: "d591a24644f8ae642381da21591e0d2b5db90e3f"
 ---
 
 # Workflow de traitement des connaissances de la base de connaissances RAG : une solution complète de l'analyse PDF à la classification intelligente

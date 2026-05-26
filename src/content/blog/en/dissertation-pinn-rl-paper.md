@@ -6,6 +6,7 @@ tags: ["Traffic Engineering", "Reinforcement Learning", "Expressway", "SUMO", "S
 category: Paper
 doi: "10.1155/2023/4771946"
 journal: "Journal of Advanced Transportation"
+sourceHash: "a9a545059b6f7eb95d0926a5116d27e524cbb70d"
 ---
 
 # RL-Based Cooperative Optimization of Channelization and Ramp Metering

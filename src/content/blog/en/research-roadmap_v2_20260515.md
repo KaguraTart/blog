@@ -5,6 +5,7 @@ pubDate: 2026-05-15
 updatedDate: 2026-05-23
 tags: ["Thesis planning", "Research roadmap", "top publication strategy", "T-ITS", "TR Part C", "T-RO", "UAV", "low altitude"]
 category: Tech
+sourceHash: "1e0fdb9e8c70b09d0ee2f5dec5a08bf897624441"
 ---
 
 # Research Roadmap v2: Comprehensive upgrade of top journal strategy and organization of low-altitude transportation paper groups

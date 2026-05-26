@@ -5,6 +5,7 @@ pubDate: 2026-05-15
 updatedDate: 2026-05-23
 tags: ["Abschlussarbeitsplanung", "Forschungs-Roadmap", "Top-Publikationsstrategie", "T-ITS", "TR Teil C", "T-RO", "UAV", "geringe Höhe"]
 category: Tech
+sourceHash: "1e0fdb9e8c70b09d0ee2f5dec5a08bf897624441"
 ---
 
 # Forschungs-Roadmap v2: Umfassende Aktualisierung der Top-Journal-Strategie und Organisation von Papiergruppen zum Thema Tieftransport

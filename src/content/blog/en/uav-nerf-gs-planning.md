@@ -4,6 +4,7 @@ description: "Overview of the application of NeRF/3DGS in urban UAV active sensi
 tags: ["UAV", "NRF", "3DGS", "active perception", "path planning"]
 category: "Tech"
 pubDate: 2026-04-08
+sourceHash: "5557d17ae8bb31a91500f574bc8cc486e4e032d1"
 ---
 
 # Urban low-altitude UAV route planning: NeRF and 3DGS neural rendering methods

@@ -4,6 +4,7 @@ description: "Examen de l'application des jumeaux numériques et du rendu neuron
 tags: ["drone", "jumeau numérique", "rendu neuronal", "modélisation de l'espace aérien", "planification du chemin"]
 category: "Tech"
 pubDate: 2026-04-09
+sourceHash: "1c503f8b7440cce9446d6daac01ae3e553bd5dd1"
 ---
 
 # Planification d'itinéraires urbains de drones à basse altitude : modélisation de l'espace aérien par jumeau numérique et rendu neuronal

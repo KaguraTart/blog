@@ -4,6 +4,7 @@ description: "Analyse approfondie des deux itinéraires de pointe du LLM en tant
 tags: ["LLM", "drone", "planification", "Neuro-symbolique", "LTL", "Vérification formelle", "multi-agent", "collaboration en langage naturel", "intelligence incarnée", "critique pour la sécurité"]
 pubDate: 2026-04-18
 category: Tech
+sourceHash: "1aaabede73e5882ed99ac79a008d3128323454c6"
 ---
 
 # LLM facilite la planification des drones : de la compréhension sémantique à la collaboration sécurisée

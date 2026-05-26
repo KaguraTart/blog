@@ -4,6 +4,7 @@ description: "Explain the information theory foundation of active sensing from f
 tags: ["UAV", "active perception", "information theory", "Fisher Information", "SLAM", "Cramér-Rao"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "ea628455d699760ba54122071b05535aa55cf481"
 ---
 
 # Active perception from an information theory perspective: Fisher Information and Cramér-Rao lower bound

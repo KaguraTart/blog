@@ -4,6 +4,7 @@ description: "Ausführliche Diskussion der drei Hauptaspekte der Wissensextrakti
 pubDate: 2026-04-07T12:13:15+08:00
 tags: ["LAPPEN", "Wissensbasis", "Wissensextraktion", "PDF-Analyse", "Claude Code", "Arbeitsablauf", "Agent", "LamaIndex", "LangChain"]
 category: Tech
+sourceHash: "d591a24644f8ae642381da21591e0d2b5db90e3f"
 ---
 
 # RAG-Wissensdatenbank-Wissensverarbeitungsworkflow: eine Komplettlösung von der PDF-Analyse bis zur intelligenten Klassifizierung

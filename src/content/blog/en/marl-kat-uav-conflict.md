@@ -4,6 +4,7 @@ description: "In-depth analysis of the integration architecture of MARL (QMIX/CO
 pubDate: 2026-04-07T11:24:40+08:00
 tags: ["Multi-agent reinforcement learning", "MARL", "GAT", "Figure attention", "drone", "path planning", "deep learning"]
 category: Tech
+sourceHash: "41cd4a89dae677119d19d92d790e780642b52e5c"
 ---
 
 # Multi-agent reinforcement learning and graph attention network: an end-to-end solution for UAV cluster conflict resolution

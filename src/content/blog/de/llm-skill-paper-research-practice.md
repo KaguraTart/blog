@@ -3,6 +3,7 @@ title: "Von der Illusion zum praktischen akademischen Forschungsworkflow: Ich ha
 description: "Zeichnen Sie auf, wie ich zwei OpenClaw-Fähigkeiten, Papierrecherche und Papierverifizierer, entworfen habe, um einen Arbeitsablauf für die akademische Dokumentenrecherche aufzubauen, bei dem „echt und überprüfbar“ im Vordergrund steht. Grundprinzipien: Erstellen Sie keine falsche Literatur, manuelle Suche + werkzeuggestützte Sortierung und arbeiten Sie mit dem Zotero-Management zusammen, um einen vollständigen geschlossenen Kreislauf vom Abruf bis zur Überprüfung zu bilden."
 tags: ["OpenClaw", "Fähigkeit", "akademische Forschung", "LLM", "Zotero", "Dokumentenmanagement", "LAPPEN", "Wissensmanagement"]
 pubDate: 2026-04-15
+sourceHash: "c4999eb3aaaa694755ba1afe0971a2a88935fdb8"
 ---
 
 # Von der Illusion zum praktischen akademischen Forschungsworkflow: Ich habe OpenClaw Skills verwendet, um ein Papierverfolgungssystem zu erstellen

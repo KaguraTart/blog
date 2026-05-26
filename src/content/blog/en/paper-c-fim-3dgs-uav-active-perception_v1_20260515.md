@@ -4,6 +4,7 @@ description: "In-depth investigation of top papers in the field of FIM+3DGS+UAV 
 pubDate: 2026-05-15
 tags: ["Thesis planning", "active perception", "3DGS", "Fisher information", "NBV", "UAV", "ICRA"]
 category: Tech
+sourceHash: "efa60b1231da62d4a7c66d365ef35b47d464c46c"
 ---
 
 # Paper C Research Planning: FIM-3DGS UAV Active Sensing Planning

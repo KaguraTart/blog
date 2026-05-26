@@ -5,6 +5,7 @@ pubDate: 2026-05-20
 updatedDate: 2026-05-23
 tags: ["Papier F", "Planification du journal", "drone", "génération de scène", "couverture de la scène", "Critique pour la sécurité", "tests accélérés", "garantie de risque", "TR-C", "T-ITS"]
 category: Tech
+sourceHash: "a0e4aeb6f8bbbaba5c9d96869c63d0b8f954d370"
 ---
 
 # Paper F Journal Planning v2 : Itinéraire prioritaire du journal pour l'ingénierie de scénarios critiques pour la sécurité des drones

@@ -4,6 +4,7 @@ description: "Analyse systématiquement les principaux problèmes et les idées 
 pubDate: 2026-05-15
 tags: ["drone", "planification du chemin", "espace aérien urbain", "Algorithme d'optimisation", "UTM", "résolution de conflits"]
 category: Tech
+sourceHash: "5588745289f1f698abd6def7ed9650375344a695"
 ---
 
 # Planification d'itinéraires urbains de drones à basse altitude : théorie et algorithme dans des scénarios CBD à haute densité

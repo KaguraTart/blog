@@ -4,6 +4,7 @@ description: "Eingehende Analyse der drei Hauptparadigmen von LLM für die UAV-M
 tags: ["UAV", "LLM", "Missionsplanung", "PDDL", "verkörperte Intelligenz", "Ende-zu-Ende"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "da6a65e942e29f4e1a718bd909a7275cfe43fa9b"
 ---
 
 # LLM-gesteuerte UAV-Missionsplanung: Die Grenze von der Schlussfolgerung bis zur Ausführung

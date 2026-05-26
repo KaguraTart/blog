@@ -4,6 +4,7 @@ description: "Un essai explorant comment Jacques Lacan a recadré la psychanalys
 pubDate: 2026-04-02
 tags: ["Essai"]
 category: Essay
+sourceHash: "99712a91f8c22e59ebd01dba8395b5e8e7a224ac"
 ---
 
 # L'inconscient comme langage : Lacan, le signifiant et la structure du désir

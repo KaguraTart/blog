@@ -4,6 +4,7 @@ description: "Multiple paper routes are planned for UAV safety-critical scene ge
 pubDate: 2026-05-19
 tags: ["Paper F", "UAV", "scene generation", "scene coverage", "Safety-Critical", "accelerated testing", "emergency rescue", "TR-C", "T-ITS"]
 category: Tech
+sourceHash: "e8583115b5944094ad19a72285ecf76f319d06d8"
 ---
 
 # Paper F Paper group planning v1: UAV safety critical scenario generation, coverage and emergency application

@@ -4,6 +4,7 @@ description: "Überblick über die Anwendung von digitalen Zwillingen und neuron
 tags: ["UAV", "digitaler Zwilling", "neuronale Darstellung", "Luftraummodellierung", "Wegplanung"]
 category: "Tech"
 pubDate: 2026-04-09
+sourceHash: "1c503f8b7440cce9446d6daac01ae3e553bd5dd1"
 ---
 
 # Städtische UAV-Routenplanung in geringer Höhe: Digitaler Zwilling und neuronale Rendering-Luftraummodellierung

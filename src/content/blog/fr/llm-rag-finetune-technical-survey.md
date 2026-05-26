@@ -4,6 +4,7 @@ description: "Une analyse approfondie de la pile technologique complète de la b
 pubDate: 2026-04-07T11:43:17+08:00
 tags: ["grand modèle de langage", "CHIFFON", "base de connaissances", "base de données de vecteurs", "réglage fin", "LoRA", "QLoRA", "SFT", "RLHF", "Intégration", "LLM"]
 category: Tech
+sourceHash: "2860624c046e8bbdb4c91f6836f0348410230fbc"
 ---
 
 # LLM RAG Enquête panoramique sur la base de connaissances et la mise au point des technologies de formation

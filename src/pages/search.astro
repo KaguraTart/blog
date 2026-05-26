@@ -91,7 +91,9 @@ const locale = normalizeLocale(Astro.currentLocale ?? defaultLocale);
       return;
     }
 
+    var seq = ++searchRequestSeq;
     window.pagefind.search(query).then(function(results) {
+      if (seq !== searchRequestSeq) return;
       loading.style.display = 'none';
       if (results.results.length === 0) {
         queryText.textContent = query;
@@ -103,6 +105,7 @@ const locale = normalizeLocale(Astro.currentLocale ?? defaultLocale);
       var promises = topResults.map(function(r) { return r.data(); });
 
       Promise.all(promises).then(function(items) {
+        if (seq !== searchRequestSeq) return;
         list.innerHTML = items.map(function(item) {
           var excerpt = item.excerpt || '';
           var cleanExcerpt = excerpt.replace(/<\/?mark>/g, '').slice(0, 200);
@@ -115,11 +118,13 @@ const locale = normalizeLocale(Astro.currentLocale ?? defaultLocale);
             '</a>';
         }).join('');
       }).catch(function() {
+        if (seq !== searchRequestSeq) return;
         loading.style.display = 'none';
         emptyState.querySelector('p').textContent = 'Search failed, please try again.';
         emptyState.style.display = '';
       });
     }).catch(function() {
+      if (seq !== searchRequestSeq) return;
       loading.style.display = 'none';
       emptyState.querySelector('p').textContent = 'Search failed, please try again.';
       emptyState.style.display = '';
@@ -129,6 +134,7 @@ const locale = normalizeLocale(Astro.currentLocale ?? defaultLocale);
   var debounceTimer = null;
   var input = document.getElementById('search-input');
   var clearBtn = document.getElementById('search-clear');
+  var searchRequestSeq = 0;
 
   input.addEventListener('input', function() {
     clearTimeout(debounceTimer);

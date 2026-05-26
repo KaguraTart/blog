@@ -4,6 +4,7 @@ description: "Analysiert systematisch die Kernprobleme und Lösungsideen der st�
 pubDate: 2026-05-15
 tags: ["UAV", "Wegplanung", "städtischer Luftraum", "Optimierungsalgorithmus", "UTM", "Konfliktlösung"]
 category: Tech
+sourceHash: "5588745289f1f698abd6def7ed9650375344a695"
 ---
 
 # Städtische UAV-Routenplanung in geringer Höhe: Theorie und Algorithmus in CBD-Szenarien mit hoher Dichte

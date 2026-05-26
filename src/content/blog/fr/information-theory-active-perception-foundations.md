@@ -4,6 +4,7 @@ description: "Expliquer le fondement de la théorie de l'information de la déte
 tags: ["drone", "perception active", "théorie de l'information", "Informations sur les pêcheurs", "CLAQUER", "Cramér-Rao"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "ea628455d699760ba54122071b05535aa55cf481"
 ---
 
 # Perception active du point de vue de la théorie de l'information : Fisher Information et limite inférieure de Cramér-Rao

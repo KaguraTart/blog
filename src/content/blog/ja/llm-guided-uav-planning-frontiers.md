@@ -4,6 +4,7 @@ description: "UAV ミッション計画のための LLM の 3 つの主要なパ
 tags: ["無人航空機", "LLM", "ミッション計画", "PDDL", "身体化された知性", "エンドツーエンド"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "da6a65e942e29f4e1a718bd909a7275cfe43fa9b"
 ---
 
 # LLM ガイドによる UAV ミッション計画: 推論から実行までのフロンティア

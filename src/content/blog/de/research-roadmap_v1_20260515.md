@@ -4,6 +4,7 @@ description: "Sortieren Sie systematisch den Forschungswert von 18 Artikeln zum 
 pubDate: 2026-05-15
 tags: ["Abschlussarbeitsplanung", "Forschungs-Roadmap", "UAV", "geringe Höhe", "Einreichungsstrategie", "T-ITS", "ICRA"]
 category: Tech
+sourceHash: "d7d759c643601fa494ff168b952f49bf00509471"
 ---
 
 # Low Altitude UAV Research Blog Cultural Roadmap: Ein vollständiger Plan vom Blog bis zum Journal

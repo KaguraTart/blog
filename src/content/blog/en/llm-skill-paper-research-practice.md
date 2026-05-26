@@ -3,6 +3,7 @@ title: "From illusion to practical academic research workflow: I built a paper t
 description: "Record how I designed two OpenClaw Skills, paper-research + paper-verifier, to build a set of academic document research workflow that emphasizes \"real and verifiable\". Core principles: Do not generate false literature, manual search + tool-assisted sorting, and cooperate with Zotero management to form a complete closed loop from retrieval to review."
 tags: ["OpenClaw", "Skill", "academic research", "LLM", "Zotero", "Document management", "RAG", "knowledge management"]
 pubDate: 2026-04-15
+sourceHash: "c4999eb3aaaa694755ba1afe0971a2a88935fdb8"
 ---
 
 # From illusion to practical academic research workflow: I used OpenClaw Skills to build a paper tracking system

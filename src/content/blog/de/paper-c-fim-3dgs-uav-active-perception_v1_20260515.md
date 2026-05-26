@@ -4,6 +4,7 @@ description: "Eingehende Untersuchung der Top-Artikel im Bereich der aktiven FIM
 pubDate: 2026-05-15
 tags: ["Abschlussarbeitsplanung", "aktive Wahrnehmung", "3DGS", "Fisher-Informationen", "NBV", "UAV", "ICRA"]
 category: Tech
+sourceHash: "efa60b1231da62d4a7c66d365ef35b47d464c46c"
 ---
 
 # Paper C Forschungsplanung: FIM-3DGS UAV Active Sensing Planning

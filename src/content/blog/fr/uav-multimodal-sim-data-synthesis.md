@@ -4,6 +4,7 @@ description: "Aperçu de l'application des plateformes de synthèse et de simula
 tags: ["drone", "Simulation multimodale", "Synthèse des données", "Sim2Réel", "apprentissage par renforcement"]
 category: "Tech"
 pubDate: 2026-04-09
+sourceHash: "946877605d6074e428721e879d238873c8cb1d00"
 ---
 
 # Planification d'itinéraires urbains de drones à basse altitude : synthèse de données de simulation multimodale

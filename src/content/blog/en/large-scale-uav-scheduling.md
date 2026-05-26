@@ -3,6 +3,7 @@ title: "Hundreds of machines fly together: A comprehensive review of the methodo
 description: "From multi-agent reinforcement learning to graph neural networks, we systematically sort out solutions to large-scale drone dispatch problems. Covering macro-level global task allocation (MARL/GNN/Attention), meso-level conflict coordination (QMIX/MAPPO/GNN), and micro-level real-time obstacle avoidance (MPC/ORCA), abandoning offline methods such as integer planning, focusing on differentiable end-to-end learning routes, and analyzing actual engineering challenges in urban air traffic (UAM) scenarios."
 tags: ["drone", "large-scale scheduling", "Multi-agent reinforcement learning", "MARL", "GNN", "UAM", "urban air mobility", "path planning", "ORCA", "attention mechanism", "Attention"]
 pubDate: 2026-04-15
+sourceHash: "9fbd426769d12070bb2cc1eb5cfd88e0dd839003"
 ---
 
 # Hundreds of machines fly together: A complete review of the methodology for large-scale drone dispatching problems

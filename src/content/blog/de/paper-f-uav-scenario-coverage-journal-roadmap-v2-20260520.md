@@ -5,6 +5,7 @@ pubDate: 2026-05-20
 updatedDate: 2026-05-23
 tags: ["Papier F", "Journalplanung", "UAV", "Szenengenerierung", "Szenenberichterstattung", "Sicherheitskritisch", "beschleunigtes Testen", "Risikogarantie", "TR-C", "T-ITS"]
 category: Tech
+sourceHash: "a0e4aeb6f8bbbaba5c9d96869c63d0b8f954d370"
 ---
 
 # Paper F Journal Planning v2: Journal Priority Route for UAV Safety-Critical Scenario Engineering

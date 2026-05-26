@@ -4,6 +4,7 @@ description: "Aperçu de l'application de NeRF/3DGS dans la détection active et
 tags: ["drone", "FRN", "3DGS", "perception active", "planification du chemin"]
 category: "Tech"
 pubDate: 2026-04-08
+sourceHash: "5557d17ae8bb31a91500f574bc8cc486e4e032d1"
 ---
 
 # Planification d'itinéraires urbains de drones à basse altitude : méthodes de rendu neuronal NeRF et 3DGS

@@ -4,6 +4,7 @@ description: "Eingehende Analyse der Integrationsarchitektur von MARL (QMIX/COMA
 pubDate: 2026-04-07T11:24:40+08:00
 tags: ["Verstärkungslernen mit mehreren Agenten", "MERGEL", "GAT", "Figur Aufmerksamkeit", "Drohne", "Wegplanung", "tiefes Lernen"]
 category: Tech
+sourceHash: "41cd4a89dae677119d19d92d790e780642b52e5c"
 ---
 
 # Multi-Agent-Verstärkungslernen und Graph-Aufmerksamkeitsnetzwerk: eine End-to-End-Lösung für die Konfliktlösung von UAV-Clustern

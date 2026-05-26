@@ -8,18 +8,47 @@ export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
   const basePosts = posts.filter(isDefaultLocalePost);
 
-  return routeLocales.flatMap(locale => (
-    basePosts
-      .filter(basePost => posts.some(post => post.slug === `${locale}/${getPostBaseSlug(basePost)}`))
-      .map(basePost => ({
-        params: { locale, slug: getPostBaseSlug(basePost) },
-        props: {
-          locale,
-          post: getLocalizedPost(basePost, locale, posts),
-          nativeLocaleCodes: getAvailablePostLocales(basePost, posts),
-        },
-      }))
-  ));
+  const basePostsBySlug = new Map();
+  for (const basePost of basePosts) {
+    basePostsBySlug.set(getPostBaseSlug(basePost), basePost);
+  }
+
+  const availableByLocale = new Map(
+    routeLocales.map(locale => {
+      return [locale, new Set()];
+    }),
+  );
+
+  const baseSlugs = new Set(basePosts.map(post => getPostBaseSlug(post)));
+
+  for (const post of posts) {
+    const parts = String(post.slug).split('/').filter(Boolean);
+    if (parts.length !== 2) continue;
+    const locale = parts[0];
+    if (!routeLocales.includes(locale)) continue;
+    if (baseSlugs.has(parts[1])) {
+      availableByLocale.get(locale)?.add(parts[1]);
+    }
+  }
+
+  return routeLocales.flatMap(locale => {
+    const localeSet = availableByLocale.get(locale);
+    if (!localeSet) return [];
+
+    return Array.from(baseSlugs)
+      .filter(baseSlug => localeSet.has(baseSlug))
+      .map(baseSlug => {
+        const basePost = basePostsBySlug.get(baseSlug);
+        return {
+          params: { locale, slug: baseSlug },
+          props: {
+            locale,
+            post: getLocalizedPost(basePost, locale, posts),
+            nativeLocaleCodes: getAvailablePostLocales(basePost, posts),
+          },
+        };
+      });
+  });
 }
 
 const { post, locale, nativeLocaleCodes } = Astro.props;

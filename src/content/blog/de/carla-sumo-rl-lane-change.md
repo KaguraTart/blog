@@ -3,6 +3,7 @@ title: "CARLA-SUMO-Lernrahmen für kollaborative Simulationsverstärkung: Lassen
 description: "Basierend auf der CARLA- und SUMO-Co-Simulationsarchitektur wird der PPO-Algorithmus verwendet, um autonome Fahrzeuge darauf zu trainieren, autonome Entscheidungen zum Spurwechsel in gemischten Verkehrsströmen zu treffen. Detaillierte Erläuterung des Dual-Emulator-Synchronisationsmechanismus, des Belohnungsfunktionsdesigns und der experimentellen Ergebnisse des 10.000-Schritte-Trainings."
 tags: ["Verstärkungslernen", "Autonomes Fahren", "CARLA", "SUMO", "Co-Simulation", "PPO", "Entscheidung zum Spurwechsel", "Stabile-Baselines3"]
 pubDate: 2026-04-15
+sourceHash: "2e44771daacc92991bbe77702eaa1e4bdbc4bcfc"
 ---
 
 #CARLA-SUMO Co-Simulations-Lernrahmen: Lassen Sie selbstfahrende Autos lernen, aktiv die Spur zu wechseln

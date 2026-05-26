@@ -4,6 +4,7 @@ description: "Quand \"Le Livre des Changements\" rencontre l'inférence bayésie
 pubDate: 2026-04-03
 tags: ["Six Yao", "Chaîne de Markov", "Je Ching", "théorie des probabilités", "IA"]
 category: Essay
+sourceHash: "b9b1a6be94fc853402f71853bd5459db3e130505"
 ---
 
 ## 1. Introduction

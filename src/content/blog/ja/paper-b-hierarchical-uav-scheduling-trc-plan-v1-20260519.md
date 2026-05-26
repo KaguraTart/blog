@@ -5,6 +5,7 @@ pubDate: 2026-05-19
 updatedDate: 2026-05-23
 tags: ["紙B", "TR-C", "おっぱい", "無人航空機", "UAM", "階層的スケジューリング", "待ち行列理論", "リャプノフ", "複合一貫輸送"]
 category: Tech
+sourceHash: "ed9e6e52930a3853c8677d15a6be553b48ecb4cc"
 ---
 
 # Paper B Planning v1: TR-C 用の数百台の UAV の 3 層階層スケジューリング

@@ -4,6 +4,7 @@ description: "Examiner les progrès de la recherche sur la cartographie sémanti
 tags: ["drone", "Cartographie sémantique", "Division des domaines fonctionnels", "planification du chemin", "gestion de l'espace aérien"]
 category: "Tech"
 pubDate: 2026-04-09
+sourceHash: "08d3fe8e5bc0d4f3026e3bc685987a74bf10d34f"
 ---
 
 # Planification d'itinéraires urbains de drones à basse altitude : cartographie sémantique et division des zones fonctionnelles

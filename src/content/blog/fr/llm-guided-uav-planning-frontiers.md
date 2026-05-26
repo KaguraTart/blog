@@ -4,6 +4,7 @@ description: "Analyse approfondie des trois principaux paradigmes de LLM pour la
 tags: ["drone", "LLM", "planification des missions", "PDDL", "intelligence incarnée", "de bout en bout"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "da6a65e942e29f4e1a718bd909a7275cfe43fa9b"
 ---
 
 # Planification de mission de drone guidée par LLM : la frontière de l'inférence à l'exécution

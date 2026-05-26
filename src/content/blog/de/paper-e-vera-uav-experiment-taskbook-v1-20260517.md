@@ -5,6 +5,7 @@ pubDate: 2026-05-17
 updatedDate: 2026-05-23
 tags: ["Papier E", "AAAI", "UAV", "LLM", "LTL", "STL", "Formale Überprüfung", "Experimentelles Aufgabenbuch", "Nachweis der Vollständigkeit"]
 category: Tech
+sourceHash: "5a168001b03609769dacbd93bde621f2660a2405"
 ---
 
 # Paper E Experimental Task Book v2: Verifizierung und Fehlerkorrektur UAV-Sprachplanung für AAAI

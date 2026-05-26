@@ -4,6 +4,7 @@ description: "An in-depth analysis of the RAG knowledge base full-process techno
 pubDate: 2026-04-07T11:43:17+08:00
 tags: ["large language model", "RAG", "knowledge base", "vector database", "fine-tuning", "LoRA", "QLoRA", "SFT", "RLHF", "Embedding", "LLM"]
 category: Tech
+sourceHash: "2860624c046e8bbdb4c91f6836f0348410230fbc"
 ---
 
 # LLM RAG Panoramic survey on knowledge base and fine-tuning training technology

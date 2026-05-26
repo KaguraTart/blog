@@ -5,6 +5,7 @@ pubDate: 2026-05-20
 updatedDate: 2026-05-23
 tags: ["Papier G", "Cerveau de nuage de trafic à basse altitude", "Agent LLM", "Mise au point du modèle", "Utilisation des outils", "AAAI", "IJCAI", "drone", "AGI"]
 category: Tech
+sourceHash: "f37d501e3b68b293076f6f90f7f7c3da5c91513d"
 ---
 
 # Paper G Planning v1 : Agent LLM et modèle d'itinéraire de réglage fin dans le cerveau du nuage de trafic à basse altitude

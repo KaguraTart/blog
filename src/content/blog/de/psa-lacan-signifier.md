@@ -4,6 +4,7 @@ description: "Ein Aufsatz untersucht, wie Jacques Lacan die Freudsche Psychoanal
 pubDate: 2026-04-02
 tags: ["Aufsatz"]
 category: Essay
+sourceHash: "99712a91f8c22e59ebd01dba8395b5e8e7a224ac"
 ---
 
 # Das Unbewusste als Sprache: Lacan, der Signifikant und die Struktur des Verlangens

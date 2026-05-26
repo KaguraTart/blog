@@ -5,6 +5,7 @@ pubDate: 2026-05-15
 updatedDate: 2026-05-23
 tags: ["Planification de thèse", "Feuille de route de la recherche", "meilleure stratégie de publication", "T-ITS", "TR Partie C", "T-RO", "drone", "basse altitude"]
 category: Tech
+sourceHash: "1e0fdb9e8c70b09d0ee2f5dec5a08bf897624441"
 ---
 
 # Feuille de route de recherche v2 : mise à niveau complète de la stratégie des principales revues et organisation des groupes de journaux sur les transports à basse altitude

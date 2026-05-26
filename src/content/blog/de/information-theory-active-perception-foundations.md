@@ -4,6 +4,7 @@ description: "Erklären Sie die informationstheoretischen Grundlagen der aktiven
 tags: ["UAV", "aktive Wahrnehmung", "Informationstheorie", "Fisher-Informationen", "ZUSCHLAGEN", "Cramér-Rao"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "ea628455d699760ba54122071b05535aa55cf481"
 ---
 
 # Aktive Wahrnehmung aus informationstheoretischer Sicht: Fisher Information und Cramér-Rao-Untergrenze

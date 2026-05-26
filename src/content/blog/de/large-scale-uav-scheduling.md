@@ -3,6 +3,7 @@ title: "Hunderte von Maschinen fliegen zusammen: Ein umfassender Überblick übe
 description: "Von Multi-Agent Reinforcement Learning bis hin zu grafischen neuronalen Netzen finden wir systematisch Lösungen für groß angelegte Drohnen-Versandprobleme. Behandelt die globale Aufgabenzuweisung auf Makroebene (MARL/GNN/Attention), die Konfliktkoordination auf Mesoebene (QMIX/MAPPO/GNN) und die Echtzeit-Hindernisvermeidung auf Mikroebene (MPC/ORCA), verzichtet auf Offline-Methoden wie Ganzzahlplanung, konzentriert sich auf differenzierbare End-to-End-Lernrouten und analysiert tatsächliche technische Herausforderungen in Szenarien des städtischen Luftverkehrs (UAM)."
 tags: ["Drohne", "Großplanung", "Verstärkungslernen mit mehreren Agenten", "MERGEL", "GNN", "UAM", "urbane Luftmobilität", "Wegplanung", "ORCA", "Aufmerksamkeitsmechanismus", "Aufmerksamkeit"]
 pubDate: 2026-04-15
+sourceHash: "9fbd426769d12070bb2cc1eb5cfd88e0dd839003"
 ---
 
 # Hunderte von Maschinen fliegen zusammen: Eine vollständige Überprüfung der Methodik für groß angelegte Drohnen-Dispatch-Probleme

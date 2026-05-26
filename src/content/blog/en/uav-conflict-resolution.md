@@ -4,6 +4,7 @@ description: "In-depth analysis of conflict identification and resolution algori
 pubDate: 2026-04-07T11:12:59+08:00
 tags: ["drone", "path planning", "conflict resolution", "multi-agent", "Algorithm overview"]
 category: Tech
+sourceHash: "bdea72e467b5ee1ca0825e4536706f6e89e09f1b"
 ---
 
 # Overview of UAV path planning conflict resolution algorithm

@@ -4,6 +4,7 @@ description: "Review of the application of digital twins and neural rendering in
 tags: ["UAV", "digital twin", "neural rendering", "airspace modeling", "path planning"]
 category: "Tech"
 pubDate: 2026-04-09
+sourceHash: "1c503f8b7440cce9446d6daac01ae3e553bd5dd1"
 ---
 
 # Urban low-altitude UAV route planning: digital twin and neural rendering airspace modeling

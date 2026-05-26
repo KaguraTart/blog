@@ -43,11 +43,37 @@ def split_frontmatter(markdown: str) -> tuple[str, str]:
     return markdown[4:end], markdown[end + 5 :].lstrip("\n")
 
 
+def update_source_hash(frontmatter: str, source_hash: str) -> str:
+    lines = frontmatter.splitlines()
+    rendered = False
+    output: list[str] = []
+
+    for line in lines:
+        if re.match(r"^\s*sourceHash\s*:", line):
+            output.append(f"sourceHash: {json.dumps(source_hash, ensure_ascii=False)}")
+            rendered = True
+            continue
+        output.append(line)
+
+    if not rendered:
+        output.append(f"sourceHash: {json.dumps(source_hash, ensure_ascii=False)}")
+
+    return "\n".join(output)
+
+
 def parse_yaml_string(value: str) -> str:
     trimmed = value.strip()
     if len(trimmed) >= 2 and trimmed[0] == trimmed[-1] and trimmed[0] in {"'", '"'}:
         return trimmed[1:-1]
     return trimmed
+
+
+def read_source_hash(frontmatter: str) -> str | None:
+    for line in frontmatter.splitlines():
+        match = re.match(r"^\s*sourceHash\s*:\s*(.+)\s*$", line)
+        if match:
+            return parse_yaml_string(match.group(1))
+    return None
 
 
 def quote_yaml_string(value: str) -> str:
@@ -166,15 +192,23 @@ def translate_frontmatter(frontmatter: str, locale: str, cache: dict[str, str]) 
 def translate_file(source_path: Path, locale: str, cache: dict[str, str], force: bool) -> str:
     output_dir = SOURCE_DIR / locale
     output_path = output_dir / source_path.name
-    if output_path.exists() and not force:
-        return "skipped"
 
-    frontmatter, body = split_frontmatter(source_path.read_text(encoding="utf-8"))
+    source_text = source_path.read_text(encoding="utf-8")
+    frontmatter, body = split_frontmatter(source_text)
+    source_hash = sha1(source_text)
+
+    if output_path.exists() and not force:
+        translated_frontmatter, _ = split_frontmatter(output_path.read_text(encoding="utf-8"))
+        existing_hash = read_source_hash(translated_frontmatter)
+        if existing_hash == source_hash:
+            return "up_to_date"
+
     translated_frontmatter = translate_frontmatter(frontmatter, locale, cache)
+    translated_frontmatter = update_source_hash(translated_frontmatter, source_hash)
     translated_body = translate_text(body, locale, cache)
     output_dir.mkdir(parents=True, exist_ok=True)
     output_path.write_text(f"---\n{translated_frontmatter}\n---\n\n{translated_body}", encoding="utf-8")
-    return "translated"
+    return "updated"
 
 
 def main() -> None:
@@ -191,14 +225,17 @@ def main() -> None:
     source_paths = sorted(path for path in SOURCE_DIR.glob("*.md") if path.is_file())
     for locale in locales:
         cache = load_cache(locale)
-        counts = {"translated": 0, "skipped": 0}
+        counts = {"updated": 0, "up_to_date": 0}
         for source_path in source_paths:
             status = translate_file(source_path, locale, cache, args.force)
             counts[status] += 1
             save_cache(locale, cache)
             print(f"[{locale}] {status}: {source_path.name}", flush=True)
         save_cache(locale, cache)
-        print(f"[{locale}] done: {counts['translated']} translated, {counts['skipped']} skipped", flush=True)
+        print(
+            f"[{locale}] done: {counts['updated']} updated, {counts['up_to_date']} unchanged",
+            flush=True,
+        )
 
 
 if __name__ == "__main__":

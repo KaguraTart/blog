@@ -5,6 +5,7 @@ pubDate: 2026-05-15
 updatedDate: 2026-05-23
 tags: ["Planification de thèse", "Soumission au journal principal", "T-ITS", "TR Partie C", "économie de basse altitude", "perception active", "3DGS", "drone", "Informations sur les pêcheurs"]
 category: Tech
+sourceHash: "05230e9d3f9c4368c3f98b16b9aca758a7d23ecc"
 ---
 
 # Paper C v2 : Repositionnement de RA-L vers Top Issue

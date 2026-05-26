@@ -4,6 +4,7 @@ description: "When \"The Book of Changes\" meets Bayesian inference - an in-dept
 pubDate: 2026-04-03
 tags: ["Six Yao", "Markov chain", "I Ching", "probability theory", "AI"]
 category: Essay
+sourceHash: "b9b1a6be94fc853402f71853bd5459db3e130505"
 ---
 
 ## 1. Introduction

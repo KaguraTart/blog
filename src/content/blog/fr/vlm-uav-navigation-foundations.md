@@ -4,6 +4,7 @@ description: "Présentation du paradigme de base, de l'architecture de base et d
 tags: ["drone", "VLM", "Navigation en langage visuel", "Grand modèle multimodal", "intelligence incarnée"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "afcc4f7205fc6b593288c445afbd3bcab294c159"
 ---
 
 # Modèles vision-langage pour la navigation par drone : fondement et frontière de la navigation vision-langage

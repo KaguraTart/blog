@@ -4,6 +4,7 @@ description: "Sehen Sie sich den Forschungsfortschritt der semantischen Kartieru
 tags: ["UAV", "Semantische Zuordnung", "Funktionsbereichsaufteilung", "Wegplanung", "Luftraummanagement"]
 category: "Tech"
 pubDate: 2026-04-09
+sourceHash: "08d3fe8e5bc0d4f3026e3bc685987a74bf10d34f"
 ---
 
 # Städtische UAV-Routenplanung in geringer Höhe: semantische Kartierung und Funktionsbereichsaufteilung

@@ -4,6 +4,7 @@ description: "Systematically sort out the research value of 18 low-altitude UAV-
 pubDate: 2026-05-15
 tags: ["Thesis planning", "Research roadmap", "UAV", "low altitude", "Submission strategy", "T-ITS", "ICRA"]
 category: Tech
+sourceHash: "d7d759c643601fa494ff168b952f49bf00509471"
 ---
 
 # Low Altitude UAV Research Blog Cultural Roadmap: A complete plan from blog to journal

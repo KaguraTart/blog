@@ -4,6 +4,7 @@ description: "RAG ナレッジ ベースのフルプロセス テクノロジー
 pubDate: 2026-04-07T11:43:17+08:00
 tags: ["大規模な言語モデル", "ラグ", "知識ベース", "ベクトルデータベース", "微調整", "LoRA", "QLoRA", "SFT", "RLHF", "埋め込み", "LLM"]
 category: Tech
+sourceHash: "2860624c046e8bbdb4c91f6836f0348410230fbc"
 ---
 
 # LLM RAG 知識ベースとトレーニング技術の微調整に関するパノラマ調査

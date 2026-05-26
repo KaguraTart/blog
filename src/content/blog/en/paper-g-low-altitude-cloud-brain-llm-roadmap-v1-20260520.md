@@ -5,6 +5,7 @@ pubDate: 2026-05-20
 updatedDate: 2026-05-23
 tags: ["Paper G", "Low altitude traffic cloud brain", "LLM Agent", "Model fine-tuning", "Tool Use", "AAAI", "IJCAI", "UAV", "AGI"]
 category: Tech
+sourceHash: "f37d501e3b68b293076f6f90f7f7c3da5c91513d"
 ---
 
 # Paper G Planning v1: LLM Agent and model fine-tuning route in low-altitude traffic cloud brain

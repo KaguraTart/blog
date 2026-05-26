@@ -4,6 +4,7 @@ description: "A reflection on the evolution of traffic signal control — from l
 pubDate: 2026-04-02
 tags: ["Traffic Engineering", "Reinforcement Learning", "Adaptive Control", "Smart City"]
 category: Tech
+sourceHash: "ca62dbbd7b3acf68e773871e122fe3a9b1d895c9"
 ---
 
 # Rethinking Traffic Signal Control: From Fixed Timing to Adaptive Intelligence

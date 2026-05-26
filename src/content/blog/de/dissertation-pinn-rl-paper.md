@@ -6,6 +6,7 @@ tags: ["Verkehrstechnik", "Verstärkungslernen", "Schnellstraße", "SUMO", "SCI 
 category: Paper
 doi: "10.1155/2023/4771946"
 journal: "Journal of Advanced Transportation"
+sourceHash: "a9a545059b6f7eb95d0926a5116d27e524cbb70d"
 ---
 
 # RL-basierte kooperative Optimierung der Kanalisierung und Rampenmessung

@@ -5,6 +5,7 @@ pubDate: 2026-05-20
 updatedDate: 2026-05-23
 tags: ["Papier G1", "CloudBrain-Agent", "Gehirn der Verkehrswolke in geringer Höhe", "LLM-Agent", "MCP", "Werkzeuggebrauch", "AAAI", "IJCAI", "UAV", "Formale Überprüfung"]
 category: Tech
+sourceHash: "2ed5410ff6c19732b204575ec5b7ca12788c230b"
 ---
 
 # Papier G1 Vollständiger Papiervorschlag v1: Verifizierbarer LLM-Agent für das Cloud-Brain des Verkehrs in geringer Höhe

@@ -3,6 +3,7 @@ title: "Hierarchical VLM planning: Let the drone understand instructions such as
 description: "In-depth analysis of the application of vision-language-action model (VLA) in UAV path planning, combing the evolution route from single end-to-end to hierarchical semantic planning, covering key work such as RT-2, OpenVLA, Compositional Foundation Models, LangStrands, etc., analyzing why hierarchical architecture is the optimal solution for UAV VLA, and giving implementation guidelines."
 tags: ["VLM", "VLA", "embodied intelligence", "drone", "hierarchical planning", "RT-2", "OpenVLA", "Foundation Model", "Robotics"]
 pubDate: 2026-04-15
+sourceHash: "aee6b5f68ec2e1d8ceaef7083cebe6ce1b1d2c08"
 ---
 
 # Hierarchical VLM planning: Let the drone understand instructions such as "land on the east side of Building 3"

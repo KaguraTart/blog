@@ -3,6 +3,7 @@ title: "Hierarchische VLM-Planung: Lassen Sie die Drohne Anweisungen wie „land
 description: "Eingehende Analyse der Anwendung des Vision-Language-Action-Modells (VLA) in der UAV-Pfadplanung, Kämmen des Evolutionswegs von der einzelnen End-to-End- zur hierarchischen semantischen Planung, Abdeckung wichtiger Arbeiten wie RT-2, OpenVLA, Compositional Foundation Models, LangStrands usw., Analyse, warum hierarchische Architektur die optimale Lösung für UAV-VLA ist, und Bereitstellung von Implementierungsrichtlinien."
 tags: ["VLM", "VLA", "verkörperte Intelligenz", "Drohne", "hierarchische Planung", "RT-2", "OpenVLA", "Stiftungsmodell", "Robotik"]
 pubDate: 2026-04-15
+sourceHash: "aee6b5f68ec2e1d8ceaef7083cebe6ce1b1d2c08"
 ---
 
 # Hierarchische VLM-Planung: Lassen Sie die Drohne Anweisungen wie „landen auf der Ostseite von Gebäude 3“ verstehen

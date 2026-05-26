@@ -5,6 +5,7 @@ pubDate: 2026-05-17
 updatedDate: 2026-05-23
 tags: ["ペーパーE", "あああ", "無人航空機", "LLM", "LTL", "STL", "正式な検証", "実験タスクブック", "完全性の証明"]
 category: Tech
+sourceHash: "5a168001b03609769dacbd93bde621f2660a2405"
 ---
 
 # 論文 E 実験タスクブック v2: AAAI の検証とエラー修正 UAV 言語計画

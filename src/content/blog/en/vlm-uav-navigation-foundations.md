@@ -4,6 +4,7 @@ description: "Overview of the basic paradigm, core architecture and representati
 tags: ["UAV", "VLM", "Vision-Language Navigation", "Multimodal large model", "embodied intelligence"]
 category: "Tech"
 pubDate: 2026-04-27
+sourceHash: "afcc4f7205fc6b593288c445afbd3bcab294c159"
 ---
 
 # Vision-Language Models for UAV Navigation: The foundation and frontier of vision-language navigation

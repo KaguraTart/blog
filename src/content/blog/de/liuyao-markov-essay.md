@@ -4,6 +4,7 @@ description: "Wenn „Das Buch der Wandlungen“ auf Bayes'sche Schlussfolgerung
 pubDate: 2026-04-03
 tags: ["Sechs Yao", "Markov-Kette", "Ich Ching", "Wahrscheinlichkeitstheorie", "KI"]
 category: Essay
+sourceHash: "b9b1a6be94fc853402f71853bd5459db3e130505"
 ---
 
 ## 1. Einführung
