@@ -402,6 +402,7 @@ const nativeSeoLocaleLinks = localeLinks.filter(item => item.available);
               blockShell.classList.toggle('is-collapsed', !expanded);
               toggleButton.setAttribute('aria-expanded', String(expanded));
               toggleButton.textContent = expanded ? '收起代码 (' + lineCount + ' 行)' : '展开代码 (' + lineCount + ' 行)';
+              toggleButton.scrollIntoView({ block: 'nearest', inline: 'nearest' });
             }
             setExpanded(false);
             toggleButton.addEventListener('click', function() {

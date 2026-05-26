@@ -152,7 +152,6 @@ const locale = normalizeLocale(Astro.currentLocale ?? defaultLocale);
   // pagefind.js uses export {} so it must be imported as a module, not loaded via script.src
   import('/pagefind/pagefind.js').then(function(pagefind) {
     window.pagefind = pagefind;
-    console.log('pagefind loaded');
   }).catch(function(err) {
     console.error('pagefind load error:', err);
     var emptyState = document.getElementById('search-empty');
