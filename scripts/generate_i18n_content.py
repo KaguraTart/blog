@@ -12,7 +12,35 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "src/content/blog"
 CACHE_DIR = ROOT / ".cache/i18n"
 SOURCE_LOCALE = "zh-CN"
-SUPPORTED_LOCALES = ("en", "ja", "fr", "de")
+CONFIG_FILE = ROOT / "src/i18n/config.mjs"
+
+
+def _load_supported_locales() -> tuple[str, ...]:
+    """Read configured locale codes from src/i18n/config.mjs dynamically.
+
+    Falls back to a conservative default list if parsing fails.
+    """
+
+    try:
+        config_text = CONFIG_FILE.read_text(encoding="utf-8")
+        locale_pattern = re.findall(r"export const locales\s*=\s*\[(.*?)\];", config_text, re.S)
+        if not locale_pattern:
+            raise ValueError("locales declaration not found")
+
+        locales = re.findall(r"['\"]([^'\"]+)['\"]", locale_pattern[0])
+
+        default_match = re.search(r"export const defaultLocale\s*=\s*['\"]([^'\"]+)['\"]", config_text)
+        default_locale = default_match.group(1) if default_match else "zh-cn"
+
+        parsed = tuple(locale for locale in locales if locale != default_locale)
+        if not parsed:
+            raise ValueError("no route locales found in config")
+        return parsed
+    except Exception:
+        return ("en", "ja", "fr", "de")
+
+
+SUPPORTED_LOCALES = _load_supported_locales()
 
 
 def sha1(text: str) -> str:
@@ -229,7 +257,6 @@ def main() -> None:
         for source_path in source_paths:
             status = translate_file(source_path, locale, cache, args.force)
             counts[status] += 1
-            save_cache(locale, cache)
             print(f"[{locale}] {status}: {source_path.name}", flush=True)
         save_cache(locale, cache)
         print(

@@ -489,13 +489,47 @@ const nativeSeoLocaleLinks = localeLinks.filter(item => item.available);
     </script>
 
     <script is:inline>
-      document.addEventListener('mousemove', function(e) {
-        var el = e.target.closest('.glow-on-hover');
-        if (!el) return;
-        var r = el.getBoundingClientRect();
-        el.style.setProperty('--mouse-x', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-        el.style.setProperty('--mouse-y', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
-      });
+      (function() {
+        var hoverFrame = null;
+        var hoverTarget = null;
+        var hoverX = 0;
+        var hoverY = 0;
+
+        function flushGlow() {
+          hoverFrame = null;
+          if (!hoverTarget) return;
+
+          var rect = hoverTarget.getBoundingClientRect();
+          if (!rect.width || !rect.height) return;
+
+          hoverTarget.style.setProperty('--mouse-x', hoverX + '%');
+          hoverTarget.style.setProperty('--mouse-y', hoverY + '%');
+        }
+
+        document.addEventListener('mousemove', function(e) {
+          var el = e.target.closest('.glow-on-hover');
+          if (!el) return;
+
+          var rect = el.getBoundingClientRect();
+          if (!rect.width || !rect.height) return;
+
+          hoverTarget = el;
+          hoverX = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+          hoverY = ((e.clientY - rect.top) / rect.height * 100).toFixed(1);
+
+          if (hoverFrame === null) {
+            hoverFrame = window.requestAnimationFrame(flushGlow);
+          }
+        }, { passive: true });
+
+        document.addEventListener('mouseleave', function() {
+          hoverTarget = null;
+          if (hoverFrame !== null) {
+            window.cancelAnimationFrame(hoverFrame);
+            hoverFrame = null;
+          }
+        });
+      })();
     </script>
   </body>
 </html>

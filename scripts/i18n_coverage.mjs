@@ -3,13 +3,23 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { routeLocales } from '../src/i18n/config.mjs';
 
-export function getSourcePosts(rootDir = process.cwd()) {
+function getSourcePostEntries(rootDir = process.cwd()) {
   const blogDir = join(rootDir, 'src/content/blog');
 
-  return readdirSync(blogDir, { withFileTypes: true })
+  const entries = readdirSync(blogDir, { withFileTypes: true })
     .filter(entry => entry.isFile() && entry.name.endsWith('.md'))
-    .map(entry => entry.name)
-    .sort();
+    .map(entry => {
+      const sourcePath = join(blogDir, entry.name);
+      const sourceText = readFileSync(sourcePath, 'utf8');
+      return { name: entry.name, hash: createHash('sha1').update(sourceText, 'utf8').digest('hex') };
+    })
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  return entries;
+}
+
+export function getSourcePosts(rootDir = process.cwd()) {
+  return getSourcePostEntries(rootDir).map(entry => entry.name);
 }
 
 function sha1(text) {
@@ -33,15 +43,9 @@ function readSourceHash(frontmatter) {
 }
 
 export function getSourcePostHashes(rootDir = process.cwd()) {
-  const blogDir = join(rootDir, 'src/content/blog');
-  const entries = readdirSync(blogDir, { withFileTypes: true });
   const result = new Map();
-
-  for (const entry of entries) {
-    if (!entry.isFile() || !entry.name.endsWith('.md')) continue;
-    const sourcePath = join(blogDir, entry.name);
-    const sourceText = readFileSync(sourcePath, 'utf8');
-    result.set(entry.name, sha1(sourceText));
+  for (const entry of getSourcePostEntries(rootDir)) {
+    result.set(entry.name, entry.hash);
   }
 
   return result;
