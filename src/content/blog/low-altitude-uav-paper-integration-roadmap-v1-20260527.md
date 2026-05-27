@@ -274,17 +274,24 @@ UrbanGPT、UniST、TrafficGPT 说明交通/城市时空任务已经开始向 fou
 低空规划论文参考
 ```
 
-本地已生成可导入 Zotero 的 BibTeX 文件：
+当前已完成两层整理：
 
-```text
-zotero/low-altitude-planning-references-20260527.bib
-```
+| 项目 | 状态 |
+|---|---|
+| Zotero collection | 已存在，collection key 为 `FVHS3SKY`，本地 treeViewID 为 `C17` |
+| Zotero 本地选择链接 | `zotero://select/library/collections/FVHS3SKY` |
+| 已导入文献 | 38 条 top-level items |
+| item type 分布 | `journalArticle` 16 条，`conferencePaper` 10 条，`document/preprint/webpage` 12 条 |
+| 本地备份 BibTeX | `zotero/low-altitude-planning-references-20260527.bib` |
 
-当前环境没有可调用的 Zotero MCP/连接器，也没有可安装的 Zotero connector，所以无法在本轮直接写入 Zotero collection。已确认本机存在 Zotero 可执行文件和 `~/Zotero/zotero.sqlite`，但不建议直接改 Zotero SQLite 数据库，容易破坏库结构和同步状态。稳妥做法是：
+导入方式采用 Zotero 本地 connector server，而不是直接写 `zotero.sqlite`。具体流程是：
 
-1. 在 Zotero 中新建 collection：`低空规划论文参考`。
-2. 导入 `zotero/low-altitude-planning-references-20260527.bib`。
-3. 若后续接入 Zotero MCP 或 Better BibTeX 自动化接口，再改成脚本直接写入 collection。
+1. 用 `pandoc` 检查 BibTeX 可解析为 CSL JSON。
+2. 通过 Zotero 本地 `/connector/import` 导入 `zotero/low-altitude-planning-references-20260527.bib`。
+3. 通过 `/connector/updateSession` 把导入 session 的目标 collection 更新为 `C17 / 低空规划论文参考`。
+4. 用 Zotero local API 与只读 SQLite 双重验证 collection 中有 38 条 top-level 文献。
+
+后续如果继续补文献，建议仍然先更新本地 BibTeX，再通过同样的 connector import/updateSession 流程导入 Zotero。不要直接修改 SQLite。
 
 ---
 
@@ -295,7 +302,7 @@ zotero/low-altitude-planning-references-20260527.bib
 - 确认 Paper A/B/C 是否作为当前三篇主力。
 - 确认 Paper D 是否把 7600 万次探索日志作为核心资产。
 - 确认 Paper E/G 是否继续保持 AAAI/IJCAI first。
-- 把 Zotero collection 按本文 BibTeX 导入并补充 PDF。
+- 已完成 Zotero collection 初始导入；下一步补 PDF、摘要备注和每篇文章的优先级标签。
 
 ### 6.2 第 2-3 周：补文献矩阵
 
