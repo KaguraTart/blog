@@ -5,7 +5,7 @@ pubDate: 2026-05-27
 updatedDate: 2026-05-27
 tags: ["Planung in geringer Höhe", "UAV", "Abschlussarbeitsplanung", "Zotero", "T-ITS", "TR-C", "T-RO", "AAAI", "ICRA", "3DGS", "MERGEL"]
 category: Tech
-sourceHash: "2c029666156e0305f30131a09abf73c03a2ccbd7"
+sourceHash: "210cd0f4500f05c3002dd5603dcac92ea4664512"
 ---
 
 # Low Altitude Planning Thesis Matrix v1: Integration bereits geschriebener Artikel, anschließende Themenauswahl und Zotero-Literaturliste
@@ -255,26 +255,31 @@ Name der Ziel-Zotero-Sammlung:
 低空规划论文参考
 ```
 
-Eine BibTeX-Datei, die in Zotero importiert werden kann, wurde lokal generiert:
+Derzeit sind zwei Organisationsebenen abgeschlossen:| Projekt | Status |
+|---|---|
+| Zotero-Sammlung | existiert bereits, Sammlungsschlüssel ist „FVHS3SKY“, lokale TreeViewID ist „C17“ |
+| Link zur lokalen Zotero-Auswahl | `zotero://select/library/collections/FVHS3SKY` |
+| Importierte Dokumente | 38 Top-Level-Artikel |
+| Artikeltypverteilung | „journalArticle“ 16 Elemente, „conferencePaper“ 10 Elemente, „document/preprint/webpage“ 12 Elemente |
+| Lokale Sicherung von BibTeX | `zotero/low-altitude-planung-references-20260527.bib` |
 
-```text
-zotero/low-altitude-planning-references-20260527.bib
-```
+Die Importmethode verwendet den lokalen Connector-Server von Zotero, anstatt „zotero.sqlite“ direkt zu schreiben. Der spezifische Prozess ist:
 
-In der aktuellen Umgebung gibt es keinen Zotero MCP/Connector, der aufgerufen werden kann, und es gibt keinen Zotero Connector, der installiert werden kann, daher ist es in dieser Runde nicht möglich, direkt in die Zotero-Sammlung zu schreiben. Es wurde bestätigt, dass die ausführbare Zotero-Datei und „~/Zotero/zotero.sqlite“ auf diesem Computer vorhanden sind. Es wird jedoch nicht empfohlen, die Zotero SQLite-Datenbank direkt zu ändern, da dies leicht die Bibliotheksstruktur und den Synchronisierungsstatus beschädigen kann. Der sichere Ansatz ist:1. Erstellen Sie eine neue Sammlung in Zotero: „Low Altitude Planning Paper Reference“.
-2. Importieren Sie „zotero/low-altitude-planning-references-20260527.bib“.
-3. Wenn Sie später eine Verbindung zur Zotero MCP- oder Better BibTeX-Automatisierungsschnittstelle herstellen, können Sie das Skript so ändern, dass es direkt in die Sammlung schreibt.
+1. Verwenden Sie „pandoc“, um zu überprüfen, ob BibTeX als CSL JSON geparst werden kann.
+2. Importieren Sie „zotero/low-altitude-planning-references-20260527.bib“ über Zotero local „/connector/import“.
+3. Aktualisieren Sie die Zielsammlung der importierten Sitzung über „/connector/updateSession“ auf „C17 / Low Altitude Planning Paper Reference“.
+4. Verwenden Sie die lokale Zotero-API und schreibgeschütztes SQLite, um doppelt zu überprüfen, ob die Sammlung 38 Dokumente der obersten Ebene enthält.
+
+Wenn Sie in Zukunft weiterhin Dokumente hinzufügen, wird empfohlen, zuerst das lokale BibTeX zu aktualisieren und dann Zotero über denselben Connector-Import/UpdateSession-Prozess zu importieren. Ändern Sie SQLite nicht direkt.
 
 ---
 
 ## 6. Follow-up-Ausführungsplan
 
-### 6.1 Woche 1: Papiermatrix einfrieren
-
-- Bestätigen Sie, ob Papier A/B/C die Hauptkraft der aktuellen drei Artikel ist.
+### 6.1 Woche 1: Papiermatrix einfrieren- Bestätigen Sie, ob Papier A/B/C die Hauptkraft der aktuellen drei Artikel ist.
 - Bestätigen Sie, ob Papier D die 76 Millionen Explorationsprotokolle als einen Kernwert betrachtet.
 - Bestätigen Sie zunächst, ob Papier E/G weiterhin AAAI/IJCAI ist.
-- Zotero-Sammlung in BibTeX importieren und PDF hinzufügen.
+- Der Erstimport der Zotero-Sammlung ist abgeschlossen; Der nächste Schritt besteht darin, für jeden Artikel PDF-Dateien, zusammenfassende Notizen und Prioritäts-Tags hinzuzufügen.
 
 ### 6.2 Woche 2-3: Vervollständigung der Literaturmatrix
 
@@ -288,38 +293,38 @@ In der aktuellen Umgebung gibt es keinen Zotero MCP/Connector, der aufgerufen we
 - Papier A: Korridorkonfliktsimulation + ORCA/CBF/RMADER/MAPPO-Basislinie.
 - Papier C: 3DGS NBV-Pipeline + FisherRF/ActiveNeRF/GS-Planner/POp-GS-Basislinie.
 
-### 6.4 Wochen 9–12: Entscheidung über Ihre erste Einreichung- Wenn die Warteschlangenstabilität und die Hunderte-Regal-Level-Ergebnisse von Papier B am stabilsten sind: Stimmen Sie zuerst für TR-C.
+### 6.4 Wochen 9–12: Entscheidung über Ihre erste Einreichung
+
+- Wenn die Warteschlangenstabilität und die Hunderte-Regal-Level-Ergebnisse von Papier B am stabilsten sind: Stimmen Sie zuerst für TR-C.
 - Wenn Papier A die stärkste Konfliktsicherheit und Verallgemeinerung aufweist: stimmen Sie zuerst für T-ITS/T-RO.
 - Wenn Papier C die stärksten theoretischen und visuellen Ergebnisse von Fisher + 3DGS aufweist: stimmen Sie zuerst für T-RO/ICRA/IROS.
 - Wenn D über die besten Abdeckungs-/Fehlererkennungsdaten verfügt: Investieren Sie zuerst in T-ITS.
 
 ---
 
-## 7. Referenzen
-
-[1] Elsevier. *Transportation Research Teil C: Neue Technologien: Ziele und Umfang.* URL: <https://www.sciencedirect.com/journal/transportation-research-part-c-emerging-technologies>
+## 7. Referenzen[1] Elsevier. *Transportation Research Teil C: Neue Technologien: Ziele und Umfang.* URL: <https://www.sciencedirect.com/journal/transportation-research-part-c-emerging-technologies>
 
 [2] IEEE Intelligent Transportation Systems Society. *IEEE-Transaktionen auf intelligenten Transportsystemen: Geltungsbereich.* URL: <https://ieee-itss.org/pub/t-its/>
 
-[3] Chao Yu, Akash Velu, Eugene Vinitsky, Yu Wang, Alexandre M. Bayen und Yi Wu. „Die überraschende Wirksamkeit von PPO in kooperativen Multi-Agent-Spielen.“ *Fortschritte in neuronalen Informationsverarbeitungssystemen*, 2022. URL: <https://arxiv.org/abs/2103.01955>[4] Muning Wen, Jakub Grudzien Kuba, Runji Lin, Weinan Zhang, Ying Wen, Jun Wang und Yaodong Yang. „Multi-Agent Reinforcement Learning ist ein Problem der Sequenzmodellierung.“ *NeurIPS*, 2022. URL: <https://proceedings.neurips.cc/paper_files/paper/2022/hash/69413f87e5a34897cd010ca698097d0a-Abstract-Conference.html>
+[3] Chao Yu, Akash Velu, Eugene Vinitsky, Yu Wang, Alexandre M. Bayen und Yi Wu. „Die überraschende Wirksamkeit von PPO in kooperativen Multi-Agent-Spielen.“ *Fortschritte in neuronalen Informationsverarbeitungssystemen*, 2022. URL: <https://arxiv.org/abs/2103.01955>
 
-[5] Bei Peng, Tabish Rashid, Christian Schroeder de Witt, Pierre-Alexandre Kamienny, Philip Torr, Wendelin Boehmer und Shimon Whiteson. „FACMAC: Faktorisierte zentralisierte Multi-Agent-Policy-Gradienten.“ *NeurIPS*, 2021. URL: <https://proceedings.neurips.cc/paper/2021/hash/65b9eea6e1cc6bb9f0cd2a47751a186f-Abstract.html>
+[4] Muning Wen, Jakub Grudzien Kuba, Runji Lin, Weinan Zhang, Ying Wen, Jun Wang und Yaodong Yang. „Multi-Agent Reinforcement Learning ist ein Problem der Sequenzmodellierung.“ *NeurIPS*, 2022. URL: <https://proceedings.neurips.cc/paper_files/paper/2022/hash/69413f87e5a34897cd010ca698097d0a-Abstract-Conference.html>[5] Bei Peng, Tabish Rashid, Christian Schroeder de Witt, Pierre-Alexandre Kamienny, Philip Torr, Wendelin Boehmer und Shimon Whiteson. „FACMAC: Faktorisierte zentralisierte Multi-Agent-Policy-Gradienten.“ *NeurIPS*, 2021. URL: <https://proceedings.neurips.cc/paper/2021/hash/65b9eea6e1cc6bb9f0cd2a47751a186f-Abstract.html>
 
-[6] Jakub Grudzien Kuba, Ruiqing Chen, Muning Wen, Ying Wen, Fudan Sun, Jun Wang und Yaodong Yang. „Optimierung der Trust-Region-Richtlinie beim Multi-Agent-Reinforcement-Learning.“ arXiv:2109.11251, 2021. URL: <https://arxiv.org/abs/2109.11251>[7] Boyu Zhou, Xin Zhou, Jun Zhang, Fei Gao und Shaojie Shen. „EGO-Swarm: Ein vollständig autonomes und dezentrales Quadrotor-Schwarmsystem in überfüllten Umgebungen.“ *ICRA*, 2021. DOI: 10.1109/ICRA48506.2021.9561902. URL: <https://arxiv.org/abs/2011.04183>
+[6] Jakub Grudzien Kuba, Ruiqing Chen, Muning Wen, Ying Wen, Fudan Sun, Jun Wang und Yaodong Yang. „Optimierung der Trust-Region-Richtlinie beim Multi-Agent-Reinforcement-Learning.“ arXiv:2109.11251, 2021. URL: <https://arxiv.org/abs/2109.11251>
 
-[8] Jesus Tordesillas, Brett T. Lopez und Jonathan P. How. „MADER: Trajektorienplaner in Multiagenten- und dynamischen Umgebungen.“ *IEEE Transactions on Robotics*, 38(1):463-476, 2022. URL: <https://arxiv.org/abs/2010.11061>
+[7] Boyu Zhou, Xin Zhou, Jun Zhang, Fei Gao und Shaojie Shen. „EGO-Swarm: Ein vollständig autonomes und dezentrales Quadrotor-Schwarmsystem in überfüllten Umgebungen.“ *ICRA*, 2021. DOI: 10.1109/ICRA48506.2021.9561902. URL: <https://arxiv.org/abs/2011.04183>[8] Jesus Tordesillas, Brett T. Lopez und Jonathan P. How. „MADER: Trajektorienplaner in Multiagenten- und dynamischen Umgebungen.“ *IEEE Transactions on Robotics*, 38(1):463-476, 2022. URL: <https://arxiv.org/abs/2010.11061>
 
-[9] Kota Kondo, Reinaldo Figueroa, Juan Rached, Jesus Tordesillas, Parker C. Lusk und Jonathan P. How. „Robust MADER: Dezentraler Multiagenten-Trajektorienplaner, robust gegenüber Kommunikationsverzögerungen in dynamischen Umgebungen.“ arXiv:2303.06222, 2023. URL: <https://arxiv.org/abs/2303.06222>[10] Boyu Zhou, Hao Xu und Shaojie Shen. „RACER: Schnelle kollaborative Erkundung mit einem dezentralen Multi-UAV-System.“ *IEEE Transactions on Robotics*, 2023. DOI: 10.1109/TRO.2023.3236945. URL: <https://arxiv.org/abs/2209.08533>
+[9] Kota Kondo, Reinaldo Figueroa, Juan Rached, Jesus Tordesillas, Parker C. Lusk und Jonathan P. How. „Robust MADER: Dezentraler Multiagenten-Trajektorienplaner, robust gegenüber Kommunikationsverzögerungen in dynamischen Umgebungen.“ arXiv:2303.06222, 2023. URL: <https://arxiv.org/abs/2303.06222>
 
-[11] Jesus Tordesillas und Jonathan P. How. „PANTHER: Wahrnehmungsbewusster Trajektorienplaner in dynamischen Umgebungen.“ *IEEE Access*, 10:22662-22677, 2022. DOI: 10.1109/ACCESS.2022.3154037. URL: <https://arxiv.org/abs/2103.06372>
+[10] Boyu Zhou, Hao Xu und Shaojie Shen. „RACER: Schnelle kollaborative Erkundung mit einem dezentralen Multi-UAV-System.“ *IEEE Transactions on Robotics*, 2023. DOI: 10.1109/TRO.2023.3236945. URL: <https://arxiv.org/abs/2209.08533>[11] Jesus Tordesillas und Jonathan P. How. „PANTHER: Wahrnehmungsbewusster Trajektorienplaner in dynamischen Umgebungen.“ *IEEE Access*, 10:22662-22677, 2022. DOI: 10.1109/ACCESS.2022.3154037. URL: <https://arxiv.org/abs/2103.06372>
 
-[12] Zhepei Wang, Xin Zhou, Chao Xu und Fei Gao. „Geometrisch eingeschränkte Flugbahnoptimierung für Multikopter.“ *IEEE Transactions on Robotics*, 38(5):3259-3278, 2022. DOI: 10.1109/TRO.2022.3160022. URL: <https://arxiv.org/abs/2103.00190>[13] Ang Li, Mark Hansen und Bo Zou. „Verkehrsmanagement und Ressourcenzuweisung für die UAV-basierte Paketzustellung im städtischen Raum in geringer Höhe.“ *Transportation Research Part C: Emerging Technologies*, 143:103808, 2022. DOI: 10.1016/j.trc.2022.103808. URL: <https://doi.org/10.1016/j.trc.2022.103808>
+[12] Zhepei Wang, Xin Zhou, Chao Xu und Fei Gao. „Geometrisch eingeschränkte Flugbahnoptimierung für Multikopter.“ *IEEE Transactions on Robotics*, 38(5):3259-3278, 2022. DOI: 10.1109/TRO.2022.3160022. URL: <https://arxiv.org/abs/2103.00190>
 
-[14] Mehdi Bennaceur, Rémi Delmas und Youssef Hamadi. „Passagierzentrierte städtische Luftmobilität: Fairness-Kompromisse und betriebliche Effizienz.“ *Transportation Research Part C: Emerging Technologies*, 136:103519, 2022. DOI: 10.1016/j.trc.2021.103519. URL: <https://doi.org/10.1016/j.trc.2021.103519>
+[13] Ang Li, Mark Hansen und Bo Zou. „Verkehrsmanagement und Ressourcenzuweisung für die UAV-basierte Paketzustellung im städtischen Raum in geringer Höhe.“ *Transportation Research Part C: Emerging Technologies*, 143:103808, 2022. DOI: 10.1016/j.trc.2022.103808. URL: <https://doi.org/10.1016/j.trc.2022.103808>[14] Mehdi Bennaceur, Rémi Delmas und Youssef Hamadi. „Passagierzentrierte städtische Luftmobilität: Fairness-Kompromisse und betriebliche Effizienz.“ *Transportation Research Part C: Emerging Technologies*, 136:103519, 2022. DOI: 10.1016/j.trc.2021.103519. URL: <https://doi.org/10.1016/j.trc.2021.103519>
 
-[15] Roberto Pinto und Alexandra Lagorio. „Drohnenbasierter Punkt-zu-Punkt-Liefernetzwerkentwurf mit Zwischenladestationen.“ *Transportation Research Part C: Emerging Technologies*, 135:103506, 2022. DOI: 10.1016/j.trc.2021.103506. URL: <https://doi.org/10.1016/j.trc.2021.103506>[16] Qinshuang Wei, Gustav Nilsson und Samuel Coogan. „Kapazitätsbeschränkte städtische Flugmobilitätsplanung.“ arXiv:2107.02900, 2021. URL: <https://arxiv.org/abs/2107.02900>
+[15] Roberto Pinto und Alexandra Lagorio. „Drohnenbasierter Punkt-zu-Punkt-Liefernetzwerkentwurf mit Zwischenladestationen.“ *Transportation Research Part C: Emerging Technologies*, 135:103506, 2022. DOI: 10.1016/j.trc.2021.103506. URL: <https://doi.org/10.1016/j.trc.2021.103506>
 
-[17] Surya Murthy, Natasha A. Neogi und Suda Bharadwaj. „Planung für urbane Luftmobilität durch sicheres Lernen.“ arXiv:2209.15457, NASA NTRS, 2022. URL: <https://arxiv.org/abs/2209.15457>
+[16] Qinshuang Wei, Gustav Nilsson und Samuel Coogan. „Kapazitätsbeschränkte städtische Flugmobilitätsplanung.“ arXiv:2107.02900, 2021. URL: <https://arxiv.org/abs/2107.02900>[17] Surya Murthy, Natasha A. Neogi und Suda Bharadwaj. „Planung für urbane Luftmobilität durch sicheres Lernen.“ arXiv:2209.15457, NASA NTRS, 2022. URL: <https://arxiv.org/abs/2209.15457>
 
 [18] Jiahao Xing, Tong Guo und Lu Tong. „Zuverlässiges Truck-Drohnen-Routing mit dynamischer Synchronisierung: Ein hochdimensionaler Netzwerkprogrammierungsansatz.“ *Transportation Research Part C: Emerging Technologies*, 165:104698, 2024. DOI: 10.1016/j.trc.2024.104698. URL: <https://doi.org/10.1016/j.trc.2024.104698>
 

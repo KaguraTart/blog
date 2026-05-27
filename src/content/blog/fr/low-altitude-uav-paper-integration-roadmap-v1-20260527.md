@@ -5,7 +5,7 @@ pubDate: 2026-05-27
 updatedDate: 2026-05-27
 tags: ["planification à basse altitude", "drone", "Planification de thèse", "Zotéro", "T-ITS", "TR-C", "T-RO", "AAAI", "ICRA", "3DGS", "MARNE"]
 category: Tech
-sourceHash: "2c029666156e0305f30131a09abf73c03a2ccbd7"
+sourceHash: "210cd0f4500f05c3002dd5603dcac92ea4664512"
 ---
 
 # Matrice de thèse de planification à basse altitude v1 : intégration d'articles déjà écrits, sélection de sujets ultérieurs et liste de littérature Zotero
@@ -255,26 +255,31 @@ Nom de la collection Zotero cible :
 低空规划论文参考
 ```
 
-Un fichier BibTeX importable dans Zotero a été généré localement :
+Actuellement, deux niveaux d'organisation ont été réalisés :| Projet | Statut |
+|---|---|
+| Collection Zotéro | existe déjà, la clé de collection est `FVHS3SKY`, le treeViewID local est `C17` |
+| Lien de sélection locale Zotero | `zotero://select/library/collections/FVHS3SKY` |
+| Documents importés | 38 éléments de premier niveau |
+| répartition des types d'articles | `journalArticle` 16 éléments, `conferencePaper` 10 éléments, `document/preprint/webpage` 12 éléments |
+| Sauvegarde locale BibTeX | `zotero/références-de-planification-basse-altitude-20260527.bib` |
 
-```text
-zotero/low-altitude-planning-references-20260527.bib
-```
+La méthode d'importation utilise le serveur de connecteurs local de Zotero au lieu d'écrire directement « zotero.sqlite ». Le processus spécifique est :
 
-Il n'y a pas de MCP/connecteur Zotero qui peut être appelé dans l'environnement actuel, et il n'y a pas de connecteur Zotero qui peut être installé, il n'est donc pas possible d'écrire directement dans la collection Zotero dans ce cycle. Il a été confirmé que le fichier exécutable Zotero et `~/Zotero/zotero.sqlite` existent sur cette machine, mais il n'est pas recommandé de modifier directement la base de données Zotero SQLite, car cela peut facilement endommager la structure de la bibliothèque et l'état de synchronisation. L’approche sûre est la suivante :1. Créez une nouvelle collection dans Zotero : « Référence du document de planification à basse altitude ».
-2. Importez « zotero/low-altitude-planning-references-20260527.bib ».
-3. Si vous vous connectez ultérieurement à l'interface d'automatisation Zotero MCP ou Better BibTeX, vous pouvez modifier le script pour écrire directement dans la collection.
+1. Utilisez `pandoc` pour vérifier que BibTeX peut être analysé en tant que CSL JSON.
+2. Importez `zotero/low-altitude-planning-references-20260527.bib` via Zotero local `/connector/import`.
+3. Mettez à jour la collection cible de la session importée vers « C17 / Low Altitude Planning Paper Reference » via « /connector/updateSession ».
+4. Utilisez l'API locale Zotero et SQLite en lecture seule pour vérifier qu'il existe 38 documents de niveau supérieur dans la collection.
+
+Si vous continuez à ajouter des documents à l'avenir, il est recommandé de mettre à jour d'abord le BibTeX local, puis d'importer Zotero via le même processus d'importation/mise à jour du connecteur. Ne modifiez pas SQLite directement.
 
 ---
 
 ## 6. Plan d'exécution de suivi
 
-### 6.1 Semaine 1 : Geler la matrice du papier
-
-- Confirmez si le papier A/B/C est la force principale des trois articles actuels.
+### 6.1 Semaine 1 : Geler la matrice du papier- Confirmez si le papier A/B/C est la force principale des trois articles actuels.
 - Confirmez si le papier D considère les 76 millions de journaux d'exploration comme un actif essentiel.
 - Confirmez si le papier E/G continue d'être AAAI/IJCAI en premier.
-- Importez la collection Zotero dans BibTeX et ajoutez le PDF.
+- L'importation initiale de la collection Zotero est terminée ; l'étape suivante consiste à ajouter des PDF, des notes récapitulatives et des balises de priorité pour chaque article.
 
 ### 6.2 Semaine 2-3 : Compléter la matrice de littérature
 
@@ -288,38 +293,38 @@ Il n'y a pas de MCP/connecteur Zotero qui peut être appelé dans l'environnemen
 - Papier A : simulation de conflit de corridor + référence ORCA/CBF/RMADER/MAPPO.
 - Papier C : pipeline 3DGS NBV + référence FisherRF/ActiveNeRF/GS-Planner/POp-GS.
 
-### 6.4 Semaines 9 à 12 : Décider de votre première soumission- Si la stabilité de la file d'attente du papier B et les résultats au niveau d'une centaine d'étagères sont les plus stables : votez d'abord pour TR-C.
+### 6.4 Semaines 9 à 12 : Décider de votre première soumission
+
+- Si la stabilité de la file d'attente du papier B et les résultats au niveau d'une centaine d'étagères sont les plus stables : votez d'abord pour TR-C.
 - Si l'article A présente la sécurité et la généralisation des conflits les plus fortes : votez d'abord pour T-ITS/T-RO.
 - Si l'article C a les résultats théoriques et visuels Fisher + 3DGS les plus forts : votez d'abord pour T-RO/ICRA/IROS.
 - Si D dispose des meilleures données de couverture/découverte des pannes : investissez d'abord dans les T-ITS.
 
 ---
 
-## 7. Références
-
-[1] Elsevier. *Recherche sur les transports, partie C : Technologies émergentes : objectifs et portée.* URL : <https://www.sciencedirect.com/journal/transportation-research-part-c-emerging-technologies>
+## 7. Références[1] Elsevier. *Recherche sur les transports, partie C : Technologies émergentes : objectifs et portée.* URL : <https://www.sciencedirect.com/journal/transportation-research-part-c-emerging-technologies>
 
 [2] Société des systèmes de transport intelligents IEEE. *Transactions IEEE sur les systèmes de transport intelligents : portée.* URL : <https://ieee-itss.org/pub/t-its/>
 
-[3] Chao Yu, Akash Velu, Eugene Vinitsky, Yu Wang, Alexandre M. Bayen et Yi Wu. «L'efficacité surprenante du PPO dans les jeux multi-agents coopératifs.» *Avances dans les systèmes de traitement de l'information neuronale*, 2022. URL : <https://arxiv.org/abs/2103.01955>[4] Muning Wen, Jakub Grudzien Kuba, Runji Lin, Weinan Zhang, Ying Wen, Jun Wang et Yaodong Yang. "L'apprentissage par renforcement multi-agents est un problème de modélisation de séquence." *NeurIPS*, 2022. URL : <https://proceedings.neurips.cc/paper_files/paper/2022/hash/69413f87e5a34897cd010ca698097d0a-Abstract-Conference.html>
+[3] Chao Yu, Akash Velu, Eugene Vinitsky, Yu Wang, Alexandre M. Bayen et Yi Wu. «L'efficacité surprenante du PPO dans les jeux multi-agents coopératifs.» *Avances dans les systèmes de traitement de l'information neuronale*, 2022. URL : <https://arxiv.org/abs/2103.01955>
 
-[5] Bei Peng, Tabish Rashid, Christian Schroeder de Witt, Pierre-Alexandre Kamienny, Philip Torr, Wendelin Boehmer et Shimon Whiteson. « FACMAC : Gradients de politiques centralisés multi-agents factorisés. » *NeurIPS*, 2021. URL : <https://proceedings.neurips.cc/paper/2021/hash/65b9eea6e1cc6bb9f0cd2a47751a186f-Abstract.html>
+[4] Muning Wen, Jakub Grudzien Kuba, Runji Lin, Weinan Zhang, Ying Wen, Jun Wang et Yaodong Yang. "L'apprentissage par renforcement multi-agents est un problème de modélisation de séquence." *NeurIPS*, 2022. URL : <https://proceedings.neurips.cc/paper_files/paper/2022/hash/69413f87e5a34897cd010ca698097d0a-Abstract-Conference.html>[5] Bei Peng, Tabish Rashid, Christian Schroeder de Witt, Pierre-Alexandre Kamienny, Philip Torr, Wendelin Boehmer et Shimon Whiteson. « FACMAC : Gradients de politiques centralisés multi-agents factorisés. » *NeurIPS*, 2021. URL : <https://proceedings.neurips.cc/paper/2021/hash/65b9eea6e1cc6bb9f0cd2a47751a186f-Abstract.html>
 
-[6] Jakub Grudzien Kuba, Ruiqing Chen, Muning Wen, Ying Wen, Fudan Sun, Jun Wang et Yaodong Yang. «Optimisation des politiques de région de confiance dans l'apprentissage par renforcement multi-agents». arXiv :2109.11251, 2021. URL : <https://arxiv.org/abs/2109.11251>[7] Boyu Zhou, Xin Zhou, Jun Zhang, Fei Gao et Shaojie Shen. "EGO-Swarm : un système d'essaim à quatre rotors entièrement autonome et décentralisé dans des environnements encombrés." *ICRA*, 2021. DOI : 10.1109/ICRA48506.2021.9561902. URL : <https://arxiv.org/abs/2011.04183>
+[6] Jakub Grudzien Kuba, Ruiqing Chen, Muning Wen, Ying Wen, Fudan Sun, Jun Wang et Yaodong Yang. «Optimisation des politiques de région de confiance dans l'apprentissage par renforcement multi-agents». arXiv :2109.11251, 2021. URL : <https://arxiv.org/abs/2109.11251>
 
-[8] Jesus Tordesillas, Brett T. Lopez et Jonathan P. How. « MADER : Planificateur de trajectoire dans des environnements multiagents et dynamiques. » *Transactions IEEE sur la robotique*, 38(1):463-476, 2022. URL : <https://arxiv.org/abs/2010.11061>
+[7] Boyu Zhou, Xin Zhou, Jun Zhang, Fei Gao et Shaojie Shen. "EGO-Swarm : un système d'essaim à quatre rotors entièrement autonome et décentralisé dans des environnements encombrés." *ICRA*, 2021. DOI : 10.1109/ICRA48506.2021.9561902. URL : <https://arxiv.org/abs/2011.04183>[8] Jesus Tordesillas, Brett T. Lopez et Jonathan P. How. « MADER : Planificateur de trajectoire dans des environnements multiagents et dynamiques. » *Transactions IEEE sur la robotique*, 38(1):463-476, 2022. URL : <https://arxiv.org/abs/2010.11061>
 
-[9] Kota Kondo, Reinaldo Figueroa, Juan Rached, Jesus Tordesillas, Parker C. Lusk et Jonathan P. How. "MADER robuste : planificateur de trajectoire multiagent décentralisé robuste aux retards de communication dans les environnements dynamiques." arXiv :2303.06222, 2023. URL : <https://arxiv.org/abs/2303.06222>[10] Boyu Zhou, Hao Xu et Shaojie Shen. "RACER : Exploration collaborative rapide avec un système multi-UAV décentralisé." *Transactions IEEE sur la robotique*, 2023. DOI : 10.1109/TRO.2023.3236945. URL : <https://arxiv.org/abs/2209.08533>
+[9] Kota Kondo, Reinaldo Figueroa, Juan Rached, Jesus Tordesillas, Parker C. Lusk et Jonathan P. How. "MADER robuste : planificateur de trajectoire multiagent décentralisé robuste aux retards de communication dans les environnements dynamiques." arXiv :2303.06222, 2023. URL : <https://arxiv.org/abs/2303.06222>
 
-[11] Jésus Tordesillas et Jonathan P. Comment. « PANTHER : Planificateur de trajectoire sensible à la perception dans des environnements dynamiques. » *Accès IEEE*, 10 : 22662-22677, 2022. DOI : 10.1109/ACCESS.2022.3154037. URL : <https://arxiv.org/abs/2103.06372>
+[10] Boyu Zhou, Hao Xu et Shaojie Shen. "RACER : Exploration collaborative rapide avec un système multi-UAV décentralisé." *Transactions IEEE sur la robotique*, 2023. DOI : 10.1109/TRO.2023.3236945. URL : <https://arxiv.org/abs/2209.08533>[11] Jésus Tordesillas et Jonathan P. Comment. « PANTHER : Planificateur de trajectoire sensible à la perception dans des environnements dynamiques. » *Accès IEEE*, 10 : 22662-22677, 2022. DOI : 10.1109/ACCESS.2022.3154037. URL : <https://arxiv.org/abs/2103.06372>
 
-[12] Zhepei Wang, Xin Zhou, Chao Xu et Fei Gao. «Optimisation de trajectoire géométriquement contrainte pour les multicoptères». *Transactions IEEE sur la robotique*, 38(5):3259-3278, 2022. DOI : 10.1109/TRO.2022.3160022. URL : <https://arxiv.org/abs/2103.00190>[13] Ang Li, Mark Hansen et Bo Zou. «Gestion du trafic et allocation des ressources pour la livraison de colis par drone dans l'espace urbain à basse altitude.» *Recherche sur les transports, partie C : technologies émergentes*, 143 : 103808, 2022. DOI : 10.1016/j.trc.2022.103808. URL : <https://doi.org/10.1016/j.trc.2022.103808>
+[12] Zhepei Wang, Xin Zhou, Chao Xu et Fei Gao. «Optimisation de trajectoire géométriquement contrainte pour les multicoptères». *Transactions IEEE sur la robotique*, 38(5):3259-3278, 2022. DOI : 10.1109/TRO.2022.3160022. URL : <https://arxiv.org/abs/2103.00190>
 
-[14] Mehdi Bennaceur, Rémi Delmas et Youssef Hamadi. « Mobilité aérienne urbaine centrée sur les passagers : compromis en matière d'équité et d'efficacité opérationnelle. » *Recherche sur les transports, partie C : technologies émergentes*, 136 :103519, 2022. DOI : 10.1016/j.trc.2021.103519. URL : <https://doi.org/10.1016/j.trc.2021.103519>
+[13] Ang Li, Mark Hansen et Bo Zou. «Gestion du trafic et allocation des ressources pour la livraison de colis par drone dans l'espace urbain à basse altitude.» *Recherche sur les transports, partie C : technologies émergentes*, 143 : 103808, 2022. DOI : 10.1016/j.trc.2022.103808. URL : <https://doi.org/10.1016/j.trc.2022.103808>[14] Mehdi Bennaceur, Rémi Delmas et Youssef Hamadi. « Mobilité aérienne urbaine centrée sur les passagers : compromis en matière d'équité et d'efficacité opérationnelle. » *Recherche sur les transports, partie C : technologies émergentes*, 136 :103519, 2022. DOI : 10.1016/j.trc.2021.103519. URL : <https://doi.org/10.1016/j.trc.2021.103519>
 
-[15] Roberto Pinto et Alexandra Lagorio. « Conception d'un réseau de livraison point à point basé sur des drones avec des stations de recharge intermédiaires. » *Recherche sur les transports, partie C : technologies émergentes*, 135 :103506, 2022. DOI : 10.1016/j.trc.2021.103506. URL : <https://doi.org/10.1016/j.trc.2021.103506>[16] Qinshuang Wei, Gustav Nilsson et Samuel Coogan. « Planification de la mobilité aérienne urbaine à capacité limitée. » arXiv :2107.02900, 2021. URL : <https://arxiv.org/abs/2107.02900>
+[15] Roberto Pinto et Alexandra Lagorio. « Conception d'un réseau de livraison point à point basé sur des drones avec des stations de recharge intermédiaires. » *Recherche sur les transports, partie C : technologies émergentes*, 135 :103506, 2022. DOI : 10.1016/j.trc.2021.103506. URL : <https://doi.org/10.1016/j.trc.2021.103506>
 
-[17] Surya Murthy, Natasha A. Neogi et Suda Bharadwaj. « Planification de la mobilité aérienne urbaine grâce à un apprentissage sécurisé. » arXiv :2209.15457, NASA NTRS, 2022. URL : <https://arxiv.org/abs/2209.15457>
+[16] Qinshuang Wei, Gustav Nilsson et Samuel Coogan. « Planification de la mobilité aérienne urbaine à capacité limitée. » arXiv :2107.02900, 2021. URL : <https://arxiv.org/abs/2107.02900>[17] Surya Murthy, Natasha A. Neogi et Suda Bharadwaj. « Planification de la mobilité aérienne urbaine grâce à un apprentissage sécurisé. » arXiv :2209.15457, NASA NTRS, 2022. URL : <https://arxiv.org/abs/2209.15457>
 
 [18] Jiahao Xing, Tong Guo et Lu Tong. "Routage camion-drone fiable avec synchronisation dynamique : une approche de programmation réseau de grande dimension." *Recherche sur les transports, partie C : technologies émergentes*, 165 :104698, 2024. DOI : 10.1016/j.trc.2024.104698. URL : <https://doi.org/10.1016/j.trc.2024.104698>
 
