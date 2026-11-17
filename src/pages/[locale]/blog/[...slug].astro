@@ -1,53 +1,52 @@
 ---
 import { getCollection } from 'astro:content';
 import BlogPostPage from '../../../components/BlogPostPage.astro';
-import { routeLocales } from '../../../i18n/config.mjs';
-import { getAvailablePostLocales, getLocalizedPost, getPostBaseSlug, isDefaultLocalePost } from '../../../i18n/utils.mjs';
+import { defaultLocale, routeLocales } from '../../../i18n/config.mjs';
+import {
+  assertUniquePostSlugs,
+  getAvailablePostLocales,
+  getLocalizedPost,
+  getPostBaseSlug,
+  getPostLocale,
+  isDefaultLocalePost,
+} from '../../../i18n/utils.mjs';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog', ({ data }) => !data.draft);
+  assertUniquePostSlugs(posts);
   const basePosts = posts.filter(isDefaultLocalePost);
-
-  const basePostsBySlug = new Map();
-  for (const basePost of basePosts) {
-    basePostsBySlug.set(getPostBaseSlug(basePost), basePost);
-  }
-
-  const availableByLocale = new Map(
-    routeLocales.map(locale => {
-      return [locale, new Set()];
-    }),
+  const basePostsBySlug = new Map(
+    basePosts.map(basePost => [getPostBaseSlug(basePost), basePost]),
+  );
+  const availableByLocale = new Map<string, Set<string>>(
+    routeLocales.map(locale => [locale, new Set<string>()]),
   );
 
-  const baseSlugs = new Set(basePosts.map(post => getPostBaseSlug(post)));
-
   for (const post of posts) {
-    const parts = String(post.slug).split('/').filter(Boolean);
-    if (parts.length !== 2) continue;
-    const locale = parts[0];
-    if (!routeLocales.includes(locale)) continue;
-    if (baseSlugs.has(parts[1])) {
-      availableByLocale.get(locale)?.add(parts[1]);
+    const locale = getPostLocale(post);
+    if (locale === defaultLocale) continue;
+
+    const baseSlug = getPostBaseSlug(post);
+    if (basePostsBySlug.has(baseSlug)) {
+      availableByLocale.get(locale)?.add(baseSlug);
     }
   }
 
   return routeLocales.flatMap(locale => {
-    const localeSet = availableByLocale.get(locale);
-    if (!localeSet) return [];
+    const baseSlugs = availableByLocale.get(locale);
+    if (!baseSlugs) return [];
 
-    return Array.from(baseSlugs)
-      .filter(baseSlug => localeSet.has(baseSlug))
-      .map(baseSlug => {
-        const basePost = basePostsBySlug.get(baseSlug);
-        return {
-          params: { locale, slug: baseSlug },
-          props: {
-            locale,
-            post: getLocalizedPost(basePost, locale, posts),
-            nativeLocaleCodes: getAvailablePostLocales(basePost, posts),
-          },
-        };
-      });
+    return Array.from(baseSlugs).map(baseSlug => {
+      const basePost = basePostsBySlug.get(baseSlug);
+      return {
+        params: { locale, slug: baseSlug },
+        props: {
+          locale,
+          post: getLocalizedPost(basePost, locale, posts),
+          nativeLocaleCodes: getAvailablePostLocales(basePost, posts),
+        },
+      };
+    });
   });
 }
 

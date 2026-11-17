@@ -1,8 +1,9 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { routeLocales } from '../src/i18n/config.mjs';
 
 const distDir = new URL('../dist/', import.meta.url);
-const targetLocales = ['en', 'ja', 'fr', 'de'];
+const targetLocales = routeLocales;
 const zhBlogDir = join(distDir.pathname, 'blog');
 
 const articleSlugs = readdirSync(zhBlogDir, { withFileTypes: true })
