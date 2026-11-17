@@ -37,7 +37,7 @@ def _load_supported_locales() -> tuple[str, ...]:
             raise ValueError("no route locales found in config")
         return parsed
     except Exception:
-        return ("en", "ja", "fr", "de")
+        return ("en",)
 
 
 SUPPORTED_LOCALES = _load_supported_locales()
@@ -218,8 +218,8 @@ def translate_frontmatter(frontmatter: str, locale: str, cache: dict[str, str]) 
 
 
 def translate_file(source_path: Path, locale: str, cache: dict[str, str], force: bool) -> str:
-    output_dir = SOURCE_DIR / locale
-    output_path = output_dir / source_path.name
+    relative_path = source_path.relative_to(SOURCE_DIR)
+    output_path = SOURCE_DIR / locale / relative_path
 
     source_text = source_path.read_text(encoding="utf-8")
     frontmatter, body = split_frontmatter(source_text)
@@ -234,7 +234,7 @@ def translate_file(source_path: Path, locale: str, cache: dict[str, str], force:
     translated_frontmatter = translate_frontmatter(frontmatter, locale, cache)
     translated_frontmatter = update_source_hash(translated_frontmatter, source_hash)
     translated_body = translate_text(body, locale, cache)
-    output_dir.mkdir(parents=True, exist_ok=True)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(f"---\n{translated_frontmatter}\n---\n\n{translated_body}", encoding="utf-8")
     return "updated"
 
@@ -250,7 +250,14 @@ def main() -> None:
         if locale not in SUPPORTED_LOCALES:
             raise SystemExit(f"Unsupported locale: {locale}")
 
-    source_paths = sorted(path for path in SOURCE_DIR.glob("*.md") if path.is_file())
+    locale_dir_names = set(SUPPORTED_LOCALES) | {SOURCE_LOCALE.lower()}
+    source_paths = sorted(
+        path
+        for path in SOURCE_DIR.rglob("*.md")
+        if path.is_file()
+        and path.relative_to(SOURCE_DIR).parts[0] not in locale_dir_names
+        and not path.name.startswith(".")
+    )
     for locale in locales:
         cache = load_cache(locale)
         counts = {"updated": 0, "up_to_date": 0}

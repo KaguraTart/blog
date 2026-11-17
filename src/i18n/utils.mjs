@@ -47,21 +47,45 @@ export function normalizePath(pathname) {
   return '/';
 }
 
+export function getPostLocale(post) {
+  const firstPart = String(post.slug).split('/').filter(Boolean)[0];
+  if (firstPart === defaultLocale || routeLocales.includes(firstPart)) {
+    return firstPart;
+  }
+  return defaultLocale;
+}
+
 export function getPostBaseSlug(post) {
-  return stripLocaleFromSlug(post.slug);
+  const parts = stripLocaleFromSlug(post.slug).split('/').filter(Boolean);
+  return parts[parts.length - 1] ?? '';
 }
 
 export function stripLocaleFromSlug(slug) {
   const parts = String(slug).split('/').filter(Boolean);
-  if (parts.length > 1 && routeLocales.includes(parts[0])) {
+  if (parts.length > 1 && (parts[0] === defaultLocale || routeLocales.includes(parts[0]))) {
     return parts.slice(1).join('/');
   }
   return parts.join('/');
 }
 
 export function isDefaultLocalePost(post) {
-  const firstPart = String(post.slug).split('/').filter(Boolean)[0];
-  return !routeLocales.includes(firstPart);
+  return getPostLocale(post) === defaultLocale;
+}
+
+export function assertUniquePostSlugs(posts) {
+  const seen = new Map();
+
+  for (const post of posts) {
+    const key = `${getPostLocale(post)}/${getPostBaseSlug(post)}`;
+    const existing = seen.get(key);
+    if (existing) {
+      throw new Error(
+        `Duplicate post slug "${key}" in ${existing.slug} and ${post.slug}. ` +
+          'Post filenames must be unique across date folders because URLs use the basename.',
+      );
+    }
+    seen.set(key, post);
+  }
 }
 
 export function getDisplayDate(post) {
@@ -81,14 +105,18 @@ export function getLocalizedPost(basePost, locale, posts) {
   if (targetLocale === defaultLocale) return basePost;
 
   const baseSlug = getPostBaseSlug(basePost);
-  return posts.find(post => post.slug === `${targetLocale}/${baseSlug}`) ?? basePost;
+  return posts.find(
+    post => getPostLocale(post) === targetLocale && getPostBaseSlug(post) === baseSlug,
+  ) ?? basePost;
 }
 
 export function getAvailablePostLocales(basePost, posts) {
   const baseSlug = getPostBaseSlug(basePost);
   return [
     defaultLocale,
-    ...routeLocales.filter(locale => posts.some(post => post.slug === `${locale}/${baseSlug}`)),
+    ...routeLocales.filter(locale =>
+      posts.some(post => getPostLocale(post) === locale && getPostBaseSlug(post) === baseSlug),
+    ),
   ];
 }
 

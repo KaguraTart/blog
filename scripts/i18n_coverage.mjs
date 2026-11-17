@@ -1,18 +1,38 @@
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
-import { routeLocales } from '../src/i18n/config.mjs';
+import { locales, routeLocales } from '../src/i18n/config.mjs';
+
+const localeDirNames = new Set(locales);
+
+function collectMarkdownFiles(dir, relativeBase = '') {
+  const files = [];
+
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    if (entry.name.startsWith('.')) continue;
+
+    const relativePath = relativeBase ? `${relativeBase}/${entry.name}` : entry.name;
+    const fullPath = join(dir, entry.name);
+
+    if (entry.isDirectory()) {
+      if (relativeBase === '' && localeDirNames.has(entry.name)) continue;
+      files.push(...collectMarkdownFiles(fullPath, relativePath));
+    } else if (entry.isFile() && entry.name.endsWith('.md')) {
+      files.push({ relativePath, fullPath });
+    }
+  }
+
+  return files;
+}
 
 function getSourcePostEntries(rootDir = process.cwd()) {
   const blogDir = join(rootDir, 'src/content/blog');
 
-  const entries = readdirSync(blogDir, { withFileTypes: true })
-    .filter(entry => entry.isFile() && entry.name.endsWith('.md'))
-    .map(entry => {
-      const sourcePath = join(blogDir, entry.name);
-      const sourceText = readFileSync(sourcePath, 'utf8');
-      return { name: entry.name, hash: createHash('sha1').update(sourceText, 'utf8').digest('hex') };
-    })
+  const entries = collectMarkdownFiles(blogDir)
+    .map(entry => ({
+      name: entry.relativePath,
+      hash: createHash('sha1').update(readFileSync(entry.fullPath, 'utf8'), 'utf8').digest('hex'),
+    }))
     .sort((a, b) => a.name.localeCompare(b.name));
 
   return entries;
@@ -83,7 +103,7 @@ export function findMissingTranslations({ rootDir = process.cwd(), locales = rou
   for (const source of sourcePosts) {
     const expectedHash = sourceHashes.get(source) ?? null;
     for (const locale of locales) {
-      const expectedPath = join(blogDir, locale, source);
+      const expectedPath = join(blogDir, locale, ...source.split('/'));
       if (!existsSync(expectedPath)) {
         missing.push({
           source,
